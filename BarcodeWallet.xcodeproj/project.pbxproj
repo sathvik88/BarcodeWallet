@@ -1,0 +1,593 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 56;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		2C66C7C62CED3AEF008C524D /* BarcodeWalletApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C66C7C52CED3AEF008C524D /* BarcodeWalletApp.swift */; };
+		2C66C7C82CED3AEF008C524D /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C66C7C72CED3AEF008C524D /* ContentView.swift */; };
+		2C66C7CA2CED3AF0008C524D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2C66C7C92CED3AF0008C524D /* Assets.xcassets */; };
+		2C66C7CD2CED3AF0008C524D /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2C66C7CC2CED3AF0008C524D /* Preview Assets.xcassets */; };
+		2C66C7D72CED3AF1008C524D /* BarcodeWalletTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C66C7D62CED3AF1008C524D /* BarcodeWalletTests.swift */; };
+		2C66C7E12CED3AF1008C524D /* BarcodeWalletUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C66C7E02CED3AF1008C524D /* BarcodeWalletUITests.swift */; };
+		2C66C7E32CED3AF1008C524D /* BarcodeWalletUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C66C7E22CED3AF1008C524D /* BarcodeWalletUITestsLaunchTests.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		2C66C7D32CED3AF1008C524D /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 2C66C7BA2CED3AEF008C524D /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 2C66C7C12CED3AEF008C524D;
+			remoteInfo = BarcodeWallet;
+		};
+		2C66C7DD2CED3AF1008C524D /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 2C66C7BA2CED3AEF008C524D /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 2C66C7C12CED3AEF008C524D;
+			remoteInfo = BarcodeWallet;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		2C66C7C22CED3AEF008C524D /* BarcodeWallet.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BarcodeWallet.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		2C66C7C52CED3AEF008C524D /* BarcodeWalletApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BarcodeWalletApp.swift; sourceTree = "<group>"; };
+		2C66C7C72CED3AEF008C524D /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		2C66C7C92CED3AF0008C524D /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		2C66C7CC2CED3AF0008C524D /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		2C66C7D22CED3AF1008C524D /* BarcodeWalletTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BarcodeWalletTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		2C66C7D62CED3AF1008C524D /* BarcodeWalletTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BarcodeWalletTests.swift; sourceTree = "<group>"; };
+		2C66C7DC2CED3AF1008C524D /* BarcodeWalletUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BarcodeWalletUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		2C66C7E02CED3AF1008C524D /* BarcodeWalletUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BarcodeWalletUITests.swift; sourceTree = "<group>"; };
+		2C66C7E22CED3AF1008C524D /* BarcodeWalletUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BarcodeWalletUITestsLaunchTests.swift; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		2C66C7BF2CED3AEF008C524D /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		2C66C7CF2CED3AF1008C524D /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		2C66C7D92CED3AF1008C524D /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		2C66C7B92CED3AEF008C524D = {
+			isa = PBXGroup;
+			children = (
+				2C66C7C42CED3AEF008C524D /* BarcodeWallet */,
+				2C66C7D52CED3AF1008C524D /* BarcodeWalletTests */,
+				2C66C7DF2CED3AF1008C524D /* BarcodeWalletUITests */,
+				2C66C7C32CED3AEF008C524D /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		2C66C7C32CED3AEF008C524D /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				2C66C7C22CED3AEF008C524D /* BarcodeWallet.app */,
+				2C66C7D22CED3AF1008C524D /* BarcodeWalletTests.xctest */,
+				2C66C7DC2CED3AF1008C524D /* BarcodeWalletUITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		2C66C7C42CED3AEF008C524D /* BarcodeWallet */ = {
+			isa = PBXGroup;
+			children = (
+				2C66C7C52CED3AEF008C524D /* BarcodeWalletApp.swift */,
+				2C66C7C72CED3AEF008C524D /* ContentView.swift */,
+				2C66C7C92CED3AF0008C524D /* Assets.xcassets */,
+				2C66C7CB2CED3AF0008C524D /* Preview Content */,
+			);
+			path = BarcodeWallet;
+			sourceTree = "<group>";
+		};
+		2C66C7CB2CED3AF0008C524D /* Preview Content */ = {
+			isa = PBXGroup;
+			children = (
+				2C66C7CC2CED3AF0008C524D /* Preview Assets.xcassets */,
+			);
+			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		2C66C7D52CED3AF1008C524D /* BarcodeWalletTests */ = {
+			isa = PBXGroup;
+			children = (
+				2C66C7D62CED3AF1008C524D /* BarcodeWalletTests.swift */,
+			);
+			path = BarcodeWalletTests;
+			sourceTree = "<group>";
+		};
+		2C66C7DF2CED3AF1008C524D /* BarcodeWalletUITests */ = {
+			isa = PBXGroup;
+			children = (
+				2C66C7E02CED3AF1008C524D /* BarcodeWalletUITests.swift */,
+				2C66C7E22CED3AF1008C524D /* BarcodeWalletUITestsLaunchTests.swift */,
+			);
+			path = BarcodeWalletUITests;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		2C66C7C12CED3AEF008C524D /* BarcodeWallet */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 2C66C7E62CED3AF1008C524D /* Build configuration list for PBXNativeTarget "BarcodeWallet" */;
+			buildPhases = (
+				2C66C7BE2CED3AEF008C524D /* Sources */,
+				2C66C7BF2CED3AEF008C524D /* Frameworks */,
+				2C66C7C02CED3AEF008C524D /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = BarcodeWallet;
+			productName = BarcodeWallet;
+			productReference = 2C66C7C22CED3AEF008C524D /* BarcodeWallet.app */;
+			productType = "com.apple.product-type.application";
+		};
+		2C66C7D12CED3AF1008C524D /* BarcodeWalletTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 2C66C7E92CED3AF1008C524D /* Build configuration list for PBXNativeTarget "BarcodeWalletTests" */;
+			buildPhases = (
+				2C66C7CE2CED3AF1008C524D /* Sources */,
+				2C66C7CF2CED3AF1008C524D /* Frameworks */,
+				2C66C7D02CED3AF1008C524D /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				2C66C7D42CED3AF1008C524D /* PBXTargetDependency */,
+			);
+			name = BarcodeWalletTests;
+			productName = BarcodeWalletTests;
+			productReference = 2C66C7D22CED3AF1008C524D /* BarcodeWalletTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		2C66C7DB2CED3AF1008C524D /* BarcodeWalletUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 2C66C7EC2CED3AF1008C524D /* Build configuration list for PBXNativeTarget "BarcodeWalletUITests" */;
+			buildPhases = (
+				2C66C7D82CED3AF1008C524D /* Sources */,
+				2C66C7D92CED3AF1008C524D /* Frameworks */,
+				2C66C7DA2CED3AF1008C524D /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				2C66C7DE2CED3AF1008C524D /* PBXTargetDependency */,
+			);
+			name = BarcodeWalletUITests;
+			productName = BarcodeWalletUITests;
+			productReference = 2C66C7DC2CED3AF1008C524D /* BarcodeWalletUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		2C66C7BA2CED3AEF008C524D /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = 1;
+				LastSwiftUpdateCheck = 1510;
+				LastUpgradeCheck = 1510;
+				TargetAttributes = {
+					2C66C7C12CED3AEF008C524D = {
+						CreatedOnToolsVersion = 15.1;
+					};
+					2C66C7D12CED3AF1008C524D = {
+						CreatedOnToolsVersion = 15.1;
+						TestTargetID = 2C66C7C12CED3AEF008C524D;
+					};
+					2C66C7DB2CED3AF1008C524D = {
+						CreatedOnToolsVersion = 15.1;
+						TestTargetID = 2C66C7C12CED3AEF008C524D;
+					};
+				};
+			};
+			buildConfigurationList = 2C66C7BD2CED3AEF008C524D /* Build configuration list for PBXProject "BarcodeWallet" */;
+			compatibilityVersion = "Xcode 14.0";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 2C66C7B92CED3AEF008C524D;
+			productRefGroup = 2C66C7C32CED3AEF008C524D /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				2C66C7C12CED3AEF008C524D /* BarcodeWallet */,
+				2C66C7D12CED3AF1008C524D /* BarcodeWalletTests */,
+				2C66C7DB2CED3AF1008C524D /* BarcodeWalletUITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		2C66C7C02CED3AEF008C524D /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				2C66C7CD2CED3AF0008C524D /* Preview Assets.xcassets in Resources */,
+				2C66C7CA2CED3AF0008C524D /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		2C66C7D02CED3AF1008C524D /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		2C66C7DA2CED3AF1008C524D /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		2C66C7BE2CED3AEF008C524D /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				2C66C7C82CED3AEF008C524D /* ContentView.swift in Sources */,
+				2C66C7C62CED3AEF008C524D /* BarcodeWalletApp.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		2C66C7CE2CED3AF1008C524D /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				2C66C7D72CED3AF1008C524D /* BarcodeWalletTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		2C66C7D82CED3AF1008C524D /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				2C66C7E32CED3AF1008C524D /* BarcodeWalletUITestsLaunchTests.swift in Sources */,
+				2C66C7E12CED3AF1008C524D /* BarcodeWalletUITests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		2C66C7D42CED3AF1008C524D /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 2C66C7C12CED3AEF008C524D /* BarcodeWallet */;
+			targetProxy = 2C66C7D32CED3AF1008C524D /* PBXContainerItemProxy */;
+		};
+		2C66C7DE2CED3AF1008C524D /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 2C66C7C12CED3AEF008C524D /* BarcodeWallet */;
+			targetProxy = 2C66C7DD2CED3AF1008C524D /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		2C66C7E42CED3AF1008C524D /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.2;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG $(inherited)";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		2C66C7E52CED3AF1008C524D /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.2;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		2C66C7E72CED3AF1008C524D /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_ASSET_PATHS = "\"BarcodeWallet/Preview Content\"";
+				DEVELOPMENT_TEAM = 8M22PYB3ZS;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "Sathvik-Konuganti.BarcodeWallet";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		2C66C7E82CED3AF1008C524D /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_ASSET_PATHS = "\"BarcodeWallet/Preview Content\"";
+				DEVELOPMENT_TEAM = 8M22PYB3ZS;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "Sathvik-Konuganti.BarcodeWallet";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		2C66C7EA2CED3AF1008C524D /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 8M22PYB3ZS;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.2;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "Sathvik-Konuganti.BarcodeWalletTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/BarcodeWallet.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/BarcodeWallet";
+			};
+			name = Debug;
+		};
+		2C66C7EB2CED3AF1008C524D /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 8M22PYB3ZS;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.2;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "Sathvik-Konuganti.BarcodeWalletTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/BarcodeWallet.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/BarcodeWallet";
+			};
+			name = Release;
+		};
+		2C66C7ED2CED3AF1008C524D /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 8M22PYB3ZS;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "Sathvik-Konuganti.BarcodeWalletUITests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = BarcodeWallet;
+			};
+			name = Debug;
+		};
+		2C66C7EE2CED3AF1008C524D /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 8M22PYB3ZS;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "Sathvik-Konuganti.BarcodeWalletUITests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = BarcodeWallet;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		2C66C7BD2CED3AEF008C524D /* Build configuration list for PBXProject "BarcodeWallet" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				2C66C7E42CED3AF1008C524D /* Debug */,
+				2C66C7E52CED3AF1008C524D /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		2C66C7E62CED3AF1008C524D /* Build configuration list for PBXNativeTarget "BarcodeWallet" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				2C66C7E72CED3AF1008C524D /* Debug */,
+				2C66C7E82CED3AF1008C524D /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		2C66C7E92CED3AF1008C524D /* Build configuration list for PBXNativeTarget "BarcodeWalletTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				2C66C7EA2CED3AF1008C524D /* Debug */,
+				2C66C7EB2CED3AF1008C524D /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		2C66C7EC2CED3AF1008C524D /* Build configuration list for PBXNativeTarget "BarcodeWalletUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				2C66C7ED2CED3AF1008C524D /* Debug */,
+				2C66C7EE2CED3AF1008C524D /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 2C66C7BA2CED3AEF008C524D /* Project object */;
+}
