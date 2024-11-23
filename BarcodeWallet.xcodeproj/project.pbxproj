@@ -8,12 +8,25 @@
 
 /* Begin PBXBuildFile section */
 		2C66C7C62CED3AEF008C524D /* BarcodeWalletApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C66C7C52CED3AEF008C524D /* BarcodeWalletApp.swift */; };
-		2C66C7C82CED3AEF008C524D /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C66C7C72CED3AEF008C524D /* ContentView.swift */; };
+		2C66C7C82CED3AEF008C524D /* LinearBarcodeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C66C7C72CED3AEF008C524D /* LinearBarcodeView.swift */; };
 		2C66C7CA2CED3AF0008C524D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2C66C7C92CED3AF0008C524D /* Assets.xcassets */; };
 		2C66C7CD2CED3AF0008C524D /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2C66C7CC2CED3AF0008C524D /* Preview Assets.xcassets */; };
 		2C66C7D72CED3AF1008C524D /* BarcodeWalletTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C66C7D62CED3AF1008C524D /* BarcodeWalletTests.swift */; };
 		2C66C7E12CED3AF1008C524D /* BarcodeWalletUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C66C7E02CED3AF1008C524D /* BarcodeWalletUITests.swift */; };
 		2C66C7E32CED3AF1008C524D /* BarcodeWalletUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C66C7E22CED3AF1008C524D /* BarcodeWalletUITestsLaunchTests.swift */; };
+		2C66C7F12CED3BAE008C524D /* BarcodeGenModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C66C7F02CED3BAE008C524D /* BarcodeGenModel.swift */; };
+		2C66C7F42CED3F59008C524D /* QRCodeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C66C7F32CED3F59008C524D /* QRCodeView.swift */; };
+		2C66C7F62CED3FFD008C524D /* TabsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C66C7F52CED3FFD008C524D /* TabsView.swift */; };
+		2C66C7F82CED44F2008C524D /* ManualBarcodeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C66C7F72CED44F2008C524D /* ManualBarcodeView.swift */; };
+		2C66C7FA2CED4923008C524D /* ScanBarcodeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C66C7F92CED4923008C524D /* ScanBarcodeView.swift */; };
+		2C66C7FD2CED51AB008C524D /* BarcodeScannerController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C66C7FC2CED51AB008C524D /* BarcodeScannerController.swift */; };
+		2C66C7FF2CED55CA008C524D /* Coordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C66C7FE2CED55CA008C524D /* Coordinator.swift */; };
+		2C7E22692CEFC92E005FB3C0 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2C7E22682CEFC92E005FB3C0 /* AVFoundation.framework */; };
+		2C7E226B2CEFC93D005FB3C0 /* CoreMedia.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2C7E226A2CEFC93D005FB3C0 /* CoreMedia.framework */; };
+		2C7E226D2CEFC943005FB3C0 /* CoreVideo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2C7E226C2CEFC943005FB3C0 /* CoreVideo.framework */; };
+		2C7E226F2CEFC94B005FB3C0 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2C7E226E2CEFC94A005FB3C0 /* QuartzCore.framework */; };
+		2C7E22722CF0619D005FB3C0 /* CodabarBarcodeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C7E22712CF0619D005FB3C0 /* CodabarBarcodeView.swift */; };
+		2C7E22732CF0619D005FB3C0 /* CodabarBarcodeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C7E22712CF0619D005FB3C0 /* CodabarBarcodeView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -36,7 +49,7 @@
 /* Begin PBXFileReference section */
 		2C66C7C22CED3AEF008C524D /* BarcodeWallet.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BarcodeWallet.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2C66C7C52CED3AEF008C524D /* BarcodeWalletApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BarcodeWalletApp.swift; sourceTree = "<group>"; };
-		2C66C7C72CED3AEF008C524D /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		2C66C7C72CED3AEF008C524D /* LinearBarcodeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LinearBarcodeView.swift; sourceTree = "<group>"; };
 		2C66C7C92CED3AF0008C524D /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		2C66C7CC2CED3AF0008C524D /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		2C66C7D22CED3AF1008C524D /* BarcodeWalletTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BarcodeWalletTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -44,6 +57,18 @@
 		2C66C7DC2CED3AF1008C524D /* BarcodeWalletUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BarcodeWalletUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		2C66C7E02CED3AF1008C524D /* BarcodeWalletUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BarcodeWalletUITests.swift; sourceTree = "<group>"; };
 		2C66C7E22CED3AF1008C524D /* BarcodeWalletUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BarcodeWalletUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		2C66C7F02CED3BAE008C524D /* BarcodeGenModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BarcodeGenModel.swift; sourceTree = "<group>"; };
+		2C66C7F32CED3F59008C524D /* QRCodeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QRCodeView.swift; sourceTree = "<group>"; };
+		2C66C7F52CED3FFD008C524D /* TabsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabsView.swift; sourceTree = "<group>"; };
+		2C66C7F72CED44F2008C524D /* ManualBarcodeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManualBarcodeView.swift; sourceTree = "<group>"; };
+		2C66C7F92CED4923008C524D /* ScanBarcodeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScanBarcodeView.swift; sourceTree = "<group>"; };
+		2C66C7FC2CED51AB008C524D /* BarcodeScannerController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BarcodeScannerController.swift; sourceTree = "<group>"; };
+		2C66C7FE2CED55CA008C524D /* Coordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Coordinator.swift; sourceTree = "<group>"; };
+		2C7E22682CEFC92E005FB3C0 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
+		2C7E226A2CEFC93D005FB3C0 /* CoreMedia.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMedia.framework; path = System/Library/Frameworks/CoreMedia.framework; sourceTree = SDKROOT; };
+		2C7E226C2CEFC943005FB3C0 /* CoreVideo.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreVideo.framework; path = System/Library/Frameworks/CoreVideo.framework; sourceTree = SDKROOT; };
+		2C7E226E2CEFC94A005FB3C0 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		2C7E22712CF0619D005FB3C0 /* CodabarBarcodeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CodabarBarcodeView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -51,6 +76,10 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2C7E226F2CEFC94B005FB3C0 /* QuartzCore.framework in Frameworks */,
+				2C7E226B2CEFC93D005FB3C0 /* CoreMedia.framework in Frameworks */,
+				2C7E22692CEFC92E005FB3C0 /* AVFoundation.framework in Frameworks */,
+				2C7E226D2CEFC943005FB3C0 /* CoreVideo.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -78,6 +107,7 @@
 				2C66C7D52CED3AF1008C524D /* BarcodeWalletTests */,
 				2C66C7DF2CED3AF1008C524D /* BarcodeWalletUITests */,
 				2C66C7C32CED3AEF008C524D /* Products */,
+				2C7E22672CEFC92E005FB3C0 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -94,8 +124,10 @@
 		2C66C7C42CED3AEF008C524D /* BarcodeWallet */ = {
 			isa = PBXGroup;
 			children = (
+				2C66C7FB2CED5195008C524D /* ViewModel */,
+				2C66C7F22CED3F2F008C524D /* View */,
+				2C66C7EF2CED3B33008C524D /* Model */,
 				2C66C7C52CED3AEF008C524D /* BarcodeWalletApp.swift */,
-				2C66C7C72CED3AEF008C524D /* ContentView.swift */,
 				2C66C7C92CED3AF0008C524D /* Assets.xcassets */,
 				2C66C7CB2CED3AF0008C524D /* Preview Content */,
 			);
@@ -125,6 +157,47 @@
 				2C66C7E22CED3AF1008C524D /* BarcodeWalletUITestsLaunchTests.swift */,
 			);
 			path = BarcodeWalletUITests;
+			sourceTree = "<group>";
+		};
+		2C66C7EF2CED3B33008C524D /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				2C66C7F02CED3BAE008C524D /* BarcodeGenModel.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		2C66C7F22CED3F2F008C524D /* View */ = {
+			isa = PBXGroup;
+			children = (
+				2C66C7C72CED3AEF008C524D /* LinearBarcodeView.swift */,
+				2C66C7F32CED3F59008C524D /* QRCodeView.swift */,
+				2C66C7F52CED3FFD008C524D /* TabsView.swift */,
+				2C66C7F72CED44F2008C524D /* ManualBarcodeView.swift */,
+				2C66C7F92CED4923008C524D /* ScanBarcodeView.swift */,
+				2C7E22712CF0619D005FB3C0 /* CodabarBarcodeView.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		2C66C7FB2CED5195008C524D /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				2C66C7FC2CED51AB008C524D /* BarcodeScannerController.swift */,
+				2C66C7FE2CED55CA008C524D /* Coordinator.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		2C7E22672CEFC92E005FB3C0 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				2C7E226E2CEFC94A005FB3C0 /* QuartzCore.framework */,
+				2C7E226C2CEFC943005FB3C0 /* CoreVideo.framework */,
+				2C7E226A2CEFC93D005FB3C0 /* CoreMedia.framework */,
+				2C7E22682CEFC92E005FB3C0 /* AVFoundation.framework */,
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -215,6 +288,9 @@
 				Base,
 			);
 			mainGroup = 2C66C7B92CED3AEF008C524D;
+			packageReferences = (
+				2C7E22702CF0571C005FB3C0 /* XCRemoteSwiftPackageReference "CDCodabarView" */,
+			);
 			productRefGroup = 2C66C7C32CED3AEF008C524D /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -257,8 +333,16 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				2C66C7C82CED3AEF008C524D /* ContentView.swift in Sources */,
+				2C66C7F82CED44F2008C524D /* ManualBarcodeView.swift in Sources */,
+				2C66C7F42CED3F59008C524D /* QRCodeView.swift in Sources */,
+				2C66C7C82CED3AEF008C524D /* LinearBarcodeView.swift in Sources */,
+				2C66C7FA2CED4923008C524D /* ScanBarcodeView.swift in Sources */,
 				2C66C7C62CED3AEF008C524D /* BarcodeWalletApp.swift in Sources */,
+				2C66C7F12CED3BAE008C524D /* BarcodeGenModel.swift in Sources */,
+				2C7E22722CF0619D005FB3C0 /* CodabarBarcodeView.swift in Sources */,
+				2C66C7F62CED3FFD008C524D /* TabsView.swift in Sources */,
+				2C66C7FD2CED51AB008C524D /* BarcodeScannerController.swift in Sources */,
+				2C66C7FF2CED55CA008C524D /* Coordinator.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -274,6 +358,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2C7E22732CF0619D005FB3C0 /* CodabarBarcodeView.swift in Sources */,
 				2C66C7E32CED3AF1008C524D /* BarcodeWalletUITestsLaunchTests.swift in Sources */,
 				2C66C7E12CED3AF1008C524D /* BarcodeWalletUITests.swift in Sources */,
 			);
@@ -425,11 +510,13 @@
 				DEVELOPMENT_TEAM = 8M22PYB3ZS;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_NSCameraUsageDescription = "";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -454,11 +541,13 @@
 				DEVELOPMENT_TEAM = 8M22PYB3ZS;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_NSCameraUsageDescription = "";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -588,6 +677,17 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		2C7E22702CF0571C005FB3C0 /* XCRemoteSwiftPackageReference "CDCodabarView" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/Coledunsby/CDCodabarView.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.3.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
 	};
 	rootObject = 2C66C7BA2CED3AEF008C524D /* Project object */;
 }
