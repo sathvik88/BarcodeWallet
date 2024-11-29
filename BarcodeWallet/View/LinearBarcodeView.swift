@@ -24,7 +24,7 @@ struct LinearBarcodeView: View {
             
             TabView(selection: $selectedTab,
                     content:  {
-                ManualBarcodeView(inputText: $inputText)
+                ManualBarcodeView(inputText: $inputText, title: "Sathvik's Library Card")
                 .tag(0)
                 ScanBarcodeView().tag(1)
             })

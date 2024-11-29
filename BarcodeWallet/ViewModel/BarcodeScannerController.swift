@@ -19,7 +19,7 @@ class BarcodeScannerController: UIViewController{
     override func viewDidLoad(){
         super.viewDidLoad()
         
-        guard let captureDevice = AVCaptureDevice.default(.builtInWideAngleCamera, for: .video, position: .back) else{
+        guard let captureDevice = AVCaptureDevice.default(.builtInDualCamera, for: .video, position: .back) else{
             print("Failed to get the camera device")
             return
         }
@@ -27,14 +27,26 @@ class BarcodeScannerController: UIViewController{
         let videoInput: AVCaptureDeviceInput
         
         do {
-            // Get an instance of the AVCaptureDeviceInput class using the previous device object.
-            videoInput = try AVCaptureDeviceInput(device: captureDevice)
-            
-        } catch {
-            // If any error occurs, simply print it out and don't continue any more.
-            print(error)
-            return
-        }
+                // Get an instance of the AVCaptureDeviceInput class using the previous device object.
+                videoInput = try AVCaptureDeviceInput(device: captureDevice)
+                
+                // Configure focus
+                try captureDevice.lockForConfiguration()
+                
+                if captureDevice.isFocusModeSupported(.continuousAutoFocus) {
+                    captureDevice.focusMode = .continuousAutoFocus
+                }
+                
+                if captureDevice.isFocusPointOfInterestSupported {
+                    captureDevice.focusPointOfInterest = CGPoint(x: 0.5, y: 0.5)
+                }
+                
+                captureDevice.unlockForConfiguration()
+                
+            } catch {
+                print("Error configuring camera: \(error)")
+                return
+            }
         
         // Set the input device on the capture session.
         captureSession.addInput(videoInput)
@@ -65,6 +77,9 @@ class BarcodeScannerController: UIViewController{
         videoPreviewLayer = AVCaptureVideoPreviewLayer(session: captureSession)
         videoPreviewLayer?.videoGravity = AVLayerVideoGravity.resizeAspectFill
         videoPreviewLayer?.frame = view.layer.bounds
+        
+        
+        
         view.layer.addSublayer(videoPreviewLayer!)
         
         // Start video capture.
