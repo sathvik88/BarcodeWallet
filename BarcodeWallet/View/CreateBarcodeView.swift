@@ -85,7 +85,6 @@ struct CreateBarcodeView: View {
             TextField("Barcode Name", text: $title)
                 .padding()
                 .focused($showKeyboard)
-            .padding(.bottom)
             
             Spacer()
             Button{
