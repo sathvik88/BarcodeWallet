@@ -37,7 +37,8 @@ struct CreateBarcodeView: View {
                         .padding()
                         
                         Spacer()
-                        if barcodeType == "org.iso.Code128"{
+                        switch barcodeType{
+                        case "org.iso.Code128": 
                             VStack{
                                 barcodeGenerator.generateCode128Barcode(text: barcodeData)
                                     .frame(height: 50)
@@ -45,15 +46,12 @@ struct CreateBarcodeView: View {
                                     
                             }
                             .padding()
-                            
-                        }
-                        else if barcodeType == "Codabar"{
+                        case "Codabar":
                             CodabarView(text: .constant(barcodeData))
                                 .frame(height: 100)
                                 .padding()
                                 .padding(.bottom)
-                        }
-                        else if barcodeType == "org.iso.Code39"{
+                        case "org.iso.Code39":
                             if let image = RSUnifiedCodeGenerator.shared.generateCode(barcodeData, machineReadableCodeObjectType: AVMetadataObject.ObjectType.code39.rawValue){
                                 VStack{
                                     Image(uiImage: image)
@@ -65,12 +63,124 @@ struct CreateBarcodeView: View {
                                 }
                                 .padding()
                                 
+                            }
+                        case "com.intermec.Code93":
+                            if let image = RSUnifiedCodeGenerator.shared.generateCode(barcodeData, machineReadableCodeObjectType: AVMetadataObject.ObjectType.code93.rawValue){
+                                VStack{
+                                    Image(uiImage: image)
+                                        .resizable()
+                                        .frame(width: 200,height: 80)
+                                    Text(barcodeData)
+                                        .font(.footnote)
+                                        .foregroundStyle(Color.black)
+                                }
+                                .padding()
                                 
                             }
+                        case "org.gs1.EAN-8":
+                            if let image = RSUnifiedCodeGenerator.shared.generateCode(barcodeData, machineReadableCodeObjectType: AVMetadataObject.ObjectType.ean8.rawValue){
+                                VStack{
+                                    Image(uiImage: image)
+                                        .resizable()
+                                        .frame(width: 200,height: 80)
+                                    Text(barcodeData)
+                                        .font(.footnote)
+                                        .foregroundStyle(Color.black)
+                                }
+                                .padding()
+                                
+                            }
+                        case "org.gs1.EAN-13":
+                            if let image = RSUnifiedCodeGenerator.shared.generateCode(barcodeData, machineReadableCodeObjectType: AVMetadataObject.ObjectType.ean13.rawValue){
+                                VStack{
+                                    Image(uiImage: image)
+                                        .resizable()
+                                        .frame(width: 200,height: 80)
+                                    Text(barcodeData)
+                                        .font(.footnote)
+                                        .foregroundStyle(Color.black)
+                                }
+                                .padding()
+                                
+                            }
+                        case "org.iso.PDF417":
+                            if let image = RSUnifiedCodeGenerator.shared.generateCode(barcodeData, machineReadableCodeObjectType: AVMetadataObject.ObjectType.pdf417.rawValue){
+                                VStack{
+                                    Image(uiImage: image)
+                                        .resizable()
+                                        .frame(width: 200,height: 80)
+                                    
+                                }
+                                .padding()
+                                .padding(.bottom)
+                                
+                            }
+                        case "org.ansi.Interleaved2of5":
+                            if let image = RSUnifiedCodeGenerator.shared.generateCode(barcodeData, machineReadableCodeObjectType: AVMetadataObject.ObjectType.interleaved2of5.rawValue){
+                                VStack{
+                                    Image(uiImage: image)
+                                        .resizable()
+                                        .frame(width: 200,height: 80)
+                                    Text(barcodeData)
+                                        .font(.footnote)
+                                        .foregroundStyle(Color.black)
+                                }
+                                .padding()
+                                
+                            }
+                        case "org.gs1.ITF14":
+                            if let image = RSUnifiedCodeGenerator.shared.generateCode(barcodeData, machineReadableCodeObjectType: AVMetadataObject.ObjectType.itf14.rawValue){
+                                VStack{
+                                    Image(uiImage: image)
+                                        .resizable()
+                                        .frame(width: 200,height: 80)
+                                    Text(barcodeData)
+                                        .font(.footnote)
+                                        .foregroundStyle(Color.black)
+                                }
+                                .padding()
+                                
+                            }
+                        case "org.iso.Aztec":
                             
-                        }
-                        else{
-                            Text("Unsupported Barcode")
+                            if let image = RSUnifiedCodeGenerator.shared.generateCode(barcodeData, machineReadableCodeObjectType: AVMetadataObject.ObjectType.aztec.rawValue){
+                                VStack{
+                                    if let scaledImg = RSAbstractCodeGenerator.resizeImage(image, scale: CGFloat(20)){
+                                        Image(uiImage: scaledImg)
+                                    }
+                                }
+                                .frame(width: 100,height: 100)
+                                .padding()
+                                .padding(.bottom)
+                                
+                            }
+                        case "org.iso.QRCode":
+                            if let image = RSUnifiedCodeGenerator.shared.generateCode(barcodeData, machineReadableCodeObjectType: AVMetadataObject.ObjectType.qr.rawValue){
+                                VStack{
+                                    if let scaledImg = RSAbstractCodeGenerator.resizeImage(image, scale: CGFloat(12)){
+                                        Image(uiImage: scaledImg)
+                                    }
+                                }
+                                .frame(width: 100,height: 100)
+                                .padding()
+                                .padding(.bottom)
+                                
+                            }
+                        case "org.gs1.UPC-E":
+                            if let image = RSUnifiedCodeGenerator.shared.generateCode(barcodeData, machineReadableCodeObjectType: AVMetadataObject.ObjectType.upce.rawValue){
+                                VStack{
+                                    Image(uiImage: image)
+                                        .resizable()
+                                        .frame(width: 200,height: 80)
+                                    Text(barcodeData)
+                                        .font(.footnote)
+                                        .foregroundStyle(Color.black)
+                                }
+                                .padding()
+                                
+                            }
+                        default:
+                            Text("Barcode is unsupported")
                         }
                         
                     }
@@ -115,5 +225,5 @@ struct CreateBarcodeView: View {
 }
 
 #Preview {
-    CreateBarcodeView(barcodeType: .constant("org.iso.Code39"), barcodeData: .constant("16786287"), dismiss: .constant(false), isLoading: .constant(false))
+    CreateBarcodeView(barcodeType: .constant("org.gs1.UPC-E"), barcodeData: .constant("01234565"), dismiss: .constant(false), isLoading: .constant(false))
 }
