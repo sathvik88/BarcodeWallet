@@ -6,7 +6,8 @@
 //
 
 import SwiftUI
-
+import AVFoundation
+import RSBarcodes_Swift
 struct BarcodeCard: View {
     var barcodeGenerator = BarcodeGenModel()
     let barcodeType: String
@@ -47,6 +48,22 @@ struct BarcodeCard: View {
                             .frame(height: 100)
                             .padding()
                             .padding(.bottom)
+                    }
+                    else if barcodeType == "org.iso.Code39"{
+                        if let image = RSUnifiedCodeGenerator.shared.generateCode(barcodeNum, machineReadableCodeObjectType: AVMetadataObject.ObjectType.code39.rawValue){
+                            VStack{
+                                Image(uiImage: image)
+                                    .resizable()
+                                    .frame(width: 200,height: 80)
+                                Text(barcodeNum)
+                                    .font(.footnote)
+                                    .foregroundStyle(Color.black)
+                            }
+                            .padding()
+                            
+                            
+                        }
+                        
                     }
                 }
             }

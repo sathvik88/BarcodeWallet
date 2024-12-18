@@ -6,7 +6,8 @@
 //
 
 import SwiftUI
-
+import RSBarcodes_Swift
+import AVFoundation
 struct CreateBarcodeView: View {
     @Binding var barcodeType: String
     @Binding var barcodeData: String
@@ -51,6 +52,22 @@ struct CreateBarcodeView: View {
                                 .frame(height: 100)
                                 .padding()
                                 .padding(.bottom)
+                        }
+                        else if barcodeType == "org.iso.Code39"{
+                            if let image = RSUnifiedCodeGenerator.shared.generateCode(barcodeData, machineReadableCodeObjectType: AVMetadataObject.ObjectType.code39.rawValue){
+                                VStack{
+                                    Image(uiImage: image)
+                                        .resizable()
+                                        .frame(width: 200,height: 80)
+                                    Text(barcodeData)
+                                        .font(.footnote)
+                                        .foregroundStyle(Color.black)
+                                }
+                                .padding()
+                                
+                                
+                            }
+                            
                         }
                         else{
                             Text("Unsupported Barcode")
@@ -99,5 +116,5 @@ struct CreateBarcodeView: View {
 }
 
 #Preview {
-    CreateBarcodeView(barcodeType: .constant("org.iso.Code128"), barcodeData: .constant("11220000103692"), dismiss: .constant(false), isLoading: .constant(false))
+    CreateBarcodeView(barcodeType: .constant("org.iso.Code39"), barcodeData: .constant("16786287"), dismiss: .constant(false), isLoading: .constant(false))
 }

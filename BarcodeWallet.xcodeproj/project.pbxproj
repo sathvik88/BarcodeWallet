@@ -36,6 +36,7 @@
 		2C7E22842D0CE587005FB3C0 /* DataController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C7E22832D0CE587005FB3C0 /* DataController.swift */; };
 		2CF032732D121F24006A6009 /* CreateBarcodeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CF032722D121F24006A6009 /* CreateBarcodeView.swift */; };
 		2CF032752D12458A006A6009 /* BarcodeCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CF032742D12458A006A6009 /* BarcodeCard.swift */; };
+		2CF032792D133D23006A6009 /* RSBarcodes_Swift in Frameworks */ = {isa = PBXBuildFile; productRef = 2CF032782D133D23006A6009 /* RSBarcodes_Swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -94,6 +95,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2CF032792D133D23006A6009 /* RSBarcodes_Swift in Frameworks */,
 				2C7E226F2CEFC94B005FB3C0 /* QuartzCore.framework in Frameworks */,
 				2C7E226B2CEFC93D005FB3C0 /* CoreMedia.framework in Frameworks */,
 				2C7E22692CEFC92E005FB3C0 /* AVFoundation.framework in Frameworks */,
@@ -243,6 +245,9 @@
 			dependencies = (
 			);
 			name = BarcodeWallet;
+			packageProductDependencies = (
+				2CF032782D133D23006A6009 /* RSBarcodes_Swift */,
+			);
 			productName = BarcodeWallet;
 			productReference = 2C66C7C22CED3AEF008C524D /* BarcodeWallet.app */;
 			productType = "com.apple.product-type.application";
@@ -316,7 +321,7 @@
 			);
 			mainGroup = 2C66C7B92CED3AEF008C524D;
 			packageReferences = (
-				2C7E22702CF0571C005FB3C0 /* XCRemoteSwiftPackageReference "CDCodabarView" */,
+				2CF032772D133D23006A6009 /* XCRemoteSwiftPackageReference "RSBarcodes_Swift" */,
 			);
 			productRefGroup = 2C66C7C32CED3AEF008C524D /* Products */;
 			projectDirPath = "";
@@ -715,15 +720,23 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
-		2C7E22702CF0571C005FB3C0 /* XCRemoteSwiftPackageReference "CDCodabarView" */ = {
+		2CF032772D133D23006A6009 /* XCRemoteSwiftPackageReference "RSBarcodes_Swift" */ = {
 			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/Coledunsby/CDCodabarView.git";
+			repositoryURL = "https://github.com/yeahdongcn/RSBarcodes_Swift.git";
 			requirement = {
 				kind = upToNextMajorVersion;
-				minimumVersion = 1.3.0;
+				minimumVersion = 5.2.0;
 			};
 		};
 /* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		2CF032782D133D23006A6009 /* RSBarcodes_Swift */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 2CF032772D133D23006A6009 /* XCRemoteSwiftPackageReference "RSBarcodes_Swift" */;
+			productName = RSBarcodes_Swift;
+		};
+/* End XCSwiftPackageProductDependency section */
 
 /* Begin XCVersionGroup section */
 		2C7E22762CF3F5A1005FB3C0 /* DataModel.xcdatamodeld */ = {
