@@ -63,7 +63,6 @@ class BarcodeScannerController: UIViewController{
                                                      .code93,
                                                      .code39Mod43,
                                                      .code128,
-                                                     .dataMatrix,
                                                      .ean8,
                                                      .ean13,
                                                      .interleaved2of5,
@@ -85,20 +84,32 @@ class BarcodeScannerController: UIViewController{
         // Start video capture.
         DispatchQueue.global(qos: .background).async {
             self.captureSession.startRunning()
+            
         }
     }
 }
 
 struct BarcodeScanner: UIViewControllerRepresentable{
+    @Binding var isLoading: Bool
     @Binding var result: String
+    @Binding var barcodeType: String
     func makeUIViewController(context: Context) -> BarcodeScannerController {
         let controller = BarcodeScannerController()
         controller.delegate = context.coordinator
+        
         return controller
     }
     func updateUIViewController(_ uiViewController: BarcodeScannerController, context: Context) {
+       
+        if !barcodeType.isEmpty{
+            uiViewController.captureSession.stopRunning()
+        }
+        if !uiViewController.captureSession.isRunning{
+            print("\(uiViewController.captureSession.isRunning)")
+        }
     }
     func makeCoordinator() -> Coordinator {
-        Coordinator($result)
+        Coordinator($result, barcodeType: $barcodeType)
     }
 }
+

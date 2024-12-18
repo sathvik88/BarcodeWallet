@@ -16,7 +16,7 @@ struct BarcodeDetailView: View {
         NavigationStack{
             VStack{
                 Spacer()
-                CodabarBarcodeView(codabarString: barcodeString)
+                
                 ZStack{
                     TextField("Barcode Name", text: $barcodeName)
                         .padding()
@@ -60,6 +60,7 @@ struct BarcodeDetailView: View {
                         showDetails.toggle()
                     }label: {
                         Text("Done")
+                            .bold()
                     }
                 }
             }

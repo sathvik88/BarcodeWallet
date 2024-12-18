@@ -53,32 +53,52 @@ struct ScanBarcodeView: View {
                 }
             }
         }
-        .sheet(isPresented: $toggleCamera, content: {
-            CameraView(toggleCamera: $toggleCamera, barcodes: $barcodes)
-        })
+//        .sheet(isPresented: $toggleCamera, content: {
+//            CameraView(toggleCamera: $toggleCamera, barcodes: $barcodes)
+//        })
         
     }
 }
 
 struct CameraView: View{
     @Binding var toggleCamera: Bool
-    @State private var scanResult = "No Barcode detected"
-    @Binding var barcodes: [String]
-    let impactMed = UIImpactFeedbackGenerator(style: .medium)
+    @Binding var scanResult: String
+    @Binding var barcodeType: String
+    @State private var displayCard = false
+    @State private var isLoading = false
+    let impactMed = UIImpactFeedbackGenerator(style: .rigid)
     var body: some View{
-        ZStack(alignment: .bottom){
-            BarcodeScanner(result: $scanResult)
-            Text(scanResult)
-                .padding()
-                .background(.black)
-                .foregroundStyle(.white)
-                .padding(.bottom)
+        NavigationStack{
+            
+            ZStack(alignment: .center){
+                BarcodeScanner(isLoading: $isLoading, result: $scanResult, barcodeType: $barcodeType)
+                if isLoading{
+                    ProgressView()
+                }else{
+                    Image(systemName: "camera.metering.center.weighted.average")
+                        .resizable()
+                        .frame(width: 350, height: 300)
+                        .foregroundStyle(.white)
+                }
+                
+//                Text(scanResult)
+//                    .padding()
+//                    .background(.black)
+//                    .foregroundStyle(.white)
+//                    .padding(.bottom)
+            }
+            
+            .onChange(of: scanResult, perform: { value in
+                
+                impactMed.impactOccurred()
+                
+//                toggleCamera = false
+                displayCard = true
+            })
+            .navigationDestination(isPresented: $displayCard, destination: { CreateBarcodeView(barcodeType: $barcodeType, barcodeData: $scanResult, dismiss: $toggleCamera, isLoading: $isLoading)})
         }
-        .onChange(of: scanResult, perform: { value in
-            barcodes.append(scanResult)
-            impactMed.impactOccurred()
-            toggleCamera = false
-        })
+        
+        
         
     }
 }

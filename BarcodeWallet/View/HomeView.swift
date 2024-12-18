@@ -8,8 +8,12 @@
 import SwiftUI
 
 struct HomeView: View {
+    @Environment(\.managedObjectContext) var moc
     @FetchRequest(sortDescriptors: []) private var barcodeItems: FetchedResults<BarcodeData>
-    @EnvironmentObject var manager: DataManager
+    @State private var displayCamera = false
+    @State private var scanResult = "No Result"
+    @State private var barcodeType = ""
+    @State private var createCard = false
     var body: some View {
         NavigationStack{
             VStack{
@@ -18,6 +22,16 @@ struct HomeView: View {
                         GroupBox{
                             Text("Click the '+' icon to add a new barcode")
                                 .font(.system(.body, design: .monospaced))
+                                .onTapGesture {
+                                    
+                                }
+                        }
+                    }
+                    
+                }else{
+                    ScrollView{
+                        ForEach(barcodeItems){ card in
+                            BarcodeCard(barcodeType: card.barcodeType ?? "org.iso.Code128", barcodeName: card.name ?? "Loyalty", barcodeNum: card.barcodeNumber ?? "11220000103692")
                         }
                     }
                     
@@ -31,12 +45,17 @@ struct HomeView: View {
                 }
                 ToolbarItem(placement: .topBarTrailing) {
                     Button{
-                        
+                        displayCamera.toggle()
                     }label: {
                         Image(systemName: "plus")
                     }
                 }
             }
+            .sheet(isPresented: $displayCamera, content: {
+                CameraView(toggleCamera: $displayCamera, scanResult: $scanResult, barcodeType: $barcodeType)
+                    
+            })
+            
             
             
         }
@@ -46,5 +65,5 @@ struct HomeView: View {
 
 #Preview {
     HomeView()
-        .environmentObject(DataManager())
+      
 }

@@ -9,9 +9,11 @@ import SwiftUI
 
 @main
 struct BarcodeWalletApp: App {
+    @StateObject private var dataController =  DataController()
     var body: some Scene {
         WindowGroup {
-            TabsView()
+            HomeView()
+                .environment(\.managedObjectContext, dataController.container.viewContext)
         }
     }
 }
