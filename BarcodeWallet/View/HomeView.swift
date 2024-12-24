@@ -104,6 +104,7 @@ struct HomeView: View {
                                                     isCardPressed.toggle()
                                                     selectedCard = isCardPressed ? card : nil
                                                     
+                                                    
                                                 }
                                             })
                                             .exclusively(before: LongPressGesture(minimumDuration: 0.05)
@@ -193,6 +194,18 @@ struct HomeView: View {
                 cards = []
                 for i in barcodeItems{
                     cards.append(BarcodeModel(name: i.name ?? "", barcodeNumber: i.barcodeNumber ?? "", barcodeType: i.barcodeType ?? ""))
+                }
+            })
+            .onChange(of: isCardPressed, perform: { value in
+                if value{
+                    deviceBrightness = UIScreen.main.brightness
+                    withAnimation {
+                        UIScreen.main.brightness = 1.0
+                    }
+                }else{
+                    withAnimation {
+                        adjustBrightness(to: deviceBrightness, duration: 0.01)
+                    }
                 }
             })
             .sheet(isPresented: $displayCamera, content: {
