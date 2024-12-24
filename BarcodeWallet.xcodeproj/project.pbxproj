@@ -37,6 +37,7 @@
 		2CF032732D121F24006A6009 /* CreateBarcodeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CF032722D121F24006A6009 /* CreateBarcodeView.swift */; };
 		2CF032752D12458A006A6009 /* BarcodeCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CF032742D12458A006A6009 /* BarcodeCard.swift */; };
 		2CF032792D133D23006A6009 /* RSBarcodes_Swift in Frameworks */ = {isa = PBXBuildFile; productRef = 2CF032782D133D23006A6009 /* RSBarcodes_Swift */; };
+		2CF0327C2D1B40A9006A6009 /* DragState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CF0327B2D1B40A9006A6009 /* DragState.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -89,6 +90,7 @@
 		2CF032722D121F24006A6009 /* CreateBarcodeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateBarcodeView.swift; sourceTree = "<group>"; };
 		2CF032742D12458A006A6009 /* BarcodeCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BarcodeCard.swift; sourceTree = "<group>"; };
 		2CF0327A2D139F86006A6009 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		2CF0327B2D1B40A9006A6009 /* DragState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DragState.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -187,6 +189,7 @@
 			children = (
 				2C7E227B2CF3FEBC005FB3C0 /* BarcodeModel.swift */,
 				2C7E227F2CF674F1005FB3C0 /* CDCodabarEncoder.swift */,
+				2CF0327B2D1B40A9006A6009 /* DragState.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -368,6 +371,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				2C66C7F82CED44F2008C524D /* ManualBarcodeView.swift in Sources */,
+				2CF0327C2D1B40A9006A6009 /* DragState.swift in Sources */,
 				2CF032732D121F24006A6009 /* CreateBarcodeView.swift in Sources */,
 				2C7E22782CF3F5A1005FB3C0 /* DataModel.xcdatamodeld in Sources */,
 				2C7E227E2CF40399005FB3C0 /* BarcodeDetailView.swift in Sources */,

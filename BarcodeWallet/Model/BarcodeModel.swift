@@ -9,7 +9,9 @@ import Foundation
 
 struct BarcodeModel: Identifiable{
     let id = UUID()
-    let title: String
-    let description: String
-    let image: Data
+    let name: String
+    let barcodeNumber: String
+    let barcodeType: String
+    
+    
 }

@@ -3,6 +3,7 @@
     <entity name="BarcodeData" representedClassName="BarcodeData" syncable="YES" codeGenerationType="class">
         <attribute name="barcodeNumber" optional="YES" attributeType="String"/>
         <attribute name="barcodeType" optional="YES" attributeType="String"/>
+        <attribute name="id" optional="YES" attributeType="UUID" usesScalarValueType="NO"/>
         <attribute name="name" optional="YES" attributeType="String"/>
     </entity>
 </model>
