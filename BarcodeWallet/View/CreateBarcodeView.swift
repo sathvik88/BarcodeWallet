@@ -41,8 +41,11 @@ struct CreateBarcodeView: View {
                         case "org.iso.Code128": 
                             VStack{
                                 barcodeGenerator.generateCode128Barcode(text: barcodeData)
-                                    .frame(height: 50)
+                                    .resizable()
+                                    .frame(width: 200,height: 100)
                                 Text(barcodeData)
+                                    .foregroundStyle(Color.black)
+                                    .font(.footnote)
                                     
                             }
                             .padding()
@@ -192,9 +195,19 @@ struct CreateBarcodeView: View {
             }
             
             Spacer()
-            TextField("Barcode Name", text: $title)
-                .padding()
-                .focused($showKeyboard)
+            GroupBox{
+                HStack{
+                    Text("Name")
+                        .bold()
+                        .padding(.trailing)
+                    TextField("Card Name", text: $title)
+                        .padding()
+                        .focused($showKeyboard)
+                }
+                
+            }
+            
+                
             
             Spacer()
             Button{

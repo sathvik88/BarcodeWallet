@@ -26,7 +26,7 @@ struct LinearBarcodeView: View {
                     content:  {
                 ManualBarcodeView(inputText: $inputText, title: "Sathvik's Library Card")
                 .tag(0)
-                ScanBarcodeView().tag(1)
+                
             })
             .tabViewStyle(.page(indexDisplayMode: .never))
             .animation(.easeIn, value: selectedTab)

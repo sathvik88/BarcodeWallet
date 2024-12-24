@@ -6,60 +6,22 @@
 //
 
 import SwiftUI
+struct CornerShape: Shape {
+    func path(in rect: CGRect) -> Path {
+        var path = Path()
 
-struct ScanBarcodeView: View {
-    @State private var toggleCamera = false
-    @State private var toggleGallery = false
-    @State private var scanResult = "No Barcode detected"
-    @State private var barcodes = [""]
-    var body: some View {
-        NavigationStack{
-            VStack{
-                HStack(spacing: 70){
-                    VStack{
-                        Button{
-                            
-                        }label: {
-                            
-                            Image(systemName: "photo.artframe")
-                                .font(.system(size: 50))
-                        }
-                        .padding(10)
-                        Text("Open Gallery")
-                            .bold()
-                    }
-                    VStack{
-                        Button{
-                            toggleCamera.toggle()
-                        }label: {
-                            
-                            Image(systemName: "barcode.viewfinder")
-                                .font(.system(size: 50))
-                        }
-                        .padding(10)
-                        Text("Open Camera")
-                            .bold()
-                    }
-                    
-                }
-                if !barcodes.isEmpty{
-                    HStack{
-                        ForEach(barcodes, id: \.self){ code in
-                            Text(code)
-                                .padding()
-                        }
-                    }
-                    
-                }
-            }
-        }
-//        .sheet(isPresented: $toggleCamera, content: {
-//            CameraView(toggleCamera: $toggleCamera, barcodes: $barcodes)
-//        })
-        
+        path.move(to: CGPoint(x: rect.minX, y: rect.minY))
+        path.addLine(to: CGPoint(x: rect.minX, y: rect.minY))
+        path.addLine(to: CGPoint(x: rect.minX, y: rect.minY+20))
+        path.move(to: CGPoint(x: rect.minX, y: rect.minY))
+        path.addLine(to: CGPoint(x: rect.minX+20, y: rect.minY))
+//        path.addLine(to: CGPoint(x: rect.midX-20, y: rect.minY+8))
+//        path.addLine(to: CGPoint(x: rect.midX, y: rect.minY-15))
+//        path.addLine(to: CGPoint(x: rect.midX+20, y: rect.minY+8))
+//        path.addLine(to: CGPoint(x: rect.maxX, y: rect.minY))
+        return path
     }
 }
-
 struct CameraView: View{
     @Binding var toggleCamera: Bool
     @Binding var scanResult: String
@@ -75,10 +37,46 @@ struct CameraView: View{
                 if isLoading{
                     ProgressView()
                 }else{
-                    Image(systemName: "camera.metering.center.weighted.average")
-                        .resizable()
-                        .frame(width: 350, height: 300)
-                        .foregroundStyle(.white)
+                    VStack{
+                        HStack{
+                            ZStack{
+                                
+                                    CornerShape()
+                                        .stroke(.white, style: StrokeStyle(lineWidth: 10, lineCap: .round, lineJoin: .round))
+                                    
+                                    CornerShape()
+                                        .stroke(.white, style: StrokeStyle(lineWidth: 10, lineCap: .round, lineJoin: .round))
+                                        .rotationEffect(.degrees(90), anchor: .center)
+                                
+                                
+                                    CornerShape()
+                                        .stroke(.white, style: StrokeStyle(lineWidth: 10, lineCap: .round, lineJoin: .round))
+                                        .rotationEffect(.degrees(-90), anchor: .center)
+                                    
+                                    CornerShape()
+                                        .stroke(.white, style: StrokeStyle(lineWidth: 10, lineCap: .round, lineJoin: .round))
+                                        .rotationEffect(.degrees(180), anchor: .center)
+                                
+                                
+                            }
+                            
+                            
+                            
+                        }
+                       
+                    
+                    
+                        
+                        
+                    }
+                    .frame(width: 300, height: 300)
+                    
+                    
+                    
+//                    Image(systemName: "camera.metering.center.weighted.average")
+//                        .resizable()
+//                        .frame(width: 350, height: 300)
+                        
                 }
                 
 //                Text(scanResult)
@@ -101,8 +99,11 @@ struct CameraView: View{
         
         
     }
+    
 }
 
+
+
 #Preview {
-    ScanBarcodeView()
+    CameraView(toggleCamera: .constant(false), scanResult: .constant(""), barcodeType: .constant(""))
 }

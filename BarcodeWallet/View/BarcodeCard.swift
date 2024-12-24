@@ -178,41 +178,7 @@ struct BarcodeCard: View {
                     default:
                         Text("Barcode is unsupported")
                     }
-//                    if barcodeType == "org.iso.Code128"{
-//                        VStack{
-//                            barcodeGenerator.generateCode128Barcode(text: barcodeNum)
-//                                .resizable()
-//                                .frame(width: 200,height: 100)
-//                            Text(barcodeNum)
-//                                .foregroundStyle(Color.black)
-//                                .font(.footnote)
-//                                
-//                        }
-//                        .padding()
-//                        
-//                    }
-//                    else if barcodeType == "Codabar"{
-//                        CodabarView(text: .constant(barcodeNum))
-//                            .frame(height: 100)
-//                            .padding()
-//                            .padding(.bottom)
-//                    }
-//                    else if barcodeType == "org.iso.Code39"{
-//                        if let image = RSUnifiedCodeGenerator.shared.generateCode(barcodeNum, machineReadableCodeObjectType: AVMetadataObject.ObjectType.code39.rawValue){
-//                            VStack{
-//                                Image(uiImage: image)
-//                                    .resizable()
-//                                    .frame(width: 200,height: 80)
-//                                Text(barcodeNum)
-//                                    .font(.footnote)
-//                                    .foregroundStyle(Color.black)
-//                            }
-//                            .padding()
-//                            
-//                            
-//                        }
-//                        
-//                    }
+
                 }
             }
             .padding([.leading, .trailing], 5)

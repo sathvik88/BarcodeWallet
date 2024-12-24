@@ -19,16 +19,15 @@ class BarcodeScannerController: UIViewController{
     override func viewDidLoad(){
         super.viewDidLoad()
         
-        guard let captureDevice = AVCaptureDevice.default(.builtInDualCamera, for: .video, position: .back) else{
-            print("Failed to get the camera device")
-            return
+        guard let captureDevice = AVCaptureDevice.default(for: AVMediaType.video) else {
+           return
         }
         
         let videoInput: AVCaptureDeviceInput
         
         do {
                 // Get an instance of the AVCaptureDeviceInput class using the previous device object.
-                videoInput = try AVCaptureDeviceInput(device: captureDevice)
+            videoInput = try AVCaptureDeviceInput.init(device: captureDevice)
                 
                 // Configure focus
                 try captureDevice.lockForConfiguration()
@@ -39,6 +38,7 @@ class BarcodeScannerController: UIViewController{
                 
                 if captureDevice.isFocusPointOfInterestSupported {
                     captureDevice.focusPointOfInterest = CGPoint(x: 0.5, y: 0.5)
+                    
                 }
                 
                 captureDevice.unlockForConfiguration()
@@ -102,11 +102,14 @@ struct BarcodeScanner: UIViewControllerRepresentable{
     func updateUIViewController(_ uiViewController: BarcodeScannerController, context: Context) {
        
         if !barcodeType.isEmpty{
-            uiViewController.captureSession.stopRunning()
+            isLoading = true
+            DispatchQueue.main.asyncAfter(deadline: .now()){
+                uiViewController.captureSession.stopRunning()
+                isLoading = false
+            }
+            
         }
-        if !uiViewController.captureSession.isRunning{
-            print("\(uiViewController.captureSession.isRunning)")
-        }
+        
     }
     func makeCoordinator() -> Coordinator {
         Coordinator($result, barcodeType: $barcodeType)
