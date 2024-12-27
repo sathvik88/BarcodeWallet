@@ -9,10 +9,16 @@ import Foundation
 import CoreData
 
 class DataController: ObservableObject{
-    let container = NSPersistentContainer(name: "DataModel")
+    let persistentCloudKitContainer = NSPersistentCloudKitContainer(name: "DataModel")
     
     init(){
-        container.loadPersistentStores { description, error in
+        guard let description = persistentCloudKitContainer.persistentStoreDescriptions.first else{
+            fatalError("Failed to initialize persistent container")
+        }
+        description.setOption(true as NSNumber, forKey: NSPersistentHistoryTrackingKey)
+        persistentCloudKitContainer.viewContext.mergePolicy = NSMergeByPropertyObjectTrumpMergePolicy
+        persistentCloudKitContainer.viewContext.automaticallyMergesChangesFromParent = true
+        persistentCloudKitContainer.loadPersistentStores { description, error in
             if let error = error{
                 print("Core Data failed to load: \(error.localizedDescription)")
             }

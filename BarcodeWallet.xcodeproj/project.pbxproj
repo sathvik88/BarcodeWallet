@@ -38,6 +38,7 @@
 		2CF032752D12458A006A6009 /* BarcodeCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CF032742D12458A006A6009 /* BarcodeCard.swift */; };
 		2CF032792D133D23006A6009 /* RSBarcodes_Swift in Frameworks */ = {isa = PBXBuildFile; productRef = 2CF032782D133D23006A6009 /* RSBarcodes_Swift */; };
 		2CF0327C2D1B40A9006A6009 /* DragState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CF0327B2D1B40A9006A6009 /* DragState.swift */; };
+		2CF0327F2D1F23DC006A6009 /* CloudKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2CF0327E2D1F23DC006A6009 /* CloudKit.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -91,6 +92,8 @@
 		2CF032742D12458A006A6009 /* BarcodeCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BarcodeCard.swift; sourceTree = "<group>"; };
 		2CF0327A2D139F86006A6009 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		2CF0327B2D1B40A9006A6009 /* DragState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DragState.swift; sourceTree = "<group>"; };
+		2CF0327D2D1F1CEC006A6009 /* BarcodeWallet.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = BarcodeWallet.entitlements; sourceTree = "<group>"; };
+		2CF0327E2D1F23DC006A6009 /* CloudKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CloudKit.framework; path = System/Library/Frameworks/CloudKit.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -101,6 +104,7 @@
 				2CF032792D133D23006A6009 /* RSBarcodes_Swift in Frameworks */,
 				2C7E226F2CEFC94B005FB3C0 /* QuartzCore.framework in Frameworks */,
 				2C7E226B2CEFC93D005FB3C0 /* CoreMedia.framework in Frameworks */,
+				2CF0327F2D1F23DC006A6009 /* CloudKit.framework in Frameworks */,
 				2C7E22692CEFC92E005FB3C0 /* AVFoundation.framework in Frameworks */,
 				2C7E226D2CEFC943005FB3C0 /* CoreVideo.framework in Frameworks */,
 			);
@@ -147,6 +151,7 @@
 		2C66C7C42CED3AEF008C524D /* BarcodeWallet */ = {
 			isa = PBXGroup;
 			children = (
+				2CF0327D2D1F1CEC006A6009 /* BarcodeWallet.entitlements */,
 				2CF0327A2D139F86006A6009 /* Info.plist */,
 				2C66C7FB2CED5195008C524D /* ViewModel */,
 				2C66C7F22CED3F2F008C524D /* View */,
@@ -226,6 +231,7 @@
 		2C7E22672CEFC92E005FB3C0 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				2CF0327E2D1F23DC006A6009 /* CloudKit.framework */,
 				2C7E226E2CEFC94A005FB3C0 /* QuartzCore.framework */,
 				2C7E226C2CEFC943005FB3C0 /* CoreVideo.framework */,
 				2C7E226A2CEFC93D005FB3C0 /* CoreMedia.framework */,
@@ -479,7 +485,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 17.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.6;
 				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
@@ -536,7 +542,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 17.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.6;
 				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
@@ -551,6 +557,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = BarcodeWallet/BarcodeWallet.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 5;
@@ -589,6 +596,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = BarcodeWallet/BarcodeWallet.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 5;

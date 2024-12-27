@@ -13,7 +13,7 @@ struct BarcodeWalletApp: App {
     var body: some Scene {
         WindowGroup {
             HomeView()
-                .environment(\.managedObjectContext, dataController.container.viewContext)
+                .environment(\.managedObjectContext, dataController.persistentCloudKitContainer.viewContext)
         }
     }
 }
