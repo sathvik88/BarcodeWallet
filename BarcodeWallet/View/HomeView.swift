@@ -24,123 +24,86 @@ struct HomeView: View {
     private static let cardOffset: CGFloat = 50.0
     @State private var cards = [BarcodeModel(name: "Emagine", barcodeNumber: "11220000103692", barcodeType: "org.iso.Code128")]
     @State private var isCardPresented = false
+    @State private var walletHeight = 250.0
+    @State private var defaultHeight = 0.0
+    @State private var cardCount = 0
     var body: some View {
         NavigationStack{
-            ZStack{
-                if isLoading{
-                    ProgressView()
-                        .progressViewStyle(CircularProgressViewStyle())
-                        .foregroundStyle(Color.red)
-                        .scaleEffect(CGSize(width: 2.0, height: 2.0))
-                }
-                VStack{
-                    if barcodeItems.isEmpty{
-                        VStack{
-                            GroupBox{
-                                Text("Click the '+' icon to add a new barcode")
-                                    .font(.system(.body, design: .monospaced))
-                                    .onTapGesture {
-                                        
-                                    }
-                            }
-                        }
-                        
-                    }else{
-//                        List{
-//                            ForEach(cards){ card in
-//                                ZStack{
-//                                    RoundedRectangle(cornerSize: CGSize(width: 10, height: 10))
-//                                        .frame(maxWidth: .infinity)
-//                                        .foregroundStyle(Color.white)
-//                                        .shadow(radius: 10)
-//                                    Text(card.name ?? "Card")
-//                                        .font(.system(.headline, design: .monospaced))
-//                                        .bold()
-//                                        .foregroundStyle(Color.blue)
-//                                }
-//                                .frame(minHeight: 50, maxHeight: 50)
-//                                .onTapGesture {
-//                                    isLoading = true
-//                                    print(isLoading)
-//                                    DispatchQueue.global(qos: .userInitiated).async{
-//                                        let result = card.barcodeNumber ?? ""
-//                                        let type = card.barcodeType ?? ""
-//                                        let name = card.name ?? "Default"
-//                                        DispatchQueue.main.async{
-//                                            scanResult = result
-//                                            barcodeType = type
-//                                            barcodeName = name
-//                                            isLoading = false
-//                                            displayCard = true
-//                                            
-//                                        }
-//                                        
-//                                    }
-//                                    print(displayCard)
-//                                    
-//                                    
-//                                }
-//
-//                            }
-//                            
-//                            .onDelete(perform: { indexSet in
-//                                deleteItems(offsets: indexSet)
-//                            })
-//                            
-//                        }
-                        ZStack{
-                            ForEach(cards){ card in
-                                BarcodeCard(barcodeType: card.barcodeType, barcodeName: card.name, barcodeNum: card.barcodeNumber)
-                                    .offset(offset(for: card))
+            VStack{
+                if barcodeItems.isEmpty{
+                    VStack{
+                        GroupBox{
+                            Text("Click the '+' icon to add a new barcode")
+                                .font(.system(.body, design: .monospaced))
+                                .onTapGesture {
                                     
-                                    .zIndex(zIndex(for: card))
-                                    .id(isCardPresented)
-                                    .transition(AnyTransition.push(from: .bottom).combined(with: .opacity))
-                                    .animation(self.transitionAnimation(for: card), value: isCardPresented)
-                                    .gesture(
-                                        TapGesture()
-                                            .onEnded({ _ in
-                                                withAnimation(.bouncy(duration: 0.25).delay(0.05)) {
-                                                    isCardPressed.toggle()
-                                                    selectedCard = isCardPressed ? card : nil
-                                                    
-                                                    
-                                                }
-                                            })
-                                            .exclusively(before: LongPressGesture(minimumDuration: 0.05)
-                                            .sequenced(before: DragGesture())
-                                            .updating($dragState, body: { (value, state, transaction) in
-                                                switch value {
-                                                case .first(true):
-                                                    state = .pressing(index: index(for: card))
-                                                case .second(true, let drag):
-                                                    withAnimation{
-                                                        state = .dragging(index: index(for: card), translation: drag?.translation ?? .zero)
-                                                    }
-                                                    
-                                                default:
-                                                    break
-                                                }
-                                                
-                                            })
-                                            .onEnded({ (value) in
-                                                
-                                                guard case .second(true, let drag?) = value else {
-                                                    return
-                                                }
-
-                                                // Rearrange the cards
-                                                withAnimation {
-                                                    self.rearrangeCards(with: card, dragOffset: drag.translation)
-                                                }
-                                            })
-
-                                        )
-                                    )
-                            }
+                                }
                         }
                     }
-                        
+                    
+                }else{
+                    ScrollView{
+                        VStack{
+                            ZStack{
+                                ForEach(cards){ card in
+                                    BarcodeCard(barcodeType: card.barcodeType, barcodeName: card.name, barcodeNum: card.barcodeNumber)
+                                        
+                                        .offset(offset(for: card))
+                                        .zIndex(zIndex(for: card))
+                                        .id(isCardPresented)
+                                        .transition(AnyTransition.push(from: .bottom).combined(with: .opacity))
+                                        .animation(self.transitionAnimation(for: card), value: isCardPresented)
+                                        .gesture(
+                                            TapGesture()
+                                                
+                                                .onEnded({ _ in
+                                                    withAnimation(.bouncy(duration: 0.25).delay(0.05)) {
+                                                        
+                                                        isCardPressed.toggle()
+                                                        selectedCard = isCardPressed ? card : nil
+                                                        
+                                                    }
+                                                })
+                                                .exclusively(before: LongPressGesture(minimumDuration: 0.05)
+                                                    .sequenced(before: DragGesture())
+                                                    .updating($dragState, body: { (value, state, transaction) in
+                                                        switch value {
+                                                        case .first(true):
+                                                            state = .pressing(index: index(for: card))
+                                                        case .second(true, let drag):
+                                                            withAnimation{
+                                                                state = .dragging(index: index(for: card), translation: drag?.translation ?? .zero)
+                                                            }
+                                                            
+                                                        default:
+                                                            break
+                                                        }
+                                                        
+                                                    })
+                                                        .onEnded({ (value) in
+                                                            
+                                                            guard case .second(true, let drag?) = value else {
+                                                                return
+                                                            }
+                                                            
+                                                            // Rearrange the cards
+                                                            withAnimation {
+                                                                self.rearrangeCards(with: card, dragOffset: drag.translation)
+                                                            }
+                                                        })
+                                                             
+                                                )
+                                        )
+                                }
+                            }
+                            .offset(y: CGFloat(isCardPressed ? defaultHeight : walletHeight))
+                        }
+                    }
+                    
+                    
+                    
+                    
+                    
                 }
             }
             
@@ -182,19 +145,45 @@ struct HomeView: View {
                     
                 }
             }
+            
             .onAppear(){
                 isLoading.toggle()
                 cards = []
                 for i in barcodeItems{
                     cards.append(BarcodeModel(name: i.name ?? "", barcodeNumber: i.barcodeNumber ?? "", barcodeType: i.barcodeType ?? ""))
+                    
                 }
+                for i in 0...cards.count{
+                    if i > 4{
+                        walletHeight += 16.67
+                    }
+                }
+                print(walletHeight)
+                
                 isLoading.toggle()
+                
             }
+            .onChange(of: walletHeight, perform: { newValue in
+                print(newValue)
+            })
             .onChange(of: barcodeItems.count, perform: { value in
                 cards = []
+                
                 for i in barcodeItems{
                     cards.append(BarcodeModel(name: i.name ?? "", barcodeNumber: i.barcodeNumber ?? "", barcodeType: i.barcodeType ?? ""))
                 }
+                
+                print(walletHeight)
+                
+            })
+            .onChange(of: cards.count, perform: { newValue in
+                if cardCount > 0 && newValue > cardCount{
+                    walletHeight += 16.67
+                }else if cardCount > 0 && newValue < cardCount{
+                    walletHeight -= 16.67
+                }
+                cardCount = cards.count
+                
             })
             .onChange(of: isCardPressed, perform: { value in
                 if value{
