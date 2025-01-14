@@ -27,6 +27,7 @@ struct HomeView: View {
     @State private var walletHeight = 250.0
     @State private var defaultHeight = 0.0
     @State private var cardCount = 0
+    @State private var displayOption = false
     var body: some View {
         NavigationStack{
             VStack{
@@ -118,7 +119,7 @@ struct HomeView: View {
                     Button{
                         scanResult = ""
                         barcodeType = ""
-                        displayCamera.toggle()
+                        displayOption.toggle()
                     }label: {
                         Image(systemName: "plus")
                     }
@@ -158,14 +159,12 @@ struct HomeView: View {
                         walletHeight += 16.67
                     }
                 }
-                print(walletHeight)
+                
                 
                 isLoading.toggle()
                 
             }
-            .onChange(of: walletHeight, perform: { newValue in
-                print(newValue)
-            })
+            
             .onChange(of: barcodeItems.count, perform: { value in
                 cards = []
                 
@@ -173,7 +172,7 @@ struct HomeView: View {
                     cards.append(BarcodeModel(name: i.name ?? "", barcodeNumber: i.barcodeNumber ?? "", barcodeType: i.barcodeType ?? ""))
                 }
                 
-                print(walletHeight)
+               
                 
             })
             .onChange(of: cards.count, perform: { newValue in
@@ -197,10 +196,17 @@ struct HomeView: View {
                     }
                 }
             })
-            .sheet(isPresented: $displayCamera, content: {
-                CameraView(toggleCamera: $displayCamera, scanResult: $scanResult, barcodeType: $barcodeType)
-                    
+            .sheet(isPresented: $displayOption, content: {
+                UploadSheetView(toggleUpload: $displayOption, scanResult: $scanResult, barcodeType: $barcodeType)
+                    .presentationDetents([.height(150)])
             })
+//            .sheet(isPresented: $displayCamera, content: {
+//                CameraView(toggleCamera: $displayCamera, scanResult: $scanResult, barcodeType: $barcodeType)
+//                    
+//            })
+//            .sheet(isPresented: $displayOption, content: {
+//                UploadSheetView(toggleUpload: <#T##Bool#>, toggleCamera: $displayCamera, toggleGallery: <#T##Bool#>)
+//            })
             
             .sheet(isPresented: Binding(get: {
                 displayCard

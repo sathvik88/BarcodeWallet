@@ -34,6 +34,10 @@
 		2C7E22802CF674F1005FB3C0 /* CDCodabarEncoder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C7E227F2CF674F1005FB3C0 /* CDCodabarEncoder.swift */; };
 		2C7E22822CF67521005FB3C0 /* CDCodabrView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C7E22812CF67521005FB3C0 /* CDCodabrView.swift */; };
 		2C7E22842D0CE587005FB3C0 /* DataController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C7E22832D0CE587005FB3C0 /* DataController.swift */; };
+		2CD8C8F42D25E6370007144C /* UploadSheetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CD8C8F32D25E6370007144C /* UploadSheetView.swift */; };
+		2CD8C8F62D2C3E630007144C /* UploadViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CD8C8F52D2C3E630007144C /* UploadViewController.swift */; };
+		2CD8C8F82D2C40090007144C /* BarcodeScannerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CD8C8F72D2C40090007144C /* BarcodeScannerView.swift */; };
+		2CD8C8FA2D2C404D0007144C /* UploadView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CD8C8F92D2C404D0007144C /* UploadView.swift */; };
 		2CF032732D121F24006A6009 /* CreateBarcodeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CF032722D121F24006A6009 /* CreateBarcodeView.swift */; };
 		2CF032752D12458A006A6009 /* BarcodeCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CF032742D12458A006A6009 /* BarcodeCard.swift */; };
 		2CF032792D133D23006A6009 /* RSBarcodes_Swift in Frameworks */ = {isa = PBXBuildFile; productRef = 2CF032782D133D23006A6009 /* RSBarcodes_Swift */; };
@@ -88,6 +92,10 @@
 		2C7E227F2CF674F1005FB3C0 /* CDCodabarEncoder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CDCodabarEncoder.swift; sourceTree = "<group>"; };
 		2C7E22812CF67521005FB3C0 /* CDCodabrView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CDCodabrView.swift; sourceTree = "<group>"; };
 		2C7E22832D0CE587005FB3C0 /* DataController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataController.swift; sourceTree = "<group>"; };
+		2CD8C8F32D25E6370007144C /* UploadSheetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UploadSheetView.swift; sourceTree = "<group>"; };
+		2CD8C8F52D2C3E630007144C /* UploadViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UploadViewController.swift; sourceTree = "<group>"; };
+		2CD8C8F72D2C40090007144C /* BarcodeScannerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BarcodeScannerView.swift; sourceTree = "<group>"; };
+		2CD8C8F92D2C404D0007144C /* UploadView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UploadView.swift; sourceTree = "<group>"; };
 		2CF032722D121F24006A6009 /* CreateBarcodeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateBarcodeView.swift; sourceTree = "<group>"; };
 		2CF032742D12458A006A6009 /* BarcodeCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BarcodeCard.swift; sourceTree = "<group>"; };
 		2CF0327A2D139F86006A6009 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
@@ -213,6 +221,9 @@
 				2C7E22812CF67521005FB3C0 /* CDCodabrView.swift */,
 				2CF032722D121F24006A6009 /* CreateBarcodeView.swift */,
 				2CF032742D12458A006A6009 /* BarcodeCard.swift */,
+				2CD8C8F32D25E6370007144C /* UploadSheetView.swift */,
+				2CD8C8F72D2C40090007144C /* BarcodeScannerView.swift */,
+				2CD8C8F92D2C404D0007144C /* UploadView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -224,6 +235,7 @@
 				2C66C7FE2CED55CA008C524D /* Coordinator.swift */,
 				2C66C7F02CED3BAE008C524D /* BarcodeGenModel.swift */,
 				2C7E22832D0CE587005FB3C0 /* DataController.swift */,
+				2CD8C8F52D2C3E630007144C /* UploadViewController.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -377,7 +389,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				2C66C7F82CED44F2008C524D /* ManualBarcodeView.swift in Sources */,
+				2CD8C8F62D2C3E630007144C /* UploadViewController.swift in Sources */,
 				2CF0327C2D1B40A9006A6009 /* DragState.swift in Sources */,
+				2CD8C8FA2D2C404D0007144C /* UploadView.swift in Sources */,
 				2CF032732D121F24006A6009 /* CreateBarcodeView.swift in Sources */,
 				2C7E22782CF3F5A1005FB3C0 /* DataModel.xcdatamodeld in Sources */,
 				2C7E227E2CF40399005FB3C0 /* BarcodeDetailView.swift in Sources */,
@@ -392,6 +406,8 @@
 				2C66C7F12CED3BAE008C524D /* BarcodeGenModel.swift in Sources */,
 				2C7E22722CF0619D005FB3C0 /* CodabarBarcodeView.swift in Sources */,
 				2C66C7F62CED3FFD008C524D /* TabsView.swift in Sources */,
+				2CD8C8F42D25E6370007144C /* UploadSheetView.swift in Sources */,
+				2CD8C8F82D2C40090007144C /* BarcodeScannerView.swift in Sources */,
 				2C7E22842D0CE587005FB3C0 /* DataController.swift in Sources */,
 				2C7E22822CF67521005FB3C0 /* CDCodabrView.swift in Sources */,
 				2C66C7FD2CED51AB008C524D /* BarcodeScannerController.swift in Sources */,
@@ -568,6 +584,7 @@
 				INFOPLIST_FILE = BarcodeWallet/Info.plist;
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.shopping";
 				INFOPLIST_KEY_NSCameraUsageDescription = "BarcodeWallet needs to use the camera to scan barcodes and QR codes.";
+				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "BarcodeWallet needs to access your photos to upload barcodes";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -607,6 +624,7 @@
 				INFOPLIST_FILE = BarcodeWallet/Info.plist;
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.shopping";
 				INFOPLIST_KEY_NSCameraUsageDescription = "BarcodeWallet needs to use the camera to scan barcodes and QR codes.";
+				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "BarcodeWallet needs to access your photos to upload barcodes";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;

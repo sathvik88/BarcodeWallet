@@ -34,11 +34,12 @@ class Coordinator: NSObject, AVCaptureMetadataOutputObjectsDelegate{
             scanResult = result
             barcodeType = "\(metadataObj.type.rawValue)"
             
-            print(scanResult)
-            print(barcodeType)
+            
             
             
         }
     }
     
 }
+
+
