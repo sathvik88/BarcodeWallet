@@ -28,6 +28,7 @@ struct HomeView: View {
     @State private var defaultHeight = 0.0
     @State private var cardCount = 0
     @State private var displayOption = false
+    @State private var displayUploadCard = false
     var body: some View {
         NavigationStack{
             VStack{
@@ -197,16 +198,13 @@ struct HomeView: View {
                 }
             })
             .sheet(isPresented: $displayOption, content: {
-                UploadSheetView(toggleUpload: $displayOption, scanResult: $scanResult, barcodeType: $barcodeType)
+                UploadSheetView(toggleUpload: $displayOption, scanResult: $scanResult, barcodeType: $barcodeType, displayCard: $displayUploadCard)
                     .presentationDetents([.height(150)])
             })
-//            .sheet(isPresented: $displayCamera, content: {
-//                CameraView(toggleCamera: $displayCamera, scanResult: $scanResult, barcodeType: $barcodeType)
-//                    
-//            })
-//            .sheet(isPresented: $displayOption, content: {
-//                UploadSheetView(toggleUpload: <#T##Bool#>, toggleCamera: $displayCamera, toggleGallery: <#T##Bool#>)
-//            })
+            .sheet(isPresented: $displayUploadCard, content: {
+                CreateBarcodeView(barcodeType: $barcodeType, barcodeData: $scanResult, dismiss: $displayUploadCard, isLoading: $isLoading)
+            })
+
             
             .sheet(isPresented: Binding(get: {
                 displayCard

@@ -41,7 +41,7 @@ class UploadViewController: UIViewController, UIImagePickerControllerDelegate, U
                 for barcode in results {
                     let symbology = barcode.symbology.rawValue
                     let payload = barcode.payloadStringValue ?? "No Value"
-
+                    
                     // Trigger the callback with detected data
                     self?.onBarcodeDetected?(symbology, payload)
                 }

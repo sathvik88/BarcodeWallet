@@ -13,6 +13,7 @@ struct UploadSheetView: View {
     @State private var toggleGallery = false
     @Binding var scanResult: String
     @Binding var barcodeType: String
+    @Binding var displayCard: Bool
     var body: some View {
         VStack{
             HStack{
@@ -51,14 +52,18 @@ struct UploadSheetView: View {
                 }
         })
         .sheet(isPresented: $toggleGallery, content: {
-            UploadView(toggleSheet: $toggleGallery)
+            BarcodeScannerView(detectedSymbology: $barcodeType, detectedPayload: $scanResult, displayImageSheet: $toggleGallery)
                 .onDisappear(){
                     toggleUpload = false
+                    if !scanResult.isEmpty{
+                        displayCard = true
+                    }
+                    
                 }
         })
     }
 }
 
 #Preview {
-    UploadSheetView(toggleUpload: .constant(false), scanResult: .constant(""), barcodeType: .constant(""))
+    UploadSheetView(toggleUpload: .constant(false), scanResult: .constant(""), barcodeType: .constant(""), displayCard: .constant(false))
 }

@@ -22,8 +22,8 @@ struct UploadView: View {
             Text("Payload: \(detectedPayload)")
                 .padding()
             
-            BarcodeScannerView(detectedSymbology: $detectedSymbology, detectedPayload: $detectedPayload)
-                .frame(height: 600) // Adjust the frame size as needed
+//            BarcodeScannerView(detectedSymbology: $detectedSymbology, detectedPayload: $detectedPayload)
+//                .frame(height: 600) // Adjust the frame size as needed
         }
     }
 }

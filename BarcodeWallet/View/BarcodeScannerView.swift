@@ -10,6 +10,7 @@ import SwiftUI
 struct BarcodeScannerView: UIViewControllerRepresentable {
     @Binding var detectedSymbology: String
     @Binding var detectedPayload: String
+    @Binding var displayImageSheet: Bool
     
     func makeUIViewController(context: Context) -> UploadViewController {
         let viewController = UploadViewController()
@@ -17,6 +18,8 @@ struct BarcodeScannerView: UIViewControllerRepresentable {
             DispatchQueue.main.async {
                 detectedSymbology = symbology
                 detectedPayload = payload
+                print(detectedSymbology)
+                displayImageSheet = false
             }
         }
         return viewController

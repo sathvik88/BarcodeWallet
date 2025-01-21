@@ -49,12 +49,41 @@ struct CreateBarcodeView: View {
                                     
                             }
                             .padding()
+                        case "VNBarcodeSymbologyCode128":
+                            VStack{
+                                barcodeGenerator.generateCode128Barcode(text: barcodeData)
+                                    .resizable()
+                                    .frame(width: 200,height: 100)
+                                Text(barcodeData)
+                                    .foregroundStyle(Color.black)
+                                    .font(.footnote)
+                                
+                            }
+                            .padding()
                         case "Codabar":
                             CodabarView(text: .constant(barcodeData))
                                 .frame(height: 100)
                                 .padding()
                                 .padding(.bottom)
+                        case "VNBarcodeSymbologyCodabar":
+                            CodabarView(text: .constant(barcodeData))
+                                .frame(height: 100)
+                                .padding()
+                                .padding(.bottom)
                         case "org.iso.Code39":
+                            if let image = RSUnifiedCodeGenerator.shared.generateCode(barcodeData, machineReadableCodeObjectType: AVMetadataObject.ObjectType.code39.rawValue){
+                                VStack{
+                                    Image(uiImage: image)
+                                        .resizable()
+                                        .frame(width: 200,height: 80)
+                                    Text(barcodeData)
+                                        .font(.footnote)
+                                        .foregroundStyle(Color.black)
+                                }
+                                .padding()
+                                
+                            }
+                        case "VNBarcodeSymbologyCode39":
                             if let image = RSUnifiedCodeGenerator.shared.generateCode(barcodeData, machineReadableCodeObjectType: AVMetadataObject.ObjectType.code39.rawValue){
                                 VStack{
                                     Image(uiImage: image)
@@ -80,8 +109,47 @@ struct CreateBarcodeView: View {
                                 .padding()
                                 
                             }
+                        case "VNBarcodeSymbologyCode93":
+                            if let image = RSUnifiedCodeGenerator.shared.generateCode(barcodeData, machineReadableCodeObjectType: AVMetadataObject.ObjectType.code93.rawValue){
+                                VStack{
+                                    Image(uiImage: image)
+                                        .resizable()
+                                        .frame(width: 200,height: 80)
+                                    Text(barcodeData)
+                                        .font(.footnote)
+                                        .foregroundStyle(Color.black)
+                                }
+                                .padding()
+                                
+                            }
+                        case "VNBarcodeSymbologyEAN8":
+                            if let image = RSUnifiedCodeGenerator.shared.generateCode(barcodeData, machineReadableCodeObjectType: AVMetadataObject.ObjectType.ean8.rawValue){
+                                VStack{
+                                    Image(uiImage: image)
+                                        .resizable()
+                                        .frame(width: 200,height: 80)
+                                    Text(barcodeData)
+                                        .font(.footnote)
+                                        .foregroundStyle(Color.black)
+                                }
+                                .padding()
+                                
+                            }
                         case "org.gs1.EAN-8":
                             if let image = RSUnifiedCodeGenerator.shared.generateCode(barcodeData, machineReadableCodeObjectType: AVMetadataObject.ObjectType.ean8.rawValue){
+                                VStack{
+                                    Image(uiImage: image)
+                                        .resizable()
+                                        .frame(width: 200,height: 80)
+                                    Text(barcodeData)
+                                        .font(.footnote)
+                                        .foregroundStyle(Color.black)
+                                }
+                                .padding()
+                                
+                            }
+                        case "VNBarcodeSymbologyEAN13":
+                            if let image = RSUnifiedCodeGenerator.shared.generateCode(barcodeData, machineReadableCodeObjectType: AVMetadataObject.ObjectType.ean13.rawValue){
                                 VStack{
                                     Image(uiImage: image)
                                         .resizable()
@@ -118,8 +186,35 @@ struct CreateBarcodeView: View {
                                 .padding(.bottom)
                                 
                             }
+                            
+                        case "VNBarcodeSymbologyPDF417":
+                            if let image = RSUnifiedCodeGenerator.shared.generateCode(barcodeData, machineReadableCodeObjectType: AVMetadataObject.ObjectType.pdf417.rawValue){
+                                VStack{
+                                    Image(uiImage: image)
+                                        .resizable()
+                                        .frame(width: 200,height: 80)
+                                    
+                                }
+                                .padding()
+                                .padding(.bottom)
+                               
+                                
+                            }
                         case "org.ansi.Interleaved2of5":
                             if let image = RSUnifiedCodeGenerator.shared.generateCode(barcodeData, machineReadableCodeObjectType: AVMetadataObject.ObjectType.interleaved2of5.rawValue){
+                                VStack{
+                                    Image(uiImage: image)
+                                        .resizable()
+                                        .frame(width: 200,height: 80)
+                                    Text(barcodeData)
+                                        .font(.footnote)
+                                        .foregroundStyle(Color.black)
+                                }
+                                .padding()
+                                
+                            }
+                        case "VNBarcodeSymbologyITF14":
+                            if let image = RSUnifiedCodeGenerator.shared.generateCode(barcodeData, machineReadableCodeObjectType: AVMetadataObject.ObjectType.itf14.rawValue){
                                 VStack{
                                     Image(uiImage: image)
                                         .resizable()
@@ -157,6 +252,19 @@ struct CreateBarcodeView: View {
                                 .padding(.bottom)
                                 
                             }
+                        case "VNBarcodeSymbologyAztec":
+                            
+                            if let image = RSUnifiedCodeGenerator.shared.generateCode(barcodeData, machineReadableCodeObjectType: AVMetadataObject.ObjectType.aztec.rawValue){
+                                VStack{
+                                    if let scaledImg = RSAbstractCodeGenerator.resizeImage(image, scale: CGFloat(20)){
+                                        Image(uiImage: scaledImg)
+                                    }
+                                }
+                                .frame(width: 100,height: 100)
+                                .padding()
+                                .padding(.bottom)
+                                
+                            }
                         case "org.iso.QRCode":
                             if let image = RSUnifiedCodeGenerator.shared.generateCode(barcodeData, machineReadableCodeObjectType: AVMetadataObject.ObjectType.qr.rawValue){
                                 VStack{
@@ -169,7 +277,32 @@ struct CreateBarcodeView: View {
                                 .padding(.bottom)
                                 
                             }
+                        case "VNBarcodeSymbologyQR":
+                            if let image = RSUnifiedCodeGenerator.shared.generateCode(barcodeData, machineReadableCodeObjectType: AVMetadataObject.ObjectType.qr.rawValue){
+                                VStack{
+                                    if let scaledImg = RSAbstractCodeGenerator.resizeImage(image, scale: CGFloat(12)){
+                                        Image(uiImage: scaledImg)
+                                    }
+                                }
+                                .frame(width: 100,height: 100)
+                                .padding()
+                                .padding(.bottom)
+                                
+                            }
                         case "org.gs1.UPC-E":
+                            if let image = RSUnifiedCodeGenerator.shared.generateCode(barcodeData, machineReadableCodeObjectType: AVMetadataObject.ObjectType.upce.rawValue){
+                                VStack{
+                                    Image(uiImage: image)
+                                        .resizable()
+                                        .frame(width: 200,height: 80)
+                                    Text(barcodeData)
+                                        .font(.footnote)
+                                        .foregroundStyle(Color.black)
+                                }
+                                .padding()
+                                
+                            }
+                        case "VNBarcodeSymbologyUPCE":
                             if let image = RSUnifiedCodeGenerator.shared.generateCode(barcodeData, machineReadableCodeObjectType: AVMetadataObject.ObjectType.upce.rawValue){
                                 VStack{
                                     Image(uiImage: image)
