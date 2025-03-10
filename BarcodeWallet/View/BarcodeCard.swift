@@ -323,6 +323,7 @@ struct BarcodeCard: View {
                     default:
                         Text("Barcode is unsupported")
                     }
+                        
 
                 }
             }
@@ -333,5 +334,5 @@ struct BarcodeCard: View {
 }
 
 #Preview {
-    BarcodeCard(barcodeType: "org.iso.Code128" ,barcodeName: "Loyalty", barcodeNum: "11220000103692")
+    BarcodeCard(barcodeType: "VNBarcodeSymbologyQR" ,barcodeName: "Loyalty", barcodeNum: "11220000103692")
 }

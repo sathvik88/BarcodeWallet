@@ -367,6 +367,7 @@ struct CreateBarcodeView: View {
         .onAppear(){
             isLoading = false
         }
+        .navigationBarBackButtonHidden()
     }
 }
 

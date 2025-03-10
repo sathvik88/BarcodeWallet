@@ -199,7 +199,7 @@ struct HomeView: View {
             })
             .sheet(isPresented: $displayOption, content: {
                 UploadSheetView(toggleUpload: $displayOption, scanResult: $scanResult, barcodeType: $barcodeType, displayCard: $displayUploadCard)
-                    .presentationDetents([.height(150)])
+                    .presentationDetents([.height(200)])
             })
             .sheet(isPresented: $displayUploadCard, content: {
                 CreateBarcodeView(barcodeType: $barcodeType, barcodeData: $scanResult, dismiss: $displayUploadCard, isLoading: $isLoading)
