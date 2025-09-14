@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct BarcodeModel: Identifiable{
+struct BarcodeModel: Identifiable, Hashable{
     let id = UUID()
     let name: String
     let barcodeNumber: String

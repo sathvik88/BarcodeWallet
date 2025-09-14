@@ -50,12 +50,13 @@ struct UploadSheetView: View {
             .sheet(isPresented: $toggleGallery, content: {
                 BarcodeScannerView(detectedSymbology: $barcodeType, detectedPayload: $scanResult, displayImageSheet: $toggleGallery)
                     .onDisappear(){
-                        toggleUpload = false
+                        toggleUpload =  false
                         if !scanResult.isEmpty{
                             displayCard = true
                         }
                         
                     }
+                    
             })
             .toolbar{
                 ToolbarItem(placement: .topBarLeading) {

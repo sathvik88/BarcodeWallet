@@ -345,6 +345,7 @@ struct CreateBarcodeView: View {
             Spacer()
             Button{
                 let barcodeDataController = BarcodeData(context: moc)
+                barcodeDataController.id = UUID()
                 barcodeDataController.name = title
                 barcodeDataController.barcodeNumber = barcodeData
                 barcodeDataController.barcodeType = barcodeType

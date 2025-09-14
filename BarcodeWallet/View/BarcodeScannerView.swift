@@ -14,6 +14,9 @@ struct BarcodeScannerView: UIViewControllerRepresentable {
     
     func makeUIViewController(context: Context) -> UploadViewController {
         let viewController = UploadViewController()
+        viewController.onCancel = {
+            displayImageSheet = false
+        }
         viewController.onBarcodeDetected = { symbology, payload in
             DispatchQueue.main.async {
                 detectedSymbology = symbology

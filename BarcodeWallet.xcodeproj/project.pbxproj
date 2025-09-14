@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2C2556B02E7726CC00962D58 /* CardDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C2556AF2E7726CC00962D58 /* CardDetailView.swift */; };
 		2C66C7C62CED3AEF008C524D /* BarcodeWalletApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C66C7C52CED3AEF008C524D /* BarcodeWalletApp.swift */; };
 		2C66C7C82CED3AEF008C524D /* LinearBarcodeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C66C7C72CED3AEF008C524D /* LinearBarcodeView.swift */; };
 		2C66C7CA2CED3AF0008C524D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2C66C7C92CED3AF0008C524D /* Assets.xcassets */; };
@@ -63,6 +64,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		2C2556AF2E7726CC00962D58 /* CardDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardDetailView.swift; sourceTree = "<group>"; };
 		2C66C7C22CED3AEF008C524D /* BarcodeWallet.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BarcodeWallet.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2C66C7C52CED3AEF008C524D /* BarcodeWalletApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BarcodeWalletApp.swift; sourceTree = "<group>"; };
 		2C66C7C72CED3AEF008C524D /* LinearBarcodeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LinearBarcodeView.swift; sourceTree = "<group>"; };
@@ -224,6 +226,7 @@
 				2CD8C8F32D25E6370007144C /* UploadSheetView.swift */,
 				2CD8C8F72D2C40090007144C /* BarcodeScannerView.swift */,
 				2CD8C8F92D2C404D0007144C /* UploadView.swift */,
+				2C2556AF2E7726CC00962D58 /* CardDetailView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -319,7 +322,7 @@
 			attributes = {
 				BuildIndependentTargetsInParallel = 1;
 				LastSwiftUpdateCheck = 1510;
-				LastUpgradeCheck = 1510;
+				LastUpgradeCheck = 1620;
 				TargetAttributes = {
 					2C66C7C12CED3AEF008C524D = {
 						CreatedOnToolsVersion = 15.1;
@@ -390,6 +393,7 @@
 			files = (
 				2C66C7F82CED44F2008C524D /* ManualBarcodeView.swift in Sources */,
 				2CD8C8F62D2C3E630007144C /* UploadViewController.swift in Sources */,
+				2C2556B02E7726CC00962D58 /* CardDetailView.swift in Sources */,
 				2CF0327C2D1B40A9006A6009 /* DragState.swift in Sources */,
 				2CD8C8FA2D2C404D0007144C /* UploadView.swift in Sources */,
 				2CF032732D121F24006A6009 /* CreateBarcodeView.swift in Sources */,
@@ -588,9 +592,9 @@
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
+				IPHONEOS_DEPLOYMENT_TARGET = 18.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -629,9 +633,9 @@
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
+				IPHONEOS_DEPLOYMENT_TARGET = 18.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -653,7 +657,6 @@
 		2C66C7EA2CED3AF1008C524D /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
@@ -673,7 +676,6 @@
 		2C66C7EB2CED3AF1008C524D /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
@@ -693,7 +695,6 @@
 		2C66C7ED2CED3AF1008C524D /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 8M22PYB3ZS;
@@ -711,7 +712,6 @@
 		2C66C7EE2CED3AF1008C524D /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 8M22PYB3ZS;
