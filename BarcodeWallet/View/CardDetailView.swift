@@ -15,10 +15,13 @@ struct CardDetailView: View {
     let barcodeName: String
     let barcodeNumber: String
     @Environment(\.dismiss) private var dismiss
+    @State private var showCard = false
     var body: some View {
         NavigationStack{
             VStack{
                 BarcodeCard(barcodeType: barcodeType, barcodeName: barcodeName, barcodeNum: barcodeNumber)
+                    .transition(.move(edge: .bottom).combined(with: .opacity))
+                                    .animation(.spring(response: 0.5, dampingFraction: 0.7), value: showCard)
             }
             .navigationBarBackButtonHidden()
             .toolbar {
@@ -48,7 +51,9 @@ struct CardDetailView: View {
             }
             .onAppear(){
                 withAnimation {
+                    showCard = true
                     UIScreen.main.brightness = 1.0
+                    
                 }
             }
         }

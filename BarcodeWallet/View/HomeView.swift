@@ -30,6 +30,8 @@ struct HomeView: View {
     @State private var displayOption = false
     @State private var displayUploadCard = false
     @Namespace private var namespace
+    private let peek: CGFloat = 80
+        private let cardHeight: CGFloat = 220
     var body: some View {
         NavigationStack{
             VStack{
@@ -45,48 +47,53 @@ struct HomeView: View {
                     }
                     
                 }else{
-                
-
+                    
                     ScrollView {
-                        VStack{
-                            ZStack {
-                                ForEach(Array(cards.enumerated()), id: \.element.id) { index, card in
-                                    NavigationLink {
-                                        CardDetailView(
-                                            cardId: card.id,
-                                            barcodeType: card.barcodeType,
-                                            barcodeName: card.name,
-                                            barcodeNumber: card.barcodeNumber
-                                        )
-                                        .navigationTransition(.zoom(sourceID: card.id, in: namespace))
-                                    } label: {
-                                        BarcodeCard(
-                                            barcodeType: card.barcodeType,
-                                            barcodeName: card.name,
-                                            barcodeNum: card.barcodeNumber
-                                        )
-    //                                    .frame(height: 200) // Adjust height as needed
-                                        .offset(y: CGFloat(index) * 30) // Controls stacking depth
+                        ZStack{
+                            VStack(){
+                                ZStack {
+                                    ForEach(Array(cards.enumerated()), id: \.element.id) { index, card in
+//                                        BarcodeCard(
+//                                            barcodeType: card.barcodeType,
+//                                            barcodeName: card.name,
+//                                            barcodeNum: card.barcodeNumber
+//                                        )
+//                                        .stacked(at: index, in: cards.count, peek: 80)
+                                        NavigationLink {
+                                            CardDetailView(
+                                                cardId: card.id,
+                                                barcodeType: card.barcodeType,
+                                                barcodeName: card.name,
+                                                barcodeNumber: card.barcodeNumber
+                                                
+                                            )
+                                            
+                                            .navigationTransition(.zoom(sourceID: card.id, in: namespace))
+                                        } label: {
+                                            BarcodeCard(
+                                                barcodeType: card.barcodeType,
+                                                barcodeName: card.name,
+                                                barcodeNum: card.barcodeNumber
+                                            )
+                                            
+                                        }
+//                                        .buttonStyle(.plain)
+                                        .matchedTransitionSource(id: card.id, in: namespace)
+                                        .stacked(at: index, in: cards.count, peek: 60)
+                                        .shadow(radius: 5)
                                     }
-                                    
-                                    .buttonStyle(.plain)
-                                    .matchedTransitionSource(id: card.id, in: namespace)
                                 }
-                            }
-                            
-                        }
 
+                                
+                            }
+                        }
+                        .padding(.bottom)
                         
                     }
                     
-                    
                 }
-                
-                
-                
+
             }
-            
-            
             .toolbar {
                 ToolbarItem(placement: .principal) {
                     Text("Barcode Wallet")
@@ -252,10 +259,12 @@ struct HomeView: View {
     
 }
 extension View{
-    func stacked(at position: Int, in total: Int) -> some View {
-            let offset = Double(total - position)
-            return self.offset(y: offset * 10)
-        }
+    func stacked(at position: Int, in total: Int, peek: CGFloat = 60) -> some View {
+//        let offset = CGFloat(total - position - 1) * peek
+//        return self.offset(y: offset)
+        let offset = CGFloat(position) * peek
+        return self.offset(y: offset)
+    }
 }
 
 
