@@ -23,7 +23,7 @@ struct CardDetailView: View {
             VStack{
                 BarcodeCard(barcodeType: barcodeType, barcodeName: barcodeName, barcodeNum: barcodeNumber)
                     .transition(.move(edge: .bottom).combined(with: .opacity))
-                                    .animation(.spring(response: 0.5, dampingFraction: 0.7), value: showCard)
+                    .animation(.spring(response: 0.5, dampingFraction: 0.7), value: showCard)
             }
             .navigationBarBackButtonHidden()
             .toolbar {
@@ -31,7 +31,6 @@ struct CardDetailView: View {
                     Button{
                         print(deviceBrightness)
                         animateBrightness(to: deviceBrightness, duration: 0.5)
-//                        UIScreen.main.brightness = deviceBrightness
                         dismiss()
                     }label: {
                         Text("Done")

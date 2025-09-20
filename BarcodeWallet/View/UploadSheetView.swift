@@ -14,12 +14,17 @@ struct UploadSheetView: View {
     @Binding var scanResult: String
     @Binding var barcodeType: String
     @Binding var displayCard: Bool
+    @State private var toggleLoader = false
     var body: some View {
         NavigationStack{
             VStack{
                 
                 Button{
-                    toggleCamera = true
+                    DispatchQueue.main.async{
+                        toggleLoader = true
+                        toggleCamera = true
+                    }
+                    
                 }label: {
                     Text("Open Camera")
                         .frame(maxWidth: .infinity)
@@ -29,7 +34,10 @@ struct UploadSheetView: View {
                 .padding([.bottom])
                 
                 Button{
-                    toggleGallery = true
+                    DispatchQueue.main.async{
+                        toggleLoader = true
+                        toggleGallery = true
+                    }
                 }label: {
                     Text("Upload From Gallery")
                         .frame(maxWidth: .infinity)
@@ -43,12 +51,18 @@ struct UploadSheetView: View {
             .padding([.leading, .trailing])
             .sheet(isPresented: $toggleCamera, content: {
                 CameraView(toggleCamera: $toggleCamera, scanResult: $scanResult, barcodeType: $barcodeType)
+                    .onAppear(){
+                        toggleLoader = false
+                    }
                     .onDisappear(){
                         toggleUpload = false
                     }
             })
             .sheet(isPresented: $toggleGallery, content: {
                 BarcodeScannerView(detectedSymbology: $barcodeType, detectedPayload: $scanResult, displayImageSheet: $toggleGallery)
+                    .onAppear(){
+                        toggleLoader = false
+                    }
                     .onDisappear(){
                         toggleUpload =  false
                         if !scanResult.isEmpty{
@@ -66,6 +80,11 @@ struct UploadSheetView: View {
                         .onTapGesture {
                             toggleUpload = false
                         }
+                }
+            }
+            .overlay{
+                if toggleLoader{
+                    ProgressView()
                 }
             }
         }
