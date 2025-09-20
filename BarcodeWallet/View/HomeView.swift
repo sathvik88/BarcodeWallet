@@ -16,57 +16,52 @@ struct HomeView: View {
     @State private var barcodeType = ""
     @State private var createCard = false
     @State private var barcodeName = ""
-    @State private var deviceBrightness = 0.5
+    @State private var deviceBrightness: CGFloat = 0.5
     @State private var isLoading = false
     @GestureState private var dragState = DragState.inactive
     @State var selectedCard: BarcodeModel?
     @State var isCardPressed = false
     private static let cardOffset: CGFloat = 50.0
     @State private var cards: [BarcodeModel] = []
+    @State private var cardsDummy: [BarcodeModel] = [BarcodeModel(name: "test", barcodeNumber: "01234565", barcodeType: "org.gs1.UPC-E"), BarcodeModel(name: "test", barcodeNumber: "01234565", barcodeType: "org.gs1.UPC-E"), BarcodeModel(name: "test", barcodeNumber: "01234565", barcodeType: "org.gs1.UPC-E"), BarcodeModel(name: "test", barcodeNumber: "01234565", barcodeType: "org.gs1.UPC-E"), BarcodeModel(name: "test", barcodeNumber: "01234565", barcodeType: "org.gs1.UPC-E"), BarcodeModel(name: "test", barcodeNumber: "01234565", barcodeType: "org.gs1.UPC-E"), BarcodeModel(name: "test", barcodeNumber: "01234565", barcodeType: "org.gs1.UPC-E"), BarcodeModel(name: "test", barcodeNumber: "01234565", barcodeType: "org.gs1.UPC-E"), BarcodeModel(name: "test", barcodeNumber: "01234565", barcodeType: "org.gs1.UPC-E"), BarcodeModel(name: "test", barcodeNumber: "01234565", barcodeType: "org.gs1.UPC-E"), BarcodeModel(name: "test", barcodeNumber: "01234565", barcodeType: "org.gs1.UPC-E"), BarcodeModel(name: "test", barcodeNumber: "01234565", barcodeType: "org.gs1.UPC-E"), BarcodeModel(name: "test", barcodeNumber: "01234565", barcodeType: "org.gs1.UPC-E"), BarcodeModel(name: "test", barcodeNumber: "01234565", barcodeType: "org.gs1.UPC-E"), BarcodeModel(name: "test", barcodeNumber: "01234565", barcodeType: "org.gs1.UPC-E"), BarcodeModel(name: "test", barcodeNumber: "01234565", barcodeType: "org.gs1.UPC-E")]
     @State private var isCardPresented = false
     //    @State private var walletHeight = 250.0
-    @State private var defaultHeight = 0.0
+    @State private var defaultHeight: CGFloat = 0.0
     @State private var cardCount = 0
     @State private var displayOption = false
     @State private var displayUploadCard = false
     @Namespace private var namespace
     private let peek: CGFloat = 80
-        private let cardHeight: CGFloat = 220
+    private let cardHeight: CGFloat = 220
+    @State private var didCaptureBrightness = false
+    init(){
+        deviceBrightness = UIScreen.main.brightness
+    }
     var body: some View {
+        
         NavigationStack{
             VStack{
                 if barcodeItems.isEmpty{
+//                if cardsDummy.isEmpty{
                     VStack{
                         GroupBox{
                             Text("Click the '+' icon to add a new barcode")
                                 .font(.system(.body, design: .monospaced))
-                                .onTapGesture {
-                                    
-                                }
+                                
                         }
                     }
                     
                 }else{
                     
                     ScrollView {
-                        ZStack{
                             VStack(){
                                 ZStack {
                                     ForEach(Array(cards.enumerated()), id: \.element.id) { index, card in
-//                                        BarcodeCard(
-//                                            barcodeType: card.barcodeType,
-//                                            barcodeName: card.name,
-//                                            barcodeNum: card.barcodeNumber
-//                                        )
-//                                        .stacked(at: index, in: cards.count, peek: 80)
                                         NavigationLink {
-                                            CardDetailView(
-                                                cardId: card.id,
-                                                barcodeType: card.barcodeType,
-                                                barcodeName: card.name,
-                                                barcodeNumber: card.barcodeNumber
-                                                
-                                            )
+                                            CardDetailView(cardId: card.id, barcodeType: card.barcodeType, barcodeName: card.name, barcodeNumber: card.barcodeNumber, deviceBrightness: $deviceBrightness)
+                                                .onDisappear(){
+                                                    animateBrightness(to: deviceBrightness, duration: 0.5)
+                                                }
                                             
                                             .navigationTransition(.zoom(sourceID: card.id, in: namespace))
                                         } label: {
@@ -77,18 +72,18 @@ struct HomeView: View {
                                             )
                                             
                                         }
-//                                        .buttonStyle(.plain)
+                                    
+                                        .padding([.leading, .trailing], 10)
                                         .matchedTransitionSource(id: card.id, in: namespace)
                                         .stacked(at: index, in: cards.count, peek: 60)
                                         .shadow(radius: 5)
                                     }
                                 }
+                                .padding(.bottom, CGFloat(cards.count * 60))
 
                                 
                             }
-                        }
-                        .padding(.bottom)
-                        
+                            .padding(.bottom)
                     }
                     
                 }
@@ -139,11 +134,14 @@ struct HomeView: View {
                     cards.append(BarcodeModel(name: i.name ?? "", barcodeNumber: i.barcodeNumber ?? "", barcodeType: i.barcodeType ?? ""))
                     
                 }
-                
                 isLoading.toggle()
-                withAnimation {
-                    adjustBrightness(to: deviceBrightness, duration: 0.01)
+                if !didCaptureBrightness {
+                    deviceBrightness = UIScreen.main.brightness
+                    didCaptureBrightness = true
+                    print("Captured original brightness")
                 }
+               
+                
                 
             }
             
@@ -156,27 +154,6 @@ struct HomeView: View {
                 
                 
                 
-            })
-            //            .onChange(of: cards.count, perform: { newValue in
-            //                if cardCount > 0 && newValue > cardCount{
-            //                    walletHeight += 16.67
-            //                }else if cardCount > 0 && newValue < cardCount{
-            //                    walletHeight -= 16.67
-            //                }
-            //                cardCount = cards.count
-            //
-            //            })
-            .onChange(of: isCardPressed, perform: { value in
-                if value{
-                    deviceBrightness = UIScreen.main.brightness
-                    withAnimation {
-                        UIScreen.main.brightness = 1.0
-                    }
-                }else{
-                    withAnimation {
-                        adjustBrightness(to: deviceBrightness, duration: 0.01)
-                    }
-                }
             })
             .sheet(isPresented: $displayOption, content: {
                 UploadSheetView(toggleUpload: $displayOption, scanResult: $scanResult, barcodeType: $barcodeType, displayCard: $displayUploadCard)
@@ -216,10 +193,23 @@ struct HomeView: View {
                 }
             })
             
-            
-            
         }
     }
+    func animateBrightness(to target: CGFloat, duration: TimeInterval = 0.5) {
+        let start = UIScreen.main.brightness
+        let steps = 60            // frames in the animation
+        let stepTime = duration / Double(steps)
+
+        for step in 0...steps {
+            let progress = Double(step) / Double(steps)
+            let value = start + (target - start) * CGFloat(progress)
+
+            DispatchQueue.main.asyncAfter(deadline: .now() + stepTime * Double(step)) {
+                UIScreen.main.brightness = value
+            }
+        }
+    }
+    
     func adjustBrightness(to targetBrightness: CGFloat, duration: TimeInterval = 1.0) {
         // Clamp the target brightness between 0.0 and 1.0
         let clampedBrightness = max(0.0, min(1.0, targetBrightness))

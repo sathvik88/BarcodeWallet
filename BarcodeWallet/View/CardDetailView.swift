@@ -16,6 +16,8 @@ struct CardDetailView: View {
     let barcodeNumber: String
     @Environment(\.dismiss) private var dismiss
     @State private var showCard = false
+    @Binding var deviceBrightness: CGFloat
+    
     var body: some View {
         NavigationStack{
             VStack{
@@ -27,6 +29,9 @@ struct CardDetailView: View {
             .toolbar {
                 ToolbarItem(placement: .topBarLeading) {
                     Button{
+                        print(deviceBrightness)
+                        animateBrightness(to: deviceBrightness, duration: 0.5)
+//                        UIScreen.main.brightness = deviceBrightness
                         dismiss()
                     }label: {
                         Text("Done")
@@ -54,12 +59,27 @@ struct CardDetailView: View {
                     showCard = true
                     UIScreen.main.brightness = 1.0
                     
+                    
                 }
+            }
+        }
+    }
+    func animateBrightness(to target: CGFloat, duration: TimeInterval = 0.5) {
+        let start = UIScreen.main.brightness
+        let steps = 60            // frames in the animation
+        let stepTime = duration / Double(steps)
+
+        for step in 0...steps {
+            let progress = Double(step) / Double(steps)
+            let value = start + (target - start) * CGFloat(progress)
+
+            DispatchQueue.main.asyncAfter(deadline: .now() + stepTime * Double(step)) {
+                UIScreen.main.brightness = value
             }
         }
     }
 }
 
 #Preview {
-    CardDetailView(cardId: UUID(), barcodeType: "VNBarcodeSymbologyQR" ,barcodeName: "Loyalty", barcodeNumber: "11220000103djasjdkashdajsndjasnaksjdsdakhsjdkajshdkjsakjhsdk692")
+    CardDetailView(cardId: UUID(), barcodeType: "VNBarcodeSymbologyQR" ,barcodeName: "Loyalty", barcodeNumber: "11220000103djasjdkashdajsndjasnaksjdsdakhsjdkajshdkjsakjhsdk692", deviceBrightness: .constant(0.5))
 }
