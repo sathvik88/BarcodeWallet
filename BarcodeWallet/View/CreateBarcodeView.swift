@@ -18,6 +18,10 @@ struct CreateBarcodeView: View {
     @Environment(\.managedObjectContext) var moc
     @FetchRequest(sortDescriptors: []) var expenses: FetchedResults<BarcodeData>
     @Binding var isLoading: Bool
+    @State private var selectedColor: Color = .red
+    @State private var isCoupon = false
+    @State private var expirationDate = Date()
+    @Environment(\.self) var environmentValues
     var body: some View {
         VStack{
             ScrollView{
@@ -25,8 +29,8 @@ struct CreateBarcodeView: View {
                     ZStack{
                         RoundedRectangle(cornerSize: CGSize(width: 10, height: 10))
                             .frame(maxWidth: .infinity)
-                            .foregroundStyle(Color.white)
-                            .shadow(radius: 10)
+                            .foregroundStyle(selectedColor)
+                            .shadow(radius: 5)
                         VStack{
                             HStack{
                                 Text(title)
@@ -154,12 +158,19 @@ struct CreateBarcodeView: View {
                                     VStack{
                                         Image(uiImage: image)
                                             .resizable()
-                                            .frame(width: 200,height: 80)
+                                            .interpolation(.none)
+                                            .antialiased(false)
+                                            .scaledToFit()
+                                            .frame(width: 200, height: 80)
+                                            .padding([.leading, .trailing])
                                         Text(barcodeData)
                                             .font(.footnote)
                                             .foregroundStyle(Color.black)
                                     }
-                                    .padding()
+                                    .background(content: {
+                                        Color.white
+                                    })
+                                    .padding(.bottom)
                                     
                                 }
                             case "org.gs1.EAN-13":
@@ -167,12 +178,20 @@ struct CreateBarcodeView: View {
                                     VStack{
                                         Image(uiImage: image)
                                             .resizable()
-                                            .frame(width: 200,height: 80)
+                                            .interpolation(.none)
+                                            .antialiased(false)
+                                            .scaledToFit()
+                                            .frame(width: 200, height: 80)
+                                            .padding([.leading, .trailing])
                                         Text(barcodeData)
                                             .font(.footnote)
                                             .foregroundStyle(Color.black)
                                     }
-                                    .padding()
+                                    
+                                    .background(content: {
+                                        Color.white
+                                    })
+                                    .padding(.bottom)
                                     
                                 }
                             case "org.iso.PDF417":
@@ -183,8 +202,10 @@ struct CreateBarcodeView: View {
                                             .frame(width: 200,height: 80)
                                         
                                     }
-                                    .padding()
-                                    .padding(.bottom)
+                                    .background(content: {
+                                        Color.white
+                                    })
+                                    
                                     
                                 }
                                 
@@ -194,10 +215,14 @@ struct CreateBarcodeView: View {
                                         Image(uiImage: image)
                                             .resizable()
                                             .frame(width: 200,height: 80)
+                                            .padding()
                                         
                                     }
-                                    .padding()
+                                    .background(content: {
+                                        Color.white
+                                    })
                                     .padding(.bottom)
+                                    
                                    
                                     
                                 }
@@ -206,11 +231,18 @@ struct CreateBarcodeView: View {
                                     VStack{
                                         Image(uiImage: image)
                                             .resizable()
-                                            .frame(width: 200,height: 80)
+                                            .interpolation(.none)
+                                            .antialiased(false)
+                                            .scaledToFit()
+                                            .frame(width: 200, height: 80)
+                                            .padding([.top, .leading, .trailing])
                                         Text(barcodeData)
                                             .font(.footnote)
                                             .foregroundStyle(Color.black)
                                     }
+                                    .background(content: {
+                                        Color.white
+                                    })
                                     .padding()
                                     
                                 }
@@ -219,11 +251,19 @@ struct CreateBarcodeView: View {
                                     VStack{
                                         Image(uiImage: image)
                                             .resizable()
-                                            .frame(width: 200,height: 80)
+                                            .interpolation(.none)
+                                            .antialiased(false)
+                                            .scaledToFit()
+                                            .frame(width: 200, height: 80)
+                                            .padding([.top, .leading, .trailing])
+                                            
                                         Text(barcodeData)
                                             .font(.footnote)
                                             .foregroundStyle(Color.black)
                                     }
+                                    .background(content: {
+                                        Color.white
+                                    })
                                     .padding()
                                     
                                 }
@@ -232,11 +272,18 @@ struct CreateBarcodeView: View {
                                     VStack{
                                         Image(uiImage: image)
                                             .resizable()
-                                            .frame(width: 200,height: 80)
+                                            .interpolation(.none)
+                                            .antialiased(false)
+                                            .scaledToFit()
+                                            .frame(width: 200, height: 80)
+                                            .padding([.top, .leading, .trailing])
                                         Text(barcodeData)
                                             .font(.footnote)
                                             .foregroundStyle(Color.black)
                                     }
+                                    .background(content: {
+                                        Color.white
+                                    })
                                     .padding()
                                     
                                 }
@@ -246,6 +293,8 @@ struct CreateBarcodeView: View {
                                     VStack{
                                         if let scaledImg = RSAbstractCodeGenerator.resizeImage(image, scale: CGFloat(20)){
                                             Image(uiImage: scaledImg)
+                                                .resizable()
+                                                .frame(width: 100,height: 100)
                                         }
                                     }
                                     .frame(width: 100,height: 100)
@@ -259,6 +308,8 @@ struct CreateBarcodeView: View {
                                     VStack{
                                         if let scaledImg = RSAbstractCodeGenerator.resizeImage(image, scale: CGFloat(20)){
                                             Image(uiImage: scaledImg)
+                                                .resizable()
+                                                .frame(width: 100,height: 100)
                                         }
                                     }
                                     .frame(width: 100,height: 100)
@@ -295,12 +346,20 @@ struct CreateBarcodeView: View {
                                     VStack{
                                         Image(uiImage: image)
                                             .resizable()
-                                            .frame(width: 200,height: 80)
+                                            .interpolation(.none)
+                                            .antialiased(false)
+                                            .scaledToFit()
+                                            .frame(width: 200, height: 80)
+                                            .padding(.top)
                                         Text(barcodeData)
                                             .font(.footnote)
                                             .foregroundStyle(Color.black)
                                     }
+                                    .background(content: {
+                                        Color.white
+                                    })
                                     .padding()
+                                    
                                     
                                 }
                             case "VNBarcodeSymbologyUPCE":
@@ -327,7 +386,8 @@ struct CreateBarcodeView: View {
                     .padding([.leading, .trailing], 5)
                     .frame(maxHeight: 250)
                 }
-                
+                .padding([.top, .bottom])
+                .padding([.leading, .trailing], 5)
                 Spacer()
                 GroupBox{
                     HStack{
@@ -338,29 +398,55 @@ struct CreateBarcodeView: View {
                             .padding()
                             .focused($showKeyboard)
                     }
+                }
+                GroupBox{
+                    ColorPicker("Choose a Color", selection: $selectedColor)
+                        .padding()
+                }
+                GroupBox{
+                    HStack{
+                        Toggle("Is this a coupon?", isOn: $isCoupon)
+                    }
+                }
+                if isCoupon{
+                    GroupBox{
+                        DatePicker(
+                            "Expiration Date", // Label for the DatePicker
+                            selection: $expirationDate, // Binding to the state variable
+                            displayedComponents: [.date] // Components to display (date and time)
+                        )
+                        
+                        .datePickerStyle(.compact)
+                    }
                     
                 }
                 
                 Spacer()
-                Button{
-                    let barcodeDataController = BarcodeData(context: moc)
-                    barcodeDataController.id = UUID()
-                    barcodeDataController.name = title
-                    barcodeDataController.barcodeNumber = barcodeData
-                    barcodeDataController.barcodeType = barcodeType
-                    try? moc.save()
-                    dismiss.toggle()
-                }label: {
-                    Text("Save")
-                        .bold()
-                        .frame(height: 40)
-                        .frame(maxWidth: .infinity)
-                    
-                }
-                .buttonStyle(.borderedProminent)
-                .buttonBorderShape(.capsule)
-                .padding(.bottom)
+                
             }
+            Button{
+                
+                let barcodeDataController = BarcodeData(context: moc)
+                barcodeDataController.id = UUID()
+                barcodeDataController.name = title
+                barcodeDataController.barcodeNumber = barcodeData
+                barcodeDataController.barcodeType = barcodeType
+                if isCoupon{
+                    barcodeDataController.expirationDate = expirationDate
+                }
+                
+                try? moc.save()
+                dismiss.toggle()
+            }label: {
+                Text("Save")
+                    .bold()
+                    .frame(height: 40)
+                    .frame(maxWidth: .infinity)
+                
+            }
+            .buttonStyle(.borderedProminent)
+            .buttonBorderShape(.capsule)
+            .padding(.bottom)
         }
         .padding([.leading, .trailing, .top])
         .onAppear(){
@@ -371,5 +457,5 @@ struct CreateBarcodeView: View {
 }
 
 #Preview {
-    CreateBarcodeView(barcodeType: .constant("org.gs1.UPC-E"), barcodeData: .constant("01234565"), dismiss: .constant(false), isLoading: .constant(false))
+    CreateBarcodeView(barcodeType: .constant("org.gs1.EAN-13"), barcodeData: .constant("0009800125104"), dismiss: .constant(false), isLoading: .constant(false))
 }
