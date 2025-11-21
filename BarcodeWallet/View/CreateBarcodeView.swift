@@ -18,7 +18,7 @@ struct CreateBarcodeView: View {
     @Environment(\.managedObjectContext) var moc
     @FetchRequest(sortDescriptors: []) var expenses: FetchedResults<BarcodeData>
     @Binding var isLoading: Bool
-    @State private var selectedColor: Color = .red
+    @State private var selectedColor = Color(.sRGB, red: 1, green: 1, blue: 1)
     @State private var isCoupon = false
     @State private var expirationDate = Date()
     @Environment(\.self) var environmentValues
@@ -47,6 +47,9 @@ struct CreateBarcodeView: View {
                                 VStack{
                                     barcodeGenerator.generateCode128Barcode(text: barcodeData)
                                         .resizable()
+                                        .interpolation(.none)
+                                        .antialiased(false)
+                                        .scaledToFit()
                                         .frame(width: 200,height: 100)
                                     Text(barcodeData)
                                         .foregroundStyle(Color.black)
@@ -58,6 +61,9 @@ struct CreateBarcodeView: View {
                                 VStack{
                                     barcodeGenerator.generateCode128Barcode(text: barcodeData)
                                         .resizable()
+                                        .interpolation(.none)
+                                        .antialiased(false)
+                                        .scaledToFit()
                                         .frame(width: 200,height: 100)
                                     Text(barcodeData)
                                         .foregroundStyle(Color.black)
@@ -80,6 +86,9 @@ struct CreateBarcodeView: View {
                                     VStack{
                                         Image(uiImage: image)
                                             .resizable()
+                                            .interpolation(.none)
+                                            .antialiased(false)
+                                            .scaledToFit()
                                             .frame(width: 200,height: 80)
                                         Text(barcodeData)
                                             .font(.footnote)
@@ -93,6 +102,9 @@ struct CreateBarcodeView: View {
                                     VStack{
                                         Image(uiImage: image)
                                             .resizable()
+                                            .interpolation(.none)
+                                            .antialiased(false)
+                                            .scaledToFit()
                                             .frame(width: 200,height: 80)
                                         Text(barcodeData)
                                             .font(.footnote)
@@ -106,6 +118,9 @@ struct CreateBarcodeView: View {
                                     VStack{
                                         Image(uiImage: image)
                                             .resizable()
+                                            .interpolation(.none)
+                                            .antialiased(false)
+                                            .scaledToFit()
                                             .frame(width: 200,height: 80)
                                         Text(barcodeData)
                                             .font(.footnote)
@@ -119,6 +134,9 @@ struct CreateBarcodeView: View {
                                     VStack{
                                         Image(uiImage: image)
                                             .resizable()
+                                            .interpolation(.none)
+                                            .antialiased(false)
+                                            .scaledToFit()
                                             .frame(width: 200,height: 80)
                                         Text(barcodeData)
                                             .font(.footnote)
@@ -132,6 +150,9 @@ struct CreateBarcodeView: View {
                                     VStack{
                                         Image(uiImage: image)
                                             .resizable()
+                                            .interpolation(.none)
+                                            .antialiased(false)
+                                            .scaledToFit()
                                             .frame(width: 200,height: 80)
                                         Text(barcodeData)
                                             .font(.footnote)
@@ -145,6 +166,9 @@ struct CreateBarcodeView: View {
                                     VStack{
                                         Image(uiImage: image)
                                             .resizable()
+                                            .interpolation(.none)
+                                            .antialiased(false)
+                                            .scaledToFit()
                                             .frame(width: 200,height: 80)
                                         Text(barcodeData)
                                             .font(.footnote)
@@ -427,10 +451,15 @@ struct CreateBarcodeView: View {
             Button{
                 
                 let barcodeDataController = BarcodeData(context: moc)
+                let pickedColor = UIColor(selectedColor)
                 barcodeDataController.id = UUID()
                 barcodeDataController.name = title
                 barcodeDataController.barcodeNumber = barcodeData
                 barcodeDataController.barcodeType = barcodeType
+                barcodeDataController.red = Float(pickedColor.components.red)
+                barcodeDataController.green = Float(pickedColor.components.green)
+                barcodeDataController.blue = Float(pickedColor.components.blue)
+                barcodeDataController.alpha = Float(pickedColor.components.alpha)
                 if isCoupon{
                     barcodeDataController.expirationDate = expirationDate
                 }
@@ -455,6 +484,12 @@ struct CreateBarcodeView: View {
         .navigationBarBackButtonHidden()
     }
 }
+extension Color {
+        var rgba: (red: Double, green: Double, blue: Double, alpha: Double)? {
+            guard let components = UIColor(self).cgColor.components else { return nil }
+            return (red: Double(components[0]), green: Double(components[1]), blue: Double(components[2]), alpha: Double(components[3]))
+        }
+    }
 
 #Preview {
     CreateBarcodeView(barcodeType: .constant("org.gs1.EAN-13"), barcodeData: .constant("0009800125104"), dismiss: .constant(false), isLoading: .constant(false))

@@ -23,7 +23,6 @@ struct HomeView: View {
     @State var isCardPressed = false
     private static let cardOffset: CGFloat = 50.0
     @State private var cards: [BarcodeModel] = []
-    @State private var cardsDummy: [BarcodeModel] = [BarcodeModel(name: "test", barcodeNumber: "01234565", barcodeType: "org.gs1.UPC-E"), BarcodeModel(name: "test", barcodeNumber: "01234565", barcodeType: "org.gs1.UPC-E"), BarcodeModel(name: "test", barcodeNumber: "01234565", barcodeType: "org.gs1.UPC-E"), BarcodeModel(name: "test", barcodeNumber: "01234565", barcodeType: "org.gs1.UPC-E"), BarcodeModel(name: "test", barcodeNumber: "01234565", barcodeType: "org.gs1.UPC-E"), BarcodeModel(name: "test", barcodeNumber: "01234565", barcodeType: "org.gs1.UPC-E"), BarcodeModel(name: "test", barcodeNumber: "01234565", barcodeType: "org.gs1.UPC-E"), BarcodeModel(name: "test", barcodeNumber: "01234565", barcodeType: "org.gs1.UPC-E"), BarcodeModel(name: "test", barcodeNumber: "01234565", barcodeType: "org.gs1.UPC-E"), BarcodeModel(name: "test", barcodeNumber: "01234565", barcodeType: "org.gs1.UPC-E"), BarcodeModel(name: "test", barcodeNumber: "01234565", barcodeType: "org.gs1.UPC-E"), BarcodeModel(name: "test", barcodeNumber: "01234565", barcodeType: "org.gs1.UPC-E"), BarcodeModel(name: "test", barcodeNumber: "01234565", barcodeType: "org.gs1.UPC-E"), BarcodeModel(name: "test", barcodeNumber: "01234565", barcodeType: "org.gs1.UPC-E"), BarcodeModel(name: "test", barcodeNumber: "01234565", barcodeType: "org.gs1.UPC-E"), BarcodeModel(name: "test", barcodeNumber: "01234565", barcodeType: "org.gs1.UPC-E")]
     @State private var isCardPresented = false
     //    @State private var walletHeight = 250.0
     @State private var defaultHeight: CGFloat = 0.0
@@ -58,8 +57,15 @@ struct HomeView: View {
                                 ZStack {
                                     ForEach(Array(cards.enumerated()), id: \.element.id) { index, card in
                                         NavigationLink {
-                                            CardDetailView(cardId: card.id, barcodeType: card.barcodeType, barcodeName: card.name, barcodeNumber: card.barcodeNumber, deviceBrightness: $deviceBrightness)
-                                                .onDisappear(){
+                                            CardDetailView(
+                                                cardId: card.id,
+                                                barcodeType: card.barcodeType,
+                                                barcodeName: card.name,
+                                                barcodeNumber: card.barcodeNumber,
+                                                cardColor: card.cardColor,
+                                                deviceBrightness: $deviceBrightness
+                                            )
+                                            .onDisappear(){
                                                     animateBrightness(to: deviceBrightness, duration: 0.5)
                                                 }
                                             
@@ -68,7 +74,8 @@ struct HomeView: View {
                                             BarcodeCard(
                                                 barcodeType: card.barcodeType,
                                                 barcodeName: card.name,
-                                                barcodeNum: card.barcodeNumber
+                                                barcodeNum: card.barcodeNumber,
+                                                cardColor: card.cardColor
                                             )
                                             
                                         }
@@ -131,7 +138,16 @@ struct HomeView: View {
                 isLoading.toggle()
                 cards = []
                 for i in barcodeItems{
-                    cards.append(BarcodeModel(name: i.name ?? "", barcodeNumber: i.barcodeNumber ?? "", barcodeType: i.barcodeType ?? ""))
+                    let color = Color(UIColor(
+                                red: CGFloat(i.red),
+                                green: CGFloat(i.green),
+                                blue: CGFloat(i.blue),
+                                alpha: CGFloat(i.alpha)
+                            ))
+                    let finalColor = (i.red == 0 && i.green == 0 && i.blue == 0 && i.alpha == 0)
+                                ? Color.white  // ← Your default color here
+                                : color
+                    cards.append(BarcodeModel(name: i.name ?? "", barcodeNumber: i.barcodeNumber ?? "", barcodeType: i.barcodeType ?? "", cardColor: finalColor))
                     
                 }
                 isLoading.toggle()
@@ -147,12 +163,18 @@ struct HomeView: View {
             
             .onChange(of: barcodeItems.count, perform: { value in
                 cards = []
-                
                 for i in barcodeItems{
-                    cards.append(BarcodeModel(name: i.name ?? "", barcodeNumber: i.barcodeNumber ?? "", barcodeType: i.barcodeType ?? ""))
+                    let color = Color(UIColor(
+                                red: CGFloat(i.red),
+                                green: CGFloat(i.green),
+                                blue: CGFloat(i.blue),
+                                alpha: CGFloat(i.alpha)
+                            ))
+                    let finalColor = (i.red == 0 && i.green == 0 && i.blue == 0 && i.alpha == 0)
+                                ? Color.white  // ← Your default color here
+                                : color
+                    cards.append(BarcodeModel(name: i.name ?? "", barcodeNumber: i.barcodeNumber ?? "", barcodeType: i.barcodeType ?? "", cardColor: finalColor))
                 }
-                
-                
                 
             })
             .sheet(isPresented: $displayOption, content: {
@@ -169,7 +191,7 @@ struct HomeView: View {
             }, set: {displayCard = $0}), content: {
                 
                 if #available(iOS 16.4, *) {
-                    BarcodeCard(barcodeType: barcodeType, barcodeName: barcodeName, barcodeNum: scanResult)
+                    BarcodeCard(barcodeType: barcodeType, barcodeName: barcodeName, barcodeNum: scanResult, cardColor: Color.white)
                         .presentationBackground(Color.clear)
                         .onAppear(){
                             deviceBrightness = UIScreen.main.brightness
@@ -188,7 +210,7 @@ struct HomeView: View {
                     
                 } else {
                     // Fallback on earlier versions
-                    BarcodeCard(barcodeType: barcodeType, barcodeName: barcodeName, barcodeNum: scanResult)
+                    BarcodeCard(barcodeType: barcodeType, barcodeName: barcodeName, barcodeNum: scanResult, cardColor: Color.white)
                     
                 }
             })

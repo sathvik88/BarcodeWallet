@@ -14,6 +14,7 @@ struct CardDetailView: View {
     let barcodeType: String
     let barcodeName: String
     let barcodeNumber: String
+    let cardColor: Color
     @Environment(\.dismiss) private var dismiss
     @State private var showCard = false
     @Binding var deviceBrightness: CGFloat
@@ -21,7 +22,7 @@ struct CardDetailView: View {
     var body: some View {
         NavigationStack{
             VStack{
-                BarcodeCard(barcodeType: barcodeType, barcodeName: barcodeName, barcodeNum: barcodeNumber)
+                BarcodeCard(barcodeType: barcodeType, barcodeName: barcodeName, barcodeNum: barcodeNumber, cardColor: cardColor)
                     .transition(.move(edge: .bottom).combined(with: .opacity))
                     .animation(.spring(response: 0.5, dampingFraction: 0.7), value: showCard)
             }
@@ -80,5 +81,5 @@ struct CardDetailView: View {
 }
 
 #Preview {
-    CardDetailView(cardId: UUID(), barcodeType: "VNBarcodeSymbologyQR" ,barcodeName: "Loyalty", barcodeNumber: "11220000103djasjdkashdajsndjasnaksjdsdakhsjdkajshdkjsakjhsdk692", deviceBrightness: .constant(0.5))
+    CardDetailView(cardId: UUID(), barcodeType: "VNBarcodeSymbologyQR" ,barcodeName: "Loyalty", barcodeNumber: "11220000103djasjdkashdajsndjasnaksjdsdakhsjdkajshdkjsakjhsdk692", cardColor: Color.white, deviceBrightness: .constant(0.5))
 }

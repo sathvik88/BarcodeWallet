@@ -13,6 +13,7 @@ struct BarcodeCard: View {
     let barcodeType: String
     let barcodeName: String
     let barcodeNum: String
+    let cardColor: Color
     @Environment(\.dismiss) var dismiss
     var body: some View {
         NavigationStack{
@@ -20,8 +21,8 @@ struct BarcodeCard: View {
                 ZStack{
                     RoundedRectangle(cornerSize: CGSize(width: 10, height: 10))
                         .frame(maxWidth: .infinity)
-                        .foregroundStyle(Color.white)
                         .shadow(radius: 10)
+                        .foregroundStyle(cardColor)
                     VStack{
                         HStack{
                             Text(barcodeName)
@@ -37,24 +38,42 @@ struct BarcodeCard: View {
                             VStack{
                                 barcodeGenerator.generateCode128Barcode(text: barcodeNum)
                                     .resizable()
-                                    .frame(width: 200,height: 100)
+                                    .interpolation(.none)
+                                    .antialiased(false)
+                                    .scaledToFit()
                                 Text(barcodeNum)
                                     .foregroundStyle(Color.black)
                                     .font(.footnote)
                                 
                             }
+                            .frame(width: 200, height: 100)
                             .padding()
+                            .background {
+                                RoundedRectangle(cornerRadius: 10)
+                                    .frame(width: 200, height: 100)
+                                    .foregroundStyle(Color.white)
+                                    
+                            }
                         case "VNBarcodeSymbologyCode128":
                             VStack{
                                 barcodeGenerator.generateCode128Barcode(text: barcodeNum)
                                     .resizable()
-                                    .frame(width: 200,height: 100)
+                                    .interpolation(.none)
+                                    .antialiased(false)
+                                    .scaledToFit()
                                 Text(barcodeNum)
                                     .foregroundStyle(Color.black)
                                     .font(.footnote)
                                 
                             }
+                            .frame(width: 200, height: 100)
                             .padding()
+                            .background {
+                                RoundedRectangle(cornerRadius: 10)
+                                    .frame(width: 200, height: 100)
+                                    .foregroundStyle(Color.white)
+                                    
+                            }
                             
                         case "Codabar":
                             CodabarView(text: .constant(barcodeNum))
@@ -67,17 +86,27 @@ struct BarcodeCard: View {
                                 .frame(height: 100)
                                 .padding()
                                 .padding(.bottom)
+                            
                         case "org.iso.Code39":
                             if let image = RSUnifiedCodeGenerator.shared.generateCode(barcodeNum, machineReadableCodeObjectType: AVMetadataObject.ObjectType.code39.rawValue){
                                 VStack{
                                     Image(uiImage: image)
                                         .resizable()
-                                        .frame(width: 200,height: 80)
+                                        .interpolation(.none)
+                                        .antialiased(false)
+                                        .scaledToFit()
+                                        
                                     Text(barcodeNum)
                                         .font(.footnote)
                                         .foregroundStyle(Color.black)
                                 }
+                                .frame(minWidth: 200, maxWidth: 300,minHeight: 80,maxHeight: 80)
                                 .padding()
+                                .background {
+                                    RoundedRectangle(cornerRadius: 10)
+                                        .foregroundStyle(Color.white)
+                                        .padding(.bottom)
+                                }
                                 
                             }
                             
@@ -86,12 +115,22 @@ struct BarcodeCard: View {
                                 VStack{
                                     Image(uiImage: image)
                                         .resizable()
+                                        .interpolation(.none)
+                                        .antialiased(false)
+                                        .scaledToFit()
                                         .frame(width: 200,height: 80)
                                     Text(barcodeNum)
                                         .font(.footnote)
                                         .foregroundStyle(Color.black)
                                 }
+                                .frame(minWidth: 200, maxWidth: 300,minHeight: 80,maxHeight: 80)
                                 .padding()
+                                .background {
+                                    RoundedRectangle(cornerRadius: 10)
+                                        .foregroundStyle(Color.white)
+                                        .padding(.bottom)
+                                }
+                                
                                 
                             }
                         case "com.intermec.Code93":
@@ -99,12 +138,21 @@ struct BarcodeCard: View {
                                 VStack{
                                     Image(uiImage: image)
                                         .resizable()
+                                        .interpolation(.none)
+                                        .antialiased(false)
+                                        .scaledToFit()
                                         .frame(width: 200,height: 80)
                                     Text(barcodeNum)
                                         .font(.footnote)
                                         .foregroundStyle(Color.black)
                                 }
+                                .frame(minWidth: 200, maxWidth: 300,minHeight: 80,maxHeight: 80)
                                 .padding()
+                                .background {
+                                    RoundedRectangle(cornerRadius: 10)
+                                        .foregroundStyle(Color.white)
+                                        .padding(.bottom)
+                                }
                                 
                             }
                         case "VNBarcodeSymbologyCode93":
@@ -112,12 +160,21 @@ struct BarcodeCard: View {
                                 VStack{
                                     Image(uiImage: image)
                                         .resizable()
+                                        .interpolation(.none)
+                                        .antialiased(false)
+                                        .scaledToFit()
                                         .frame(width: 200,height: 80)
                                     Text(barcodeNum)
                                         .font(.footnote)
                                         .foregroundStyle(Color.black)
                                 }
+                                .frame(minWidth: 200, maxWidth: 300,minHeight: 80,maxHeight: 80)
                                 .padding()
+                                .background {
+                                    RoundedRectangle(cornerRadius: 10)
+                                        .foregroundStyle(Color.white)
+                                        .padding(.bottom)
+                                }
                                 
                             }
                             
@@ -126,11 +183,15 @@ struct BarcodeCard: View {
                                 VStack{
                                     Image(uiImage: image)
                                         .resizable()
-                                        .frame(width: 200,height: 80)
+                                        .interpolation(.none)
+                                        .antialiased(false)
+                                        .scaledToFit()
+                                        
                                     Text(barcodeNum)
                                         .font(.footnote)
                                         .foregroundStyle(Color.black)
                                 }
+                                .frame(width: 200,height: 80)
                                 .padding()
                                 
                             }
@@ -139,11 +200,15 @@ struct BarcodeCard: View {
                                 VStack{
                                     Image(uiImage: image)
                                         .resizable()
-                                        .frame(width: 200,height: 80)
+                                        .interpolation(.none)
+                                        .antialiased(false)
+                                        .scaledToFit()
+                                        
                                     Text(barcodeNum)
                                         .font(.footnote)
                                         .foregroundStyle(Color.black)
                                 }
+                                .frame(width: 200,height: 80)
                                 .padding()
                                 
                             }
@@ -153,11 +218,15 @@ struct BarcodeCard: View {
                                 VStack{
                                     Image(uiImage: image)
                                         .resizable()
-                                        .frame(width: 200,height: 80)
+                                        .interpolation(.none)
+                                        .antialiased(false)
+                                        .scaledToFit()
+                                        
                                     Text(barcodeNum)
                                         .font(.footnote)
                                         .foregroundStyle(Color.black)
                                 }
+                                .frame(width: 200,height: 80)
                                 .padding()
                                 
                             }
@@ -166,11 +235,15 @@ struct BarcodeCard: View {
                                 VStack{
                                     Image(uiImage: image)
                                         .resizable()
-                                        .frame(width: 200,height: 80)
+                                        .interpolation(.none)
+                                        .antialiased(false)
+                                        .scaledToFit()
+                                        
                                     Text(barcodeNum)
                                         .font(.footnote)
                                         .foregroundStyle(Color.black)
                                 }
+                                .frame(width: 200,height: 80)
                                 .padding()
                                 
                             }
@@ -180,11 +253,21 @@ struct BarcodeCard: View {
                                 VStack{
                                     Image(uiImage: image)
                                         .resizable()
-                                        .frame(width: 200,height: 80)
+                                        .interpolation(.none)
+                                        .antialiased(false)
+                                        .scaledToFit()
+                                       
                                     
                                 }
+                                .frame(width: 200,height: 80)
                                 .padding()
                                 .padding(.bottom)
+                                .background {
+                                    RoundedRectangle(cornerRadius: 10)
+//                                        .frame(width: 220,height: 80)
+                                        .foregroundStyle(Color.white)
+//                                        .padding(.bottom)
+                                }
                                
                                 
                             }
@@ -193,11 +276,21 @@ struct BarcodeCard: View {
                                 VStack{
                                     Image(uiImage: image)
                                         .resizable()
+                                        .interpolation(.none)
+                                        .antialiased(false)
+                                        .scaledToFit()
                                         .frame(width: 200,height: 80)
                                     
                                 }
+                                .frame(width: 200,height: 80)
                                 .padding()
                                 .padding(.bottom)
+                                .background {
+                                    RoundedRectangle(cornerRadius: 10)
+//                                        .frame(width: 220,height: 80)
+                                        .foregroundStyle(Color.white)
+//                                        .padding(.bottom)
+                                }
                                
                                 
                             }
@@ -207,12 +300,22 @@ struct BarcodeCard: View {
                                 VStack{
                                     Image(uiImage: image)
                                         .resizable()
-                                        .frame(width: 200,height: 80)
+                                        .interpolation(.none)
+                                        .antialiased(false)
+                                        .scaledToFit()
+//                                        .frame(width: 200,height: 80)
                                     Text(barcodeNum)
                                         .font(.footnote)
                                         .foregroundStyle(Color.black)
                                 }
+                                .frame(width: 220,height: 120)
                                 .padding()
+                                .background {
+                                    RoundedRectangle(cornerRadius: 10)
+//                                        .frame(width: 220,height: 120)
+                                        .foregroundStyle(Color.white)
+//                                        .padding(.bottom)
+                                }
                                 
                             }
                             
@@ -221,12 +324,21 @@ struct BarcodeCard: View {
                                 VStack{
                                     Image(uiImage: image)
                                         .resizable()
+                                        .interpolation(.none)
+                                        .antialiased(false)
+                                        .scaledToFit()
                                         .frame(width: 200,height: 80)
                                     Text(barcodeNum)
                                         .font(.footnote)
                                         .foregroundStyle(Color.black)
                                 }
                                 .padding()
+                                .background {
+                                    RoundedRectangle(cornerRadius: 10)
+                                        .frame(width: 220,height: 120)
+                                        .foregroundStyle(Color.white)
+                                        .padding(.bottom)
+                                }
                                 
                             }
                         case "org.gs1.ITF14":
@@ -234,12 +346,21 @@ struct BarcodeCard: View {
                                 VStack{
                                     Image(uiImage: image)
                                         .resizable()
+                                        .interpolation(.none)
+                                        .antialiased(false)
+                                        .scaledToFit()
                                         .frame(width: 200,height: 80)
                                     Text(barcodeNum)
                                         .font(.footnote)
                                         .foregroundStyle(Color.black)
                                 }
                                 .padding()
+                                .background {
+                                    RoundedRectangle(cornerRadius: 10)
+                                        .frame(width: 220,height: 120)
+                                        .foregroundStyle(Color.white)
+                                        .padding(.bottom)
+                                }
                                 
                             }
                         
@@ -249,8 +370,10 @@ struct BarcodeCard: View {
                                 VStack{
                                     if let scaledImg = RSAbstractCodeGenerator.resizeImage(image, scale: CGFloat(20)){
                                         Image(uiImage: scaledImg)
+                                            .cornerRadius(10)
                                     }
                                 }
+                                
                                 .frame(width: 100,height: 100)
                                 .padding()
                                 .padding(.bottom)
@@ -262,6 +385,7 @@ struct BarcodeCard: View {
                                 VStack{
                                     if let scaledImg = RSAbstractCodeGenerator.resizeImage(image, scale: CGFloat(20)){
                                         Image(uiImage: scaledImg)
+                                            .cornerRadius(10)
                                     }
                                 }
                                 .frame(width: 100,height: 100)
@@ -280,6 +404,12 @@ struct BarcodeCard: View {
                                 .frame(width: 100,height: 100)
                                 .padding()
                                 .padding(.bottom)
+                                .background {
+                                    RoundedRectangle(cornerRadius: 5)
+                                        .foregroundStyle(Color.white)
+                                        .frame(width: 150,height: 150)
+                                        .padding(.bottom)
+                                }
                                 
                             }
                         case "VNBarcodeSymbologyQR":
@@ -287,11 +417,21 @@ struct BarcodeCard: View {
                                 VStack{
                                     if let scaledImg = RSAbstractCodeGenerator.resizeImage(image, scale: CGFloat(12)){
                                         Image(uiImage: scaledImg)
+                                            .cornerRadius(5)
+                                            
+                                            
                                     }
                                 }
                                 .frame(width: 100,height: 100)
                                 .padding()
                                 .padding(.bottom)
+                                .background {
+                                    RoundedRectangle(cornerRadius: 5)
+                                        .foregroundStyle(Color.white)
+                                        .frame(width: 150,height: 150)
+                                        .padding(.bottom)
+                                }
+                                
                                 
                             }
                             
@@ -300,12 +440,21 @@ struct BarcodeCard: View {
                                 VStack{
                                     Image(uiImage: image)
                                         .resizable()
+                                        .interpolation(.none)
+                                        .antialiased(false)
+                                        .scaledToFit()
                                         .frame(width: 200,height: 80)
                                     Text(barcodeNum)
                                         .font(.footnote)
                                         .foregroundStyle(Color.black)
                                 }
                                 .padding()
+                                .background {
+                                    RoundedRectangle(cornerRadius: 5)
+                                        .foregroundStyle(Color.white)
+                                        .frame(width: 180,height: 120)
+                                        .padding(.bottom)
+                                }
                                 
                             }
                         case "VNBarcodeSymbologyUPCE":
@@ -313,12 +462,21 @@ struct BarcodeCard: View {
                                 VStack{
                                     Image(uiImage: image)
                                         .resizable()
+                                        .interpolation(.none)
+                                        .antialiased(false)
+                                        .scaledToFit()
                                         .frame(width: 200,height: 80)
                                     Text(barcodeNum)
                                         .font(.footnote)
                                         .foregroundStyle(Color.black)
                                 }
                                 .padding()
+                                .background {
+                                    RoundedRectangle(cornerRadius: 5)
+                                        .foregroundStyle(Color.white)
+                                        .frame(width: 180,height: 120)
+                                        .padding(.bottom)
+                                }
                                 
                             }
                             
@@ -329,9 +487,10 @@ struct BarcodeCard: View {
 
                     }
                 }
-                .padding([.leading, .trailing], 5)
-                .frame(minHeight: 250, maxHeight: 250)
+                
             }
+            .padding([.leading, .trailing], 5)
+            .frame(minHeight: 250, maxHeight: 250)
             
         }
         
@@ -339,5 +498,5 @@ struct BarcodeCard: View {
 }
 
 #Preview {
-    BarcodeCard(barcodeType: "VNBarcodeSymbologyQR" ,barcodeName: "Loyalty", barcodeNum: "11220000103djasjdkashdajsndjasnaksjdsdakhsjdkajshdkjsakjhsdk692")
+    BarcodeCard(barcodeType: "org.iso.Code39" ,barcodeName: "Loyalty", barcodeNum: "ABC-1234", cardColor: Color.red)
 }
