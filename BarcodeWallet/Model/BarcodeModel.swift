@@ -9,7 +9,7 @@ import Foundation
 import SwiftUICore
 
 struct BarcodeModel: Identifiable, Hashable{
-    let id = UUID()
+    let id: UUID
     let name: String
     let barcodeNumber: String
     let barcodeType: String

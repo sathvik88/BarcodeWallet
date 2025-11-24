@@ -81,7 +81,7 @@ struct CameraView: View{
             }
             
             .onChange(of: scanResult, perform: { value in
-                
+                print(scanResult)
                 impactMed.impactOccurred()
                 
 //                toggleCamera = false

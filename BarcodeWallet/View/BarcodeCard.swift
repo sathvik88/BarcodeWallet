@@ -79,13 +79,23 @@ struct BarcodeCard: View {
                             CodabarView(text: .constant(barcodeNum))
                                 .frame(height: 100)
                                 .padding()
-                                .padding(.bottom)
+                                .background {
+                                    RoundedRectangle(cornerRadius: 10)
+                                        .foregroundStyle(Color.white)
+                                        .padding([.leading, .trailing], 5)
+                                        .frame(height: 110)
+                                }
                             
                         case "VNBarcodeSymbologyCodabar":
                             CodabarView(text: .constant(barcodeNum))
                                 .frame(height: 100)
                                 .padding()
-                                .padding(.bottom)
+                                .background {
+                                    RoundedRectangle(cornerRadius: 10)
+                                        .foregroundStyle(Color.white)
+                                        .padding([.leading, .trailing], 5)
+                                        .frame(height: 110)
+                                }
                             
                         case "org.iso.Code39":
                             if let image = RSUnifiedCodeGenerator.shared.generateCode(barcodeNum, machineReadableCodeObjectType: AVMetadataObject.ObjectType.code39.rawValue){
@@ -229,6 +239,12 @@ struct BarcodeCard: View {
                                 .frame(width: 200,height: 80)
                                 .padding()
                                 
+                                .background {
+                                    RoundedRectangle(cornerRadius: 10)
+                                        .foregroundStyle(Color.white)
+                                        .padding(.bottom)
+                                }
+                                
                             }
                         case "VNBarcodeSymbologyEAN13":
                             if let image = RSUnifiedCodeGenerator.shared.generateCode(barcodeNum, machineReadableCodeObjectType: AVMetadataObject.ObjectType.ean13.rawValue){
@@ -245,6 +261,12 @@ struct BarcodeCard: View {
                                 }
                                 .frame(width: 200,height: 80)
                                 .padding()
+                                
+                                .background {
+                                    RoundedRectangle(cornerRadius: 10)
+                                        .foregroundStyle(Color.white)
+                                        .padding(.bottom)
+                                }
                                 
                             }
                             
@@ -498,5 +520,5 @@ struct BarcodeCard: View {
 }
 
 #Preview {
-    BarcodeCard(barcodeType: "org.iso.Code39" ,barcodeName: "Loyalty", barcodeNum: "ABC-1234", cardColor: Color.red)
+    BarcodeCard(barcodeType: "Codabar" ,barcodeName: "Loyalty", barcodeNum: "A123456789B", cardColor: Color.red)
 }

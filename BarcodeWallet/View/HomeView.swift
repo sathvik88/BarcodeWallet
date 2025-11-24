@@ -147,7 +147,7 @@ struct HomeView: View {
                     let finalColor = (i.red == 0 && i.green == 0 && i.blue == 0 && i.alpha == 0)
                                 ? Color.white  // ← Your default color here
                                 : color
-                    cards.append(BarcodeModel(name: i.name ?? "", barcodeNumber: i.barcodeNumber ?? "", barcodeType: i.barcodeType ?? "", cardColor: finalColor))
+                    cards.append(BarcodeModel(id: i.id ?? UUID(), name: i.name ?? "", barcodeNumber: i.barcodeNumber ?? "", barcodeType: i.barcodeType ?? "", cardColor: finalColor))
                     
                 }
                 isLoading.toggle()
@@ -173,7 +173,7 @@ struct HomeView: View {
                     let finalColor = (i.red == 0 && i.green == 0 && i.blue == 0 && i.alpha == 0)
                                 ? Color.white  // ← Your default color here
                                 : color
-                    cards.append(BarcodeModel(name: i.name ?? "", barcodeNumber: i.barcodeNumber ?? "", barcodeType: i.barcodeType ?? "", cardColor: finalColor))
+                    cards.append(BarcodeModel(id: i.id ?? UUID(), name: i.name ?? "", barcodeNumber: i.barcodeNumber ?? "", barcodeType: i.barcodeType ?? "", cardColor: finalColor))
                 }
                 
             })

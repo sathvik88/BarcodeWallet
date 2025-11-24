@@ -50,27 +50,41 @@ struct CreateBarcodeView: View {
                                         .interpolation(.none)
                                         .antialiased(false)
                                         .scaledToFit()
-                                        .frame(width: 200,height: 100)
                                     Text(barcodeData)
                                         .foregroundStyle(Color.black)
                                         .font(.footnote)
+                                    
+                                }
+                                .frame(width: 200, height: 100)
+                                .padding()
+                                .background {
+                                    RoundedRectangle(cornerRadius: 10)
+                                        .frame(width: 200, height: 100)
+                                        .foregroundStyle(Color.white)
                                         
                                 }
-                                .padding()
+                                
                             case "VNBarcodeSymbologyCode128":
+                                
                                 VStack{
                                     barcodeGenerator.generateCode128Barcode(text: barcodeData)
                                         .resizable()
                                         .interpolation(.none)
                                         .antialiased(false)
                                         .scaledToFit()
-                                        .frame(width: 200,height: 100)
                                     Text(barcodeData)
                                         .foregroundStyle(Color.black)
                                         .font(.footnote)
                                     
                                 }
+                                .frame(width: 200, height: 100)
                                 .padding()
+                                .background {
+                                    RoundedRectangle(cornerRadius: 10)
+                                        .frame(width: 200, height: 100)
+                                        .foregroundStyle(Color.white)
+                                        
+                                }
                             case "Codabar":
                                 CodabarView(text: .constant(barcodeData))
                                     .frame(height: 100)
@@ -89,12 +103,18 @@ struct CreateBarcodeView: View {
                                             .interpolation(.none)
                                             .antialiased(false)
                                             .scaledToFit()
-                                            .frame(width: 200,height: 80)
+                                            
                                         Text(barcodeData)
                                             .font(.footnote)
                                             .foregroundStyle(Color.black)
                                     }
+                                    .frame(minWidth: 200, maxWidth: 300,minHeight: 80,maxHeight: 80)
                                     .padding()
+                                    .background {
+                                        RoundedRectangle(cornerRadius: 10)
+                                            .foregroundStyle(Color.white)
+                                            .padding(.bottom)
+                                    }
                                     
                                 }
                             case "VNBarcodeSymbologyCode39":
@@ -105,12 +125,18 @@ struct CreateBarcodeView: View {
                                             .interpolation(.none)
                                             .antialiased(false)
                                             .scaledToFit()
-                                            .frame(width: 200,height: 80)
+                                            
                                         Text(barcodeData)
                                             .font(.footnote)
                                             .foregroundStyle(Color.black)
                                     }
+                                    .frame(minWidth: 200, maxWidth: 300,minHeight: 80,maxHeight: 80)
                                     .padding()
+                                    .background {
+                                        RoundedRectangle(cornerRadius: 10)
+                                            .foregroundStyle(Color.white)
+                                            .padding(.bottom)
+                                    }
                                     
                                 }
                             case "com.intermec.Code93":
@@ -126,7 +152,14 @@ struct CreateBarcodeView: View {
                                             .font(.footnote)
                                             .foregroundStyle(Color.black)
                                     }
+                                    .frame(minWidth: 200, maxWidth: 300,minHeight: 80,maxHeight: 80)
                                     .padding()
+                                    .background {
+                                        RoundedRectangle(cornerRadius: 10)
+                                            .foregroundStyle(Color.white)
+                                            .padding(.bottom)
+                                    }
+                                   
                                     
                                 }
                             case "VNBarcodeSymbologyCode93":
@@ -142,7 +175,13 @@ struct CreateBarcodeView: View {
                                             .font(.footnote)
                                             .foregroundStyle(Color.black)
                                     }
+                                    .frame(minWidth: 200, maxWidth: 300,minHeight: 80,maxHeight: 80)
                                     .padding()
+                                    .background {
+                                        RoundedRectangle(cornerRadius: 10)
+                                            .foregroundStyle(Color.white)
+                                            .padding(.bottom)
+                                    }
                                     
                                 }
                             case "VNBarcodeSymbologyEAN8":
@@ -153,11 +192,12 @@ struct CreateBarcodeView: View {
                                             .interpolation(.none)
                                             .antialiased(false)
                                             .scaledToFit()
-                                            .frame(width: 200,height: 80)
+                                            
                                         Text(barcodeData)
                                             .font(.footnote)
                                             .foregroundStyle(Color.black)
                                     }
+                                    .frame(width: 200,height: 80)
                                     .padding()
                                     
                                 }
@@ -169,11 +209,12 @@ struct CreateBarcodeView: View {
                                             .interpolation(.none)
                                             .antialiased(false)
                                             .scaledToFit()
-                                            .frame(width: 200,height: 80)
+                                            
                                         Text(barcodeData)
                                             .font(.footnote)
                                             .foregroundStyle(Color.black)
                                     }
+                                    .frame(width: 200,height: 80)
                                     .padding()
                                     
                                 }
@@ -223,12 +264,21 @@ struct CreateBarcodeView: View {
                                     VStack{
                                         Image(uiImage: image)
                                             .resizable()
-                                            .frame(width: 200,height: 80)
+                                            .interpolation(.none)
+                                            .antialiased(false)
+                                            .scaledToFit()
+                                           
                                         
                                     }
-                                    .background(content: {
-                                        Color.white
-                                    })
+                                    .frame(width: 200,height: 80)
+                                    .padding()
+                                    .padding(.bottom)
+                                    .background {
+                                        RoundedRectangle(cornerRadius: 10)
+    //                                        .frame(width: 220,height: 80)
+                                            .foregroundStyle(Color.white)
+    //                                        .padding(.bottom)
+                                    }
                                     
                                     
                                 }
@@ -238,14 +288,20 @@ struct CreateBarcodeView: View {
                                     VStack{
                                         Image(uiImage: image)
                                             .resizable()
-                                            .frame(width: 200,height: 80)
-                                            .padding()
+                                            .interpolation(.none)
+                                            .antialiased(false)
+                                            .scaledToFit()
+                                           
                                         
                                     }
-                                    .background(content: {
-                                        Color.white
-                                    })
+                                    .frame(width: 200,height: 80)
+                                    .padding()
                                     .padding(.bottom)
+                                    .background {
+                                        RoundedRectangle(cornerRadius: 10)
+                                            .foregroundStyle(Color.white)
+  
+                                    }
                                     
                                    
                                     
@@ -258,16 +314,19 @@ struct CreateBarcodeView: View {
                                             .interpolation(.none)
                                             .antialiased(false)
                                             .scaledToFit()
-                                            .frame(width: 200, height: 80)
-                                            .padding([.top, .leading, .trailing])
+    //                                        .frame(width: 200,height: 80)
                                         Text(barcodeData)
                                             .font(.footnote)
                                             .foregroundStyle(Color.black)
                                     }
-                                    .background(content: {
-                                        Color.white
-                                    })
+                                    .frame(width: 220,height: 120)
                                     .padding()
+                                    .background {
+                                        RoundedRectangle(cornerRadius: 10)
+    //                                        .frame(width: 220,height: 120)
+                                            .foregroundStyle(Color.white)
+    //                                        .padding(.bottom)
+                                    }
                                     
                                 }
                             case "VNBarcodeSymbologyITF14":
@@ -278,17 +337,18 @@ struct CreateBarcodeView: View {
                                             .interpolation(.none)
                                             .antialiased(false)
                                             .scaledToFit()
-                                            .frame(width: 200, height: 80)
-                                            .padding([.top, .leading, .trailing])
-                                            
+                                            .frame(width: 200,height: 80)
                                         Text(barcodeData)
                                             .font(.footnote)
                                             .foregroundStyle(Color.black)
                                     }
-                                    .background(content: {
-                                        Color.white
-                                    })
                                     .padding()
+                                    .background {
+                                        RoundedRectangle(cornerRadius: 10)
+                                            .frame(width: 220,height: 120)
+                                            .foregroundStyle(Color.white)
+                                            .padding(.bottom)
+                                    }
                                     
                                 }
                             case "org.gs1.ITF14":
@@ -299,16 +359,18 @@ struct CreateBarcodeView: View {
                                             .interpolation(.none)
                                             .antialiased(false)
                                             .scaledToFit()
-                                            .frame(width: 200, height: 80)
-                                            .padding([.top, .leading, .trailing])
+                                            .frame(width: 200,height: 80)
                                         Text(barcodeData)
                                             .font(.footnote)
                                             .foregroundStyle(Color.black)
                                     }
-                                    .background(content: {
-                                        Color.white
-                                    })
                                     .padding()
+                                    .background {
+                                        RoundedRectangle(cornerRadius: 10)
+                                            .frame(width: 220,height: 120)
+                                            .foregroundStyle(Color.white)
+                                            .padding(.bottom)
+                                    }
                                     
                                 }
                             case "org.iso.Aztec":
@@ -373,16 +435,18 @@ struct CreateBarcodeView: View {
                                             .interpolation(.none)
                                             .antialiased(false)
                                             .scaledToFit()
-                                            .frame(width: 200, height: 80)
-                                            .padding(.top)
+                                            .frame(width: 200,height: 80)
                                         Text(barcodeData)
                                             .font(.footnote)
                                             .foregroundStyle(Color.black)
                                     }
-                                    .background(content: {
-                                        Color.white
-                                    })
                                     .padding()
+                                    .background {
+                                        RoundedRectangle(cornerRadius: 5)
+                                            .foregroundStyle(Color.white)
+                                            .frame(width: 180,height: 120)
+                                            .padding(.bottom)
+                                    }
                                     
                                     
                                 }
@@ -391,12 +455,21 @@ struct CreateBarcodeView: View {
                                     VStack{
                                         Image(uiImage: image)
                                             .resizable()
+                                            .interpolation(.none)
+                                            .antialiased(false)
+                                            .scaledToFit()
                                             .frame(width: 200,height: 80)
                                         Text(barcodeData)
                                             .font(.footnote)
                                             .foregroundStyle(Color.black)
                                     }
                                     .padding()
+                                    .background {
+                                        RoundedRectangle(cornerRadius: 5)
+                                            .foregroundStyle(Color.white)
+                                            .frame(width: 180,height: 120)
+                                            .padding(.bottom)
+                                    }
                                     
                                 }
                             default:

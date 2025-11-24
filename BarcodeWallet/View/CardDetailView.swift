@@ -18,6 +18,7 @@ struct CardDetailView: View {
     @Environment(\.dismiss) private var dismiss
     @State private var showCard = false
     @Binding var deviceBrightness: CGFloat
+    @State private var updateCardSheet = false
     
     var body: some View {
         NavigationStack{
@@ -30,13 +31,21 @@ struct CardDetailView: View {
             .toolbar {
                 ToolbarItem(placement: .topBarLeading) {
                     Button{
-                        print(deviceBrightness)
+                        
                         animateBrightness(to: deviceBrightness, duration: 0.5)
                         dismiss()
                     }label: {
                         Text("Done")
                     }
                 }
+                ToolbarItem(placement: .topBarTrailing, content: {
+                    Button{
+                        updateCardSheet.toggle()
+                    }label: {
+                        Image(systemName: "pencil.circle")
+                    }
+                    
+                })
                 ToolbarItem(placement: .topBarTrailing) {
                     Image(systemName: "trash")
                         .foregroundStyle(Color.red)
@@ -55,12 +64,16 @@ struct CardDetailView: View {
                 
             }
             .onAppear(){
+                print(cardId)
                 withAnimation {
                     showCard = true
                     UIScreen.main.brightness = 1.0
                     
                     
                 }
+            }
+            .sheet(isPresented: $updateCardSheet) {
+                UpdateCardView(isPresented: $updateCardSheet)
             }
         }
     }

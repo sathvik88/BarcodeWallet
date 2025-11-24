@@ -102,7 +102,7 @@ struct BarcodeScanner: UIViewControllerRepresentable{
     func updateUIViewController(_ uiViewController: BarcodeScannerController, context: Context) {
        
         if !barcodeType.isEmpty{
-            
+            print(barcodeType)
             isLoading = true
             DispatchQueue.main.asyncAfter(deadline: .now()){
                 uiViewController.captureSession.stopRunning()
