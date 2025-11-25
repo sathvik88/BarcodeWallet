@@ -73,7 +73,7 @@ struct CardDetailView: View {
                 }
             }
             .sheet(isPresented: $updateCardSheet) {
-                UpdateCardView(cardId: cardId, isPresented: $updateCardSheet)
+                UpdateCardView(cardId: cardId, red: Float(UIColor(cardColor).components.red), green: Float(UIColor(cardColor).components.green), blue: Float(UIColor(cardColor).components.blue), isPresented: $updateCardSheet)
             }
         }
     }

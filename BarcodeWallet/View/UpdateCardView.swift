@@ -9,6 +9,9 @@ import SwiftUI
 
 struct UpdateCardView: View {
     let cardId: UUID?
+    let red: Float
+    let green: Float
+    let blue: Float
     @Environment(\.managedObjectContext) var moc
     @FetchRequest(sortDescriptors: []) private var barcodeItems: FetchedResults<BarcodeData>
     @Binding var isPresented: Bool
@@ -44,12 +47,17 @@ struct UpdateCardView: View {
                     for i in barcodeItems{
                         guard let cardId = cardId else {return}
                         if cardId == i.id{
-                            i.name = updatedCardName
-                            i.alpha = Float(pickedColor.components.alpha)
-                            i.red = Float(pickedColor.components.red)
-                            i.blue = Float(pickedColor.components.blue)
-                            i.green = Float(pickedColor.components.green)
-                            try? moc.save()
+                            if updatedCardName != ""{
+                                i.name = updatedCardName
+                            }
+                            if i.alpha != Float(pickedColor.components.alpha) && i.red != Float(pickedColor.components.red) && i.blue != Float(pickedColor.components.blue) && i.green != Float(pickedColor.components.blue){
+                                i.alpha = Float(pickedColor.components.alpha)
+                                i.red = Float(pickedColor.components.red)
+                                i.blue = Float(pickedColor.components.blue)
+                                i.green = Float(pickedColor.components.green)
+                                try? moc.save()
+                            }
+                            
                         }
                     }
                     isPresented = false
@@ -80,6 +88,9 @@ struct UpdateCardView: View {
                 }
                 
             }
+            .onAppear(){
+                selectedColor = Color(.sRGB, red: Double(red), green: Double(green), blue: Double(blue))
+            }
         
         }
         
@@ -87,5 +98,5 @@ struct UpdateCardView: View {
 }
 
 #Preview {
-    UpdateCardView(cardId: UUID(), isPresented: .constant(false))
+    UpdateCardView(cardId: UUID(), red: 1, green: 1, blue: 1, isPresented: .constant(false))
 }
