@@ -41,7 +41,6 @@ struct HomeView: View {
         NavigationStack{
             VStack{
                 if barcodeItems.isEmpty{
-//                if cardsDummy.isEmpty{
                     VStack{
                         GroupBox{
                             Text("Click the '+' icon to add a new barcode")
@@ -51,7 +50,6 @@ struct HomeView: View {
                     }
                     
                 }else{
-                    
                     ScrollView {
                             VStack(){
                                 ZStack {
@@ -79,7 +77,6 @@ struct HomeView: View {
                                             )
                                             
                                         }
-                                    
                                         .padding([.leading, .trailing], 10)
                                         .matchedTransitionSource(id: card.id, in: namespace)
                                         .stacked(at: index, in: cards.count, peek: 60)
@@ -87,8 +84,6 @@ struct HomeView: View {
                                     }
                                 }
                                 .padding(.bottom, CGFloat(cards.count * 60))
-
-                                
                             }
                             .padding(.bottom)
                     }
@@ -148,19 +143,18 @@ struct HomeView: View {
                                 ? Color.white  // ← Your default color here
                                 : color
                     cards.append(BarcodeModel(id: i.id ?? UUID(), name: i.name ?? "", barcodeNumber: i.barcodeNumber ?? "", barcodeType: i.barcodeType ?? "", cardColor: finalColor))
+                    if i.id == nil{
+                        moc.delete(i)
+                        try? moc.save()
+                    }
                     
                 }
                 isLoading.toggle()
                 if !didCaptureBrightness {
                     deviceBrightness = UIScreen.main.brightness
                     didCaptureBrightness = true
-                    print("Captured original brightness")
                 }
-               
-                
-                
             }
-            
             .onChange(of: barcodeItems.count, perform: { value in
                 cards = []
                 for i in barcodeItems{
@@ -184,8 +178,6 @@ struct HomeView: View {
             .sheet(isPresented: $displayUploadCard, content: {
                 CreateBarcodeView(barcodeType: $barcodeType, barcodeData: $scanResult, dismiss: $displayUploadCard, isLoading: $isLoading)
             })
-            
-            
             .sheet(isPresented: Binding(get: {
                 displayCard
             }, set: {displayCard = $0}), content: {

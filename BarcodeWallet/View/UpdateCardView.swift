@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct UpdateCardView: View {
+    let cardId: UUID?
     @Environment(\.managedObjectContext) var moc
     @FetchRequest(sortDescriptors: []) private var barcodeItems: FetchedResults<BarcodeData>
     @Binding var isPresented: Bool
@@ -39,7 +40,18 @@ struct UpdateCardView: View {
                 }
                 Spacer()
                 Button{
-                    
+                    let pickedColor = UIColor(selectedColor)
+                    for i in barcodeItems{
+                        guard let cardId = cardId else {return}
+                        if cardId == i.id{
+                            i.name = updatedCardName
+                            i.alpha = Float(pickedColor.components.alpha)
+                            i.red = Float(pickedColor.components.red)
+                            i.blue = Float(pickedColor.components.blue)
+                            i.green = Float(pickedColor.components.green)
+                            try? moc.save()
+                        }
+                    }
                     isPresented = false
                 }label: {
                     ZStack{
@@ -75,5 +87,5 @@ struct UpdateCardView: View {
 }
 
 #Preview {
-    UpdateCardView(isPresented: .constant(false))
+    UpdateCardView(cardId: UUID(), isPresented: .constant(false))
 }

@@ -73,7 +73,7 @@ struct CardDetailView: View {
                 }
             }
             .sheet(isPresented: $updateCardSheet) {
-                UpdateCardView(isPresented: $updateCardSheet)
+                UpdateCardView(cardId: cardId, isPresented: $updateCardSheet)
             }
         }
     }
