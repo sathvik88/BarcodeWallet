@@ -12,20 +12,24 @@ struct CardDetailView: View {
     @FetchRequest(sortDescriptors: []) private var barcodeItems: FetchedResults<BarcodeData>
     let cardId: UUID
     let barcodeType: String
-    let barcodeName: String
+    @Binding var barcodeName: String
     let barcodeNumber: String
-    let cardColor: Color
+    @Binding var cardColor: Color
     @Environment(\.dismiss) private var dismiss
     @State private var showCard = false
     @Binding var deviceBrightness: CGFloat
     @State private var updateCardSheet = false
+    @State private var red: Float = 1
+    @State private var green: Float = 1
+    @State private var blue: Float = 1
     
     var body: some View {
         NavigationStack{
             VStack{
-                BarcodeCard(barcodeType: barcodeType, barcodeName: barcodeName, barcodeNum: barcodeNumber, cardColor: cardColor)
+                BarcodeCard(barcodeType: barcodeType, barcodeName: $barcodeName, barcodeNum: barcodeNumber, cardColor: $cardColor)
                     .transition(.move(edge: .bottom).combined(with: .opacity))
                     .animation(.spring(response: 0.5, dampingFraction: 0.7), value: showCard)
+                    .id(cardColor)
             }
             .navigationBarBackButtonHidden()
             .toolbar {
@@ -40,6 +44,10 @@ struct CardDetailView: View {
                 }
                 ToolbarItem(placement: .topBarTrailing, content: {
                     Button{
+                        red = Float(UIColor(cardColor).components.red)
+                        green = Float(UIColor(cardColor).components.green)
+                        blue = Float(UIColor(cardColor).components.blue)
+                        print(red)
                         updateCardSheet.toggle()
                     }label: {
                         Image(systemName: "pencil.circle")
@@ -73,7 +81,12 @@ struct CardDetailView: View {
                 }
             }
             .sheet(isPresented: $updateCardSheet) {
-                UpdateCardView(cardId: cardId, red: Float(UIColor(cardColor).components.red), green: Float(UIColor(cardColor).components.green), blue: Float(UIColor(cardColor).components.blue), isPresented: $updateCardSheet)
+                UpdateCardView(cardId: cardId, red: $red, green: $green, blue: $blue, isPresented: $updateCardSheet)
+                    .onDisappear(){
+                        cardColor = Color(.sRGB, red: Double(red), green: Double(green), blue: Double(blue))
+                        print(red)
+                    }
+                    
             }
         }
     }
@@ -94,5 +107,5 @@ struct CardDetailView: View {
 }
 
 #Preview {
-    CardDetailView(cardId: UUID(), barcodeType: "VNBarcodeSymbologyQR" ,barcodeName: "Loyalty", barcodeNumber: "11220000103djasjdkashdajsndjasnaksjdsdakhsjdkajshdkjsakjhsdk692", cardColor: Color.white, deviceBrightness: .constant(0.5))
+    CardDetailView(cardId: UUID(), barcodeType: "VNBarcodeSymbologyQR" ,barcodeName: .constant("Loyalty"), barcodeNumber: "11220000103djasjdkashdajsndjasnaksjdsdakhsjdkajshdkjsakjhsdk692", cardColor: .constant(Color.white), deviceBrightness: .constant(0.5))
 }

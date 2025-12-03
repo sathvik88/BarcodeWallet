@@ -11,9 +11,9 @@ import RSBarcodes_Swift
 struct BarcodeCard: View {
     var barcodeGenerator = BarcodeGenModel()
     let barcodeType: String
-    let barcodeName: String
+    @Binding var barcodeName: String
     let barcodeNum: String
-    let cardColor: Color
+    @Binding var cardColor: Color
     @Environment(\.dismiss) var dismiss
     var body: some View {
         NavigationStack{
@@ -191,5 +191,5 @@ struct BarcodeCard: View {
 }
 
 #Preview {
-    BarcodeCard(barcodeType: "Codabar" ,barcodeName: "Loyalty", barcodeNum: "A123456789B", cardColor: Color.red)
+    BarcodeCard(barcodeType: "Codabar" ,barcodeName: .constant("Loyalty"), barcodeNum: "A123456789B", cardColor: .constant(Color.red))
 }

@@ -58,9 +58,9 @@ struct HomeView: View {
                                             CardDetailView(
                                                 cardId: card.id,
                                                 barcodeType: card.barcodeType,
-                                                barcodeName: card.name,
+                                                barcodeName: .constant(card.name),
                                                 barcodeNumber: card.barcodeNumber,
-                                                cardColor: card.cardColor,
+                                                cardColor: .constant(card.cardColor),
                                                 deviceBrightness: $deviceBrightness
                                             )
                                             .onDisappear(){
@@ -71,9 +71,9 @@ struct HomeView: View {
                                         } label: {
                                             BarcodeCard(
                                                 barcodeType: card.barcodeType,
-                                                barcodeName: card.name,
+                                                barcodeName: .constant(card.name),
                                                 barcodeNum: card.barcodeNumber,
-                                                cardColor: card.cardColor
+                                                cardColor: .constant(card.cardColor)
                                             )
                                             
                                         }
@@ -183,7 +183,7 @@ struct HomeView: View {
             }, set: {displayCard = $0}), content: {
                 
                 if #available(iOS 16.4, *) {
-                    BarcodeCard(barcodeType: barcodeType, barcodeName: barcodeName, barcodeNum: scanResult, cardColor: Color.white)
+                    BarcodeCard(barcodeType: barcodeType, barcodeName: $barcodeName, barcodeNum: scanResult, cardColor: .constant(Color.white))
                         .presentationBackground(Color.clear)
                         .onAppear(){
                             deviceBrightness = UIScreen.main.brightness
@@ -202,7 +202,7 @@ struct HomeView: View {
                     
                 } else {
                     // Fallback on earlier versions
-                    BarcodeCard(barcodeType: barcodeType, barcodeName: barcodeName, barcodeNum: scanResult, cardColor: Color.white)
+                    BarcodeCard(barcodeType: barcodeType, barcodeName: $barcodeName, barcodeNum: scanResult, cardColor: .constant(Color.white))
                     
                 }
             })
