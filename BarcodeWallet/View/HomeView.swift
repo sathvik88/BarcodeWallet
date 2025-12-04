@@ -53,7 +53,7 @@ struct HomeView: View {
                     ScrollView {
                             VStack(){
                                 ZStack {
-                                    ForEach(Array(cards.enumerated()), id: \.element.id) { index, card in
+                                    ForEach(Array(cards.sorted(by: {$0.name < $1.name}).enumerated()), id: \.element.id) { index, card in
                                         NavigationLink {
                                             CardDetailView(
                                                 cardId: card.id,

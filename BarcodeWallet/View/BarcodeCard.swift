@@ -14,6 +14,7 @@ struct BarcodeCard: View {
     @Binding var barcodeName: String
     let barcodeNum: String
     @Binding var cardColor: Color
+//    let expirationDate: Date?
     @Environment(\.dismiss) var dismiss
     var body: some View {
         NavigationStack{
@@ -30,6 +31,7 @@ struct BarcodeCard: View {
                                 .bold()
                                 .foregroundStyle(Color.blue)
                             Spacer()
+                            
                         }
                         .padding()
                         Spacer()
