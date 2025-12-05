@@ -6,6 +6,8 @@
 //
 
 import SwiftUI
+import RSBarcodes_Swift
+import AVFoundation
 
 struct CardDetailView: View {
     @Environment(\.managedObjectContext) var moc
@@ -22,6 +24,8 @@ struct CardDetailView: View {
     @State private var red: Float = 1
     @State private var green: Float = 1
     @State private var blue: Float = 1
+    @State private var imageToShare: UIImage?
+    @State private var showShareSheet = false
     
     var body: some View {
         NavigationStack{
@@ -35,7 +39,6 @@ struct CardDetailView: View {
             .toolbar {
                 ToolbarItem(placement: .topBarLeading) {
                     Button{
-                        
                         animateBrightness(to: deviceBrightness, duration: 0.5)
                         dismiss()
                     }label: {
@@ -44,10 +47,44 @@ struct CardDetailView: View {
                 }
                 ToolbarItem(placement: .topBarTrailing, content: {
                     Button{
+                        if let windowScene = UIApplication.shared.connectedScenes.first as? UIWindowScene,
+                           let window = windowScene.windows.first {
+                            
+                            let cardView = BarcodeCard(
+                                barcodeType: barcodeType,
+                                barcodeName: .constant(barcodeName),
+                                barcodeNum: barcodeNumber,
+                                cardColor: .constant(cardColor)
+                            )
+                            
+                            let controller = UIHostingController(rootView: cardView)
+                            controller.view.frame = CGRect(x: 0, y: 0, width: 350, height: 350)
+                            controller.view.backgroundColor = .clear
+                            
+                            window.addSubview(controller.view)
+                            
+                            let renderer = UIGraphicsImageRenderer(size: controller.view.bounds.size)
+                            let image = renderer.image { ctx in
+                                controller.view.drawHierarchy(in: controller.view.bounds, afterScreenUpdates: true)
+                            }
+                            
+                            controller.view.removeFromSuperview()
+                            
+                            imageToShare = image
+                            showShareSheet = true
+                            print("Image captured successfully")
+                        }
+                        
+                    }label: {
+                        Image(systemName: "square.and.arrow.up")
+                    }
+                    
+                })
+                ToolbarItem(placement: .topBarTrailing, content: {
+                    Button{
                         red = Float(UIColor(cardColor).components.red)
                         green = Float(UIColor(cardColor).components.green)
                         blue = Float(UIColor(cardColor).components.blue)
-                        print(red)
                         updateCardSheet.toggle()
                     }label: {
                         Image(systemName: "pencil.circle")
@@ -72,7 +109,6 @@ struct CardDetailView: View {
                 
             }
             .onAppear(){
-                print(cardId)
                 withAnimation {
                     showCard = true
                     UIScreen.main.brightness = 1.0
@@ -87,6 +123,11 @@ struct CardDetailView: View {
                         print(red)
                     }
                     
+            }
+            .sheet(isPresented: $showShareSheet) {
+                if let image = imageToShare {
+                    ShareSheet(items: [image])
+                }
             }
         }
     }
@@ -104,7 +145,20 @@ struct CardDetailView: View {
             }
         }
     }
+    
+    
+    
 }
+struct ShareSheet: UIViewControllerRepresentable {
+    let items: [Any]
+
+    func makeUIViewController(context: Context) -> UIActivityViewController {
+        UIActivityViewController(activityItems: items, applicationActivities: nil)
+    }
+
+    func updateUIViewController(_ uiViewController: UIActivityViewController, context: Context) {}
+}
+
 
 #Preview {
     CardDetailView(cardId: UUID(), barcodeType: "VNBarcodeSymbologyQR" ,barcodeName: .constant("Loyalty"), barcodeNumber: "11220000103djasjdkashdajsndjasnaksjdsdakhsjdkajshdkjsakjhsdk692", cardColor: .constant(Color.white), deviceBrightness: .constant(0.5))
