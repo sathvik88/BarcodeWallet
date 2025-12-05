@@ -158,6 +158,32 @@ struct ShareSheet: UIViewControllerRepresentable {
     
     func updateUIViewController(_ uiViewController: UIActivityViewController, context: Context) {}
 }
+extension Color {
+    /// Convert SwiftUI Color → UIColor → components
+    private func components() -> (r: CGFloat, g: CGFloat, b: CGFloat, a: CGFloat) {
+        let uiColor = UIColor(self)
+        var r: CGFloat = 0
+        var g: CGFloat = 0
+        var b: CGFloat = 0
+        var a: CGFloat = 0
+        uiColor.getRed(&r, green: &g, blue: &b, alpha: &a)
+        return (r, g, b, a)
+    }
+
+    /// Determine if color is "light" based on luminance
+    var isLight: Bool {
+        let c = components()
+
+        // Perceived luminance
+        let luminance = 0.299 * c.r + 0.587 * c.g + 0.114 * c.b
+        return luminance > 0.6
+    }
+
+    /// Automatic contrasting text color (white on dark, black on light)
+    var autoContrastTextColor: Color {
+        return isLight ? .black : .white
+    }
+}
 
 
 #Preview {
