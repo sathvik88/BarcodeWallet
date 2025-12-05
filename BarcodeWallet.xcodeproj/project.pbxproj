@@ -34,6 +34,7 @@
 		2C7E22802CF674F1005FB3C0 /* CDCodabarEncoder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C7E227F2CF674F1005FB3C0 /* CDCodabarEncoder.swift */; };
 		2C7E22822CF67521005FB3C0 /* CDCodabrView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C7E22812CF67521005FB3C0 /* CDCodabrView.swift */; };
 		2C7E22842D0CE587005FB3C0 /* DataController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C7E22832D0CE587005FB3C0 /* DataController.swift */; };
+		2CB326F12EE27C2500E59033 /* ShareBarcodeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CB326F02EE27C2500E59033 /* ShareBarcodeView.swift */; };
 		2CD8C8F42D25E6370007144C /* UploadSheetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CD8C8F32D25E6370007144C /* UploadSheetView.swift */; };
 		2CD8C8F62D2C3E630007144C /* UploadViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CD8C8F52D2C3E630007144C /* UploadViewController.swift */; };
 		2CD8C8F82D2C40090007144C /* BarcodeScannerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CD8C8F72D2C40090007144C /* BarcodeScannerView.swift */; };
@@ -95,6 +96,7 @@
 		2C7E227F2CF674F1005FB3C0 /* CDCodabarEncoder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CDCodabarEncoder.swift; sourceTree = "<group>"; };
 		2C7E22812CF67521005FB3C0 /* CDCodabrView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CDCodabrView.swift; sourceTree = "<group>"; };
 		2C7E22832D0CE587005FB3C0 /* DataController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataController.swift; sourceTree = "<group>"; };
+		2CB326F02EE27C2500E59033 /* ShareBarcodeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShareBarcodeView.swift; sourceTree = "<group>"; };
 		2CD8C8F32D25E6370007144C /* UploadSheetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UploadSheetView.swift; sourceTree = "<group>"; };
 		2CD8C8F52D2C3E630007144C /* UploadViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UploadViewController.swift; sourceTree = "<group>"; };
 		2CD8C8F72D2C40090007144C /* BarcodeScannerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BarcodeScannerView.swift; sourceTree = "<group>"; };
@@ -217,6 +219,7 @@
 		2C66C7F22CED3F2F008C524D /* View */ = {
 			isa = PBXGroup;
 			children = (
+				2CB326EF2EE27BBF00E59033 /* Main Views */,
 				2CDFB64A2ED51699009D5A75 /* Barcodes */,
 				2C66C7C72CED3AEF008C524D /* LinearBarcodeView.swift */,
 				2C66C7F32CED3F59008C524D /* QRCodeView.swift */,
@@ -224,15 +227,9 @@
 				2C66C7F72CED44F2008C524D /* ManualBarcodeView.swift */,
 				2C66C7F92CED4923008C524D /* ScanBarcodeView.swift */,
 				2C7E22712CF0619D005FB3C0 /* CodabarBarcodeView.swift */,
-				2C7E22742CF3EE28005FB3C0 /* HomeView.swift */,
 				2C7E22812CF67521005FB3C0 /* CDCodabrView.swift */,
-				2CF032722D121F24006A6009 /* CreateBarcodeView.swift */,
-				2CF032742D12458A006A6009 /* BarcodeCard.swift */,
-				2CD8C8F32D25E6370007144C /* UploadSheetView.swift */,
-				2CD8C8F72D2C40090007144C /* BarcodeScannerView.swift */,
 				2CD8C8F92D2C404D0007144C /* UploadView.swift */,
-				2C2556AF2E7726CC00962D58 /* CardDetailView.swift */,
-				2CDFB6482ED4B476009D5A75 /* UpdateCardView.swift */,
+				2CB326F02EE27C2500E59033 /* ShareBarcodeView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -259,6 +256,20 @@
 				2C7E22682CEFC92E005FB3C0 /* AVFoundation.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		2CB326EF2EE27BBF00E59033 /* Main Views */ = {
+			isa = PBXGroup;
+			children = (
+				2CDFB6482ED4B476009D5A75 /* UpdateCardView.swift */,
+				2C2556AF2E7726CC00962D58 /* CardDetailView.swift */,
+				2CF032742D12458A006A6009 /* BarcodeCard.swift */,
+				2C7E22742CF3EE28005FB3C0 /* HomeView.swift */,
+				2CF032722D121F24006A6009 /* CreateBarcodeView.swift */,
+				2CD8C8F32D25E6370007144C /* UploadSheetView.swift */,
+				2CD8C8F72D2C40090007144C /* BarcodeScannerView.swift */,
+			);
+			path = "Main Views";
 			sourceTree = "<group>";
 		};
 		2CDFB6452ECE7265009D5A75 /* Services */ = {
@@ -432,6 +443,7 @@
 				2C66C7F12CED3BAE008C524D /* BarcodeGenModel.swift in Sources */,
 				2C7E22722CF0619D005FB3C0 /* CodabarBarcodeView.swift in Sources */,
 				2C66C7F62CED3FFD008C524D /* TabsView.swift in Sources */,
+				2CB326F12EE27C2500E59033 /* ShareBarcodeView.swift in Sources */,
 				2CDFB64C2ED516B9009D5A75 /* BarcodeCollectionView.swift in Sources */,
 				2CD8C8F42D25E6370007144C /* UploadSheetView.swift in Sources */,
 				2CD8C8F82D2C40090007144C /* BarcodeScannerView.swift in Sources */,

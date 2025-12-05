@@ -50,12 +50,12 @@ struct CardDetailView: View {
                         if let windowScene = UIApplication.shared.connectedScenes.first as? UIWindowScene,
                            let window = windowScene.windows.first {
                             
-                            let cardView = BarcodeCard(
+                            let cardView = ShareBarcodeView(barcodeCard: BarcodeCard(
                                 barcodeType: barcodeType,
                                 barcodeName: .constant(barcodeName),
                                 barcodeNum: barcodeNumber,
                                 cardColor: .constant(cardColor)
-                            )
+                            ))
                             
                             let controller = UIHostingController(rootView: cardView)
                             controller.view.frame = CGRect(x: 0, y: 0, width: 350, height: 350)
@@ -122,7 +122,7 @@ struct CardDetailView: View {
                         cardColor = Color(.sRGB, red: Double(red), green: Double(green), blue: Double(blue))
                         print(red)
                     }
-                    
+                
             }
             .sheet(isPresented: $showShareSheet) {
                 if let image = imageToShare {
@@ -135,11 +135,11 @@ struct CardDetailView: View {
         let start = UIScreen.main.brightness
         let steps = 60            // frames in the animation
         let stepTime = duration / Double(steps)
-
+        
         for step in 0...steps {
             let progress = Double(step) / Double(steps)
             let value = start + (target - start) * CGFloat(progress)
-
+            
             DispatchQueue.main.asyncAfter(deadline: .now() + stepTime * Double(step)) {
                 UIScreen.main.brightness = value
             }
@@ -151,11 +151,11 @@ struct CardDetailView: View {
 }
 struct ShareSheet: UIViewControllerRepresentable {
     let items: [Any]
-
+    
     func makeUIViewController(context: Context) -> UIActivityViewController {
         UIActivityViewController(activityItems: items, applicationActivities: nil)
     }
-
+    
     func updateUIViewController(_ uiViewController: UIActivityViewController, context: Context) {}
 }
 
