@@ -35,6 +35,7 @@
 		2C7E22822CF67521005FB3C0 /* CDCodabrView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C7E22812CF67521005FB3C0 /* CDCodabrView.swift */; };
 		2C7E22842D0CE587005FB3C0 /* DataController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C7E22832D0CE587005FB3C0 /* DataController.swift */; };
 		2CB326F12EE27C2500E59033 /* ShareBarcodeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CB326F02EE27C2500E59033 /* ShareBarcodeView.swift */; };
+		2CB326F32EE6023500E59033 /* BrightnessOverlay.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CB326F22EE6023500E59033 /* BrightnessOverlay.swift */; };
 		2CD8C8F42D25E6370007144C /* UploadSheetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CD8C8F32D25E6370007144C /* UploadSheetView.swift */; };
 		2CD8C8F62D2C3E630007144C /* UploadViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CD8C8F52D2C3E630007144C /* UploadViewController.swift */; };
 		2CD8C8F82D2C40090007144C /* BarcodeScannerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CD8C8F72D2C40090007144C /* BarcodeScannerView.swift */; };
@@ -97,6 +98,7 @@
 		2C7E22812CF67521005FB3C0 /* CDCodabrView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CDCodabrView.swift; sourceTree = "<group>"; };
 		2C7E22832D0CE587005FB3C0 /* DataController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataController.swift; sourceTree = "<group>"; };
 		2CB326F02EE27C2500E59033 /* ShareBarcodeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShareBarcodeView.swift; sourceTree = "<group>"; };
+		2CB326F22EE6023500E59033 /* BrightnessOverlay.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BrightnessOverlay.swift; sourceTree = "<group>"; };
 		2CD8C8F32D25E6370007144C /* UploadSheetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UploadSheetView.swift; sourceTree = "<group>"; };
 		2CD8C8F52D2C3E630007144C /* UploadViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UploadViewController.swift; sourceTree = "<group>"; };
 		2CD8C8F72D2C40090007144C /* BarcodeScannerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BarcodeScannerView.swift; sourceTree = "<group>"; };
@@ -219,6 +221,7 @@
 		2C66C7F22CED3F2F008C524D /* View */ = {
 			isa = PBXGroup;
 			children = (
+				2CB326F42EE6044400E59033 /* Service */,
 				2CB326EF2EE27BBF00E59033 /* Main Views */,
 				2CDFB64A2ED51699009D5A75 /* Barcodes */,
 				2C66C7C72CED3AEF008C524D /* LinearBarcodeView.swift */,
@@ -230,6 +233,7 @@
 				2C7E22812CF67521005FB3C0 /* CDCodabrView.swift */,
 				2CD8C8F92D2C404D0007144C /* UploadView.swift */,
 				2CB326F02EE27C2500E59033 /* ShareBarcodeView.swift */,
+				2CB326F22EE6023500E59033 /* BrightnessOverlay.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -270,6 +274,13 @@
 				2CD8C8F72D2C40090007144C /* BarcodeScannerView.swift */,
 			);
 			path = "Main Views";
+			sourceTree = "<group>";
+		};
+		2CB326F42EE6044400E59033 /* Service */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Service;
 			sourceTree = "<group>";
 		};
 		2CDFB6452ECE7265009D5A75 /* Services */ = {
@@ -428,6 +439,7 @@
 				2CD8C8F62D2C3E630007144C /* UploadViewController.swift in Sources */,
 				2C2556B02E7726CC00962D58 /* CardDetailView.swift in Sources */,
 				2CF0327C2D1B40A9006A6009 /* DragState.swift in Sources */,
+				2CB326F32EE6023500E59033 /* BrightnessOverlay.swift in Sources */,
 				2CD8C8FA2D2C404D0007144C /* UploadView.swift in Sources */,
 				2CF032732D121F24006A6009 /* CreateBarcodeView.swift in Sources */,
 				2C7E22782CF3F5A1005FB3C0 /* DataModel.xcdatamodeld in Sources */,

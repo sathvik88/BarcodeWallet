@@ -26,6 +26,7 @@ struct CardDetailView: View {
     @State private var blue: Float = 1
     @State private var imageToShare: UIImage?
     @State private var showShareSheet = false
+    @Environment(\.scenePhase) private var scenePhase
     
     var body: some View {
         NavigationStack{
@@ -112,8 +113,24 @@ struct CardDetailView: View {
                 withAnimation {
                     showCard = true
                     UIScreen.main.brightness = 1.0
-                    
-                    
+                   
+                }
+            }
+            .onChange(of: scenePhase) { newPhase in
+                if newPhase == .background || newPhase == .inactive {
+                    animateBrightness(to: deviceBrightness, duration: 0.5)
+                }
+                else if newPhase == .active {
+                    if UIScreen.main.brightness != 1.0{
+                        print("Not full brightness")
+                        DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+                            withAnimation {
+                                UIScreen.main.brightness = 1.0
+                            }
+                            
+                        }
+                       
+                    }
                 }
             }
             .sheet(isPresented: $updateCardSheet) {
