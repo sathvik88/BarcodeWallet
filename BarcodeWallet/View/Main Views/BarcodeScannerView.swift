@@ -21,7 +21,7 @@ struct BarcodeScannerView: UIViewControllerRepresentable {
             DispatchQueue.main.async {
                 detectedSymbology = symbology
                 detectedPayload = payload
-                print(detectedSymbology)
+                
                 displayImageSheet = false
             }
         }

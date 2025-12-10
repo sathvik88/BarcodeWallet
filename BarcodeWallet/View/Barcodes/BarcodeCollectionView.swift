@@ -107,6 +107,7 @@ struct En13: View {
 }
 
 struct Pdf417: View {
+    let barcodeData: String
     var barcodeGenerator = BarcodeGenModel()
     let image: UIImage
     var body: some View {
@@ -116,7 +117,9 @@ struct Pdf417: View {
                 .interpolation(.none)
                 .antialiased(false)
                 .scaledToFit()
-               
+            Text(barcodeData)
+                .font(.footnote)
+                .foregroundStyle(Color.black)
             
         }
         .frame(width: 200,height: 80)

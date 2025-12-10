@@ -106,14 +106,14 @@ struct CreateBarcodeView: View {
                                 }
                             case "org.iso.PDF417":
                                 if let image = RSUnifiedCodeGenerator.shared.generateCode(barcodeData, machineReadableCodeObjectType: AVMetadataObject.ObjectType.pdf417.rawValue){
-                                    Pdf417(image: image)
+                                    Pdf417(barcodeData: barcodeData, image: image)
                                     
                                     
                                 }
                                 
                             case "VNBarcodeSymbologyPDF417":
                                 if let image = RSUnifiedCodeGenerator.shared.generateCode(barcodeData, machineReadableCodeObjectType: AVMetadataObject.ObjectType.pdf417.rawValue){
-                                    Pdf417(image: image)
+                                    Pdf417(barcodeData: barcodeData, image: image)
                                     
                                    
                                     
