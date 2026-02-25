@@ -14,6 +14,7 @@ struct HomeView: View {
     @State private var displayCard = false
     @State private var scanResult = ""
     @State private var barcodeType = ""
+    @State private var expirationDate = Date.now
     @State private var createCard = false
     @State private var barcodeName = ""
     @State private var deviceBrightness: CGFloat = 0.5
@@ -76,7 +77,8 @@ struct HomeView: View {
                                                 barcodeName: .constant(card.name),
                                                 barcodeNumber: card.barcodeNumber,
                                                 cardColor: .constant(card.cardColor),
-                                                deviceBrightness: $deviceBrightness
+                                                deviceBrightness: $deviceBrightness,
+                                                expirationDate: card.expirationDate
                                             )
                                             .onDisappear(){
                                                     animateBrightness(to: deviceBrightness, duration: 0.5)
@@ -88,7 +90,7 @@ struct HomeView: View {
                                                 barcodeType: card.barcodeType,
                                                 barcodeName: .constant(card.name),
                                                 barcodeNum: card.barcodeNumber,
-                                                cardColor: .constant(card.cardColor)
+                                                cardColor: .constant(card.cardColor), expirationDate: card.expirationDate
                                             )
                                             
                                         }
@@ -170,7 +172,7 @@ struct HomeView: View {
                     let finalColor = (i.red == 0 && i.green == 0 && i.blue == 0 && i.alpha == 0)
                                 ? Color.white  // ← Your default color here
                                 : color
-                    cards.append(BarcodeModel(id: i.id ?? UUID(), name: i.name ?? "", barcodeNumber: i.barcodeNumber ?? "", barcodeType: i.barcodeType ?? "", cardColor: finalColor))
+                    cards.append(BarcodeModel(id: i.id ?? UUID(), name: i.name ?? "", barcodeNumber: i.barcodeNumber ?? "", barcodeType: i.barcodeType ?? "", cardColor: finalColor, expirationDate: i.expirationDate))
                     if i.id == nil{
                         moc.delete(i)
                         try? moc.save()
@@ -195,7 +197,7 @@ struct HomeView: View {
                     let finalColor = (i.red == 0 && i.green == 0 && i.blue == 0 && i.alpha == 0)
                                 ? Color.white  // ← Your default color here
                                 : color
-                    cards.append(BarcodeModel(id: i.id ?? UUID(), name: i.name ?? "", barcodeNumber: i.barcodeNumber ?? "", barcodeType: i.barcodeType ?? "", cardColor: finalColor))
+                    cards.append(BarcodeModel(id: i.id ?? UUID(), name: i.name ?? "", barcodeNumber: i.barcodeNumber ?? "", barcodeType: i.barcodeType ?? "", cardColor: finalColor, expirationDate: i.expirationDate))
                 }
                 
             })
@@ -211,7 +213,7 @@ struct HomeView: View {
             }, set: {displayCard = $0}), content: {
                 
                 if #available(iOS 16.4, *) {
-                    BarcodeCard(barcodeType: barcodeType, barcodeName: $barcodeName, barcodeNum: scanResult, cardColor: .constant(Color.white))
+                    BarcodeCard(barcodeType: barcodeType, barcodeName: $barcodeName, barcodeNum: scanResult, cardColor: .constant(Color.white), expirationDate: expirationDate)
                         .presentationBackground(Color.clear)
                         .onAppear(){
                             deviceBrightness = UIScreen.main.brightness
@@ -230,7 +232,7 @@ struct HomeView: View {
                     
                 } else {
                     // Fallback on earlier versions
-                    BarcodeCard(barcodeType: barcodeType, barcodeName: $barcodeName, barcodeNum: scanResult, cardColor: .constant(Color.white))
+                    BarcodeCard(barcodeType: barcodeType, barcodeName: $barcodeName, barcodeNum: scanResult, cardColor: .constant(Color.white), expirationDate: expirationDate)
                     
                 }
             })

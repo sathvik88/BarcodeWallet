@@ -20,6 +20,7 @@ struct CardDetailView: View {
     @Environment(\.dismiss) private var dismiss
     @State private var showCard = false
     @Binding var deviceBrightness: CGFloat
+    let expirationDate: Date?
     @State private var updateCardSheet = false
     @State private var red: Float = 1
     @State private var green: Float = 1
@@ -42,7 +43,7 @@ struct CardDetailView: View {
                 }
                 .frame(height: 20)
                 Spacer()
-                BarcodeCard(barcodeType: barcodeType, barcodeName: $barcodeName, barcodeNum: barcodeNumber, cardColor: $cardColor)
+                BarcodeCard(barcodeType: barcodeType, barcodeName: $barcodeName, barcodeNum: barcodeNumber, cardColor: $cardColor, expirationDate: expirationDate)
                     .transition(.move(edge: .bottom).combined(with: .opacity))
                     .animation(.spring(response: 0.5, dampingFraction: 0.7), value: showCard)
                     .id(cardColor)
@@ -77,7 +78,7 @@ struct CardDetailView: View {
                                 barcodeType: barcodeType,
                                 barcodeName: .constant(barcodeName),
                                 barcodeNum: barcodeNumber,
-                                cardColor: .constant(cardColor)
+                                cardColor: .constant(cardColor), expirationDate: expirationDate
                             ))
                             
                             let controller = UIHostingController(rootView: cardView)
@@ -226,5 +227,5 @@ extension Color {
 
 
 #Preview {
-    CardDetailView(cardId: UUID(), barcodeType: "VNBarcodeSymbologyQR" ,barcodeName: .constant("Loyalty"), barcodeNumber: "11220000103djasjdkashdajsndjasnaksjdsdakhsjdkajshdkjsakjhsdk692", cardColor: .constant(Color.white), deviceBrightness: .constant(0.5))
+    CardDetailView(cardId: UUID(), barcodeType: "VNBarcodeSymbologyQR" ,barcodeName: .constant("Loyalty"), barcodeNumber: "11220000103djasjdkashdajsndjasnaksjdsdakhsjdkajshdkjsakjhsdk692", cardColor: .constant(Color.white), deviceBrightness: .constant(0.5), expirationDate: Date.now)
 }

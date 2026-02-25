@@ -8,6 +8,7 @@
 import SwiftUI
 import RSBarcodes_Swift
 import AVFoundation
+import UserNotifications
 struct CreateBarcodeView: View {
     @Binding var barcodeType: String
     @Binding var barcodeData: String
@@ -194,6 +195,7 @@ struct CreateBarcodeView: View {
                         TextField("Card Name", text: $title)
                             .padding()
                             .focused($showKeyboard)
+                            .foregroundStyle(Color.accentColor.autoContrastTextColor)
                     }
                 }
                 GroupBox{
@@ -235,6 +237,12 @@ struct CreateBarcodeView: View {
                 barcodeDataController.alpha = Float(pickedColor.components.alpha)
                 if isCoupon{
                     barcodeDataController.expirationDate = expirationDate
+                    let content = UNMutableNotificationContent()
+                    content.title = "Coupon Expiring"
+                    content.subtitle = "\(title) is set to expire today"
+                    content.sound = UNNotificationSound.default
+                    let components = Calendar.current.dateComponents([.year, .month, .day], from: expirationDate)
+                    let trigger = UNCalendarNotificationTrigger(dateMatching: components, repeats: false)
                 }
                 
                 try? moc.save()
@@ -254,6 +262,17 @@ struct CreateBarcodeView: View {
         .onAppear(){
             isLoading = false
         }
+        .onChange(of: isCoupon, { _, newValue in
+            UNUserNotificationCenter.current().requestAuthorization(options: [.alert, .badge, .sound]){ success, error in
+                if success{
+                    print("All set!")
+                }else if let error{
+                    print(error.localizedDescription)
+                }
+                
+                
+            }
+        })
         .navigationBarBackButtonHidden()
     }
 }

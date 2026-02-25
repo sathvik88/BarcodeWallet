@@ -14,5 +14,6 @@ struct BarcodeModel: Identifiable, Hashable{
     let barcodeNumber: String
     let barcodeType: String
     let cardColor: Color
+    let expirationDate: Date?
     
 }

@@ -644,7 +644,7 @@
 				CODE_SIGN_ENTITLEMENTS = BarcodeWallet/BarcodeWallet.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 9;
+				CURRENT_PROJECT_VERSION = 10;
 				DEVELOPMENT_ASSET_PATHS = "\"BarcodeWallet/Preview Content\"";
 				DEVELOPMENT_TEAM = 8M22PYB3ZS;
 				ENABLE_PREVIEWS = YES;
@@ -686,7 +686,7 @@
 				CODE_SIGN_ENTITLEMENTS = BarcodeWallet/BarcodeWallet.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 9;
+				CURRENT_PROJECT_VERSION = 10;
 				DEVELOPMENT_ASSET_PATHS = "\"BarcodeWallet/Preview Content\"";
 				DEVELOPMENT_TEAM = 8M22PYB3ZS;
 				ENABLE_PREVIEWS = YES;
