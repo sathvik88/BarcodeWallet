@@ -27,14 +27,36 @@ struct CardDetailView: View {
     @State private var imageToShare: UIImage?
     @State private var showShareSheet = false
     @Environment(\.scenePhase) private var scenePhase
-    
+    @State private var availableWidth: CGFloat = 320
     var body: some View {
         NavigationStack{
             VStack{
+                GeometryReader { geo in
+                    BannerAdView(width: geo.size.width)
+                        .onAppear {
+                            availableWidth = geo.size.width
+                        }
+                        .onChange(of: geo.size.width) { newValue in
+                            availableWidth = newValue
+                        }
+                }
+                .frame(height: 20)
+                Spacer()
                 BarcodeCard(barcodeType: barcodeType, barcodeName: $barcodeName, barcodeNum: barcodeNumber, cardColor: $cardColor)
                     .transition(.move(edge: .bottom).combined(with: .opacity))
                     .animation(.spring(response: 0.5, dampingFraction: 0.7), value: showCard)
                     .id(cardColor)
+                Spacer()
+                GeometryReader { geo in
+                    BannerAdView(width: geo.size.width)
+                        .onAppear {
+                            availableWidth = geo.size.width
+                        }
+                        .onChange(of: geo.size.width) { newValue in
+                            availableWidth = newValue
+                        }
+                }
+                .frame(height: 20)
             }
             .navigationBarBackButtonHidden()
             .toolbar {

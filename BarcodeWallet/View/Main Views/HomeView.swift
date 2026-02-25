@@ -36,10 +36,12 @@ struct HomeView: View {
     init(){
         deviceBrightness = UIScreen.main.brightness
     }
+    @State private var availableWidth: CGFloat = 320
     var body: some View {
         
         NavigationStack{
             VStack{
+                
                 if barcodeItems.isEmpty{
                     VStack{
                         GroupBox{
@@ -47,7 +49,20 @@ struct HomeView: View {
                                 .font(.system(.body, design: .monospaced))
                                 
                         }
+                        Spacer()
+                        GeometryReader { geo in
+                            BannerAdView(width: geo.size.width)
+                                .onAppear {
+                                    availableWidth = geo.size.width
+                                }
+                                .onChange(of: geo.size.width) { newValue in
+                                    availableWidth = newValue
+                                }
+                        }
+                        .frame(height: 50)
+                        
                     }
+                    
                     
                 }else{
                     ScrollView {
@@ -86,9 +101,22 @@ struct HomeView: View {
                                 .padding(.bottom, CGFloat(cards.count * 60))
                             }
                             .padding(.bottom)
+                        
                     }
+                    .padding(.bottom)
+                    GeometryReader { geo in
+                        BannerAdView(width: geo.size.width)
+                            .onAppear {
+                                availableWidth = geo.size.width
+                            }
+                            .onChange(of: geo.size.width) { newValue in
+                                availableWidth = newValue
+                            }
+                    }
+                    .frame(height: 50)
                     
                 }
+                
 
             }
             .toolbar {

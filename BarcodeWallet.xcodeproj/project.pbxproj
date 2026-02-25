@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 56;
+	objectVersion = 70;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -22,6 +22,8 @@
 		2C66C7FA2CED4923008C524D /* ScanBarcodeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C66C7F92CED4923008C524D /* ScanBarcodeView.swift */; };
 		2C66C7FD2CED51AB008C524D /* BarcodeScannerController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C66C7FC2CED51AB008C524D /* BarcodeScannerController.swift */; };
 		2C66C7FF2CED55CA008C524D /* Coordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C66C7FE2CED55CA008C524D /* Coordinator.swift */; };
+		2C7A6F612F4F6AEF00496C0A /* GoogleMobileAds in Frameworks */ = {isa = PBXBuildFile; productRef = 2C7A6F602F4F6AEF00496C0A /* GoogleMobileAds */; };
+		2C7A6F632F4F6C9500496C0A /* ATTConsent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C7A6F622F4F6C9500496C0A /* ATTConsent.swift */; };
 		2C7E22692CEFC92E005FB3C0 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2C7E22682CEFC92E005FB3C0 /* AVFoundation.framework */; };
 		2C7E226B2CEFC93D005FB3C0 /* CoreMedia.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2C7E226A2CEFC93D005FB3C0 /* CoreMedia.framework */; };
 		2C7E226D2CEFC943005FB3C0 /* CoreVideo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2C7E226C2CEFC943005FB3C0 /* CoreVideo.framework */; };
@@ -86,6 +88,7 @@
 		2C66C7F92CED4923008C524D /* ScanBarcodeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScanBarcodeView.swift; sourceTree = "<group>"; };
 		2C66C7FC2CED51AB008C524D /* BarcodeScannerController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BarcodeScannerController.swift; sourceTree = "<group>"; };
 		2C66C7FE2CED55CA008C524D /* Coordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Coordinator.swift; sourceTree = "<group>"; };
+		2C7A6F622F4F6C9500496C0A /* ATTConsent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ATTConsent.swift; sourceTree = "<group>"; };
 		2C7E22682CEFC92E005FB3C0 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
 		2C7E226A2CEFC93D005FB3C0 /* CoreMedia.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMedia.framework; path = System/Library/Frameworks/CoreMedia.framework; sourceTree = SDKROOT; };
 		2C7E226C2CEFC943005FB3C0 /* CoreVideo.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreVideo.framework; path = System/Library/Frameworks/CoreVideo.framework; sourceTree = SDKROOT; };
@@ -114,6 +117,10 @@
 		2CF0327E2D1F23DC006A6009 /* CloudKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CloudKit.framework; path = System/Library/Frameworks/CloudKit.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
+/* Begin PBXFileSystemSynchronizedRootGroup section */
+		2C7A6F642F4F6D2A00496C0A /* viewComponents */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = viewComponents; sourceTree = "<group>"; };
+/* End PBXFileSystemSynchronizedRootGroup section */
+
 /* Begin PBXFrameworksBuildPhase section */
 		2C66C7BF2CED3AEF008C524D /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
@@ -125,6 +132,7 @@
 				2CF0327F2D1F23DC006A6009 /* CloudKit.framework in Frameworks */,
 				2C7E22692CEFC92E005FB3C0 /* AVFoundation.framework in Frameworks */,
 				2C7E226D2CEFC943005FB3C0 /* CoreVideo.framework in Frameworks */,
+				2C7A6F612F4F6AEF00496C0A /* GoogleMobileAds in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -221,6 +229,7 @@
 		2C66C7F22CED3F2F008C524D /* View */ = {
 			isa = PBXGroup;
 			children = (
+				2C7A6F642F4F6D2A00496C0A /* viewComponents */,
 				2CB326F42EE6044400E59033 /* Service */,
 				2CB326EF2EE27BBF00E59033 /* Main Views */,
 				2CDFB64A2ED51699009D5A75 /* Barcodes */,
@@ -279,6 +288,7 @@
 		2CB326F42EE6044400E59033 /* Service */ = {
 			isa = PBXGroup;
 			children = (
+				2C7A6F622F4F6C9500496C0A /* ATTConsent.swift */,
 			);
 			path = Service;
 			sourceTree = "<group>";
@@ -314,9 +324,13 @@
 			);
 			dependencies = (
 			);
+			fileSystemSynchronizedGroups = (
+				2C7A6F642F4F6D2A00496C0A /* viewComponents */,
+			);
 			name = BarcodeWallet;
 			packageProductDependencies = (
 				2CF032782D133D23006A6009 /* RSBarcodes_Swift */,
+				2C7A6F602F4F6AEF00496C0A /* GoogleMobileAds */,
 			);
 			productName = BarcodeWallet;
 			productReference = 2C66C7C22CED3AEF008C524D /* BarcodeWallet.app */;
@@ -392,6 +406,7 @@
 			mainGroup = 2C66C7B92CED3AEF008C524D;
 			packageReferences = (
 				2CF032772D133D23006A6009 /* XCRemoteSwiftPackageReference "RSBarcodes_Swift" */,
+				2C7A6F5F2F4F6AEF00496C0A /* XCRemoteSwiftPackageReference "swift-package-manager-google-mobile-ads" */,
 			);
 			productRefGroup = 2C66C7C32CED3AEF008C524D /* Products */;
 			projectDirPath = "";
@@ -443,6 +458,7 @@
 				2CD8C8FA2D2C404D0007144C /* UploadView.swift in Sources */,
 				2CF032732D121F24006A6009 /* CreateBarcodeView.swift in Sources */,
 				2C7E22782CF3F5A1005FB3C0 /* DataModel.xcdatamodeld in Sources */,
+				2C7A6F632F4F6C9500496C0A /* ATTConsent.swift in Sources */,
 				2C66C7F42CED3F59008C524D /* QRCodeView.swift in Sources */,
 				2CDFB6492ED4B476009D5A75 /* UpdateCardView.swift in Sources */,
 				2CF032752D12458A006A6009 /* BarcodeCard.swift in Sources */,
@@ -637,6 +653,7 @@
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.shopping";
 				INFOPLIST_KEY_NSCameraUsageDescription = "BarcodeWallet needs to use the camera to scan barcodes and QR codes.";
 				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "BarcodeWallet needs to access your photos to upload barcodes";
+				INFOPLIST_KEY_NSUserTrackingUsageDescription = "Your data helps us show ads that are more relevant and keep BarcodeWallet free.";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -678,6 +695,7 @@
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.shopping";
 				INFOPLIST_KEY_NSCameraUsageDescription = "BarcodeWallet needs to use the camera to scan barcodes and QR codes.";
 				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "BarcodeWallet needs to access your photos to upload barcodes";
+				INFOPLIST_KEY_NSUserTrackingUsageDescription = "Your data helps us show ads that are more relevant and keep BarcodeWallet free.";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -816,6 +834,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		2C7A6F5F2F4F6AEF00496C0A /* XCRemoteSwiftPackageReference "swift-package-manager-google-mobile-ads" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/googleads/swift-package-manager-google-mobile-ads.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 13.1.0;
+			};
+		};
 		2CF032772D133D23006A6009 /* XCRemoteSwiftPackageReference "RSBarcodes_Swift" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/yeahdongcn/RSBarcodes_Swift.git";
@@ -827,6 +853,11 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		2C7A6F602F4F6AEF00496C0A /* GoogleMobileAds */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 2C7A6F5F2F4F6AEF00496C0A /* XCRemoteSwiftPackageReference "swift-package-manager-google-mobile-ads" */;
+			productName = GoogleMobileAds;
+		};
 		2CF032782D133D23006A6009 /* RSBarcodes_Swift */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 2CF032772D133D23006A6009 /* XCRemoteSwiftPackageReference "RSBarcodes_Swift" */;
