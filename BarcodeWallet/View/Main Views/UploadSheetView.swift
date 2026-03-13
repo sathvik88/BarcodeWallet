@@ -17,36 +17,30 @@ struct UploadSheetView: View {
     @State private var toggleLoader = false
     var body: some View {
         NavigationStack{
-            VStack{
-                
-                Button{
-                    DispatchQueue.main.async{
-                        toggleLoader = true
-                        toggleCamera = true
-                    }
-                    
-                }label: {
-                    Text("Open Camera")
+            VStack(spacing: 12) {
+                Button {
+                    toggleLoader = true
+                    toggleCamera = true
+                } label: {
+                    Label("Open Camera", systemImage: "camera.fill")
+                        .font(.system(.body, weight: .semibold))
                         .frame(maxWidth: .infinity)
+                        .frame(height: 50)
                 }
                 .buttonStyle(.borderedProminent)
                 .buttonBorderShape(.capsule)
-                .padding([.bottom])
-                
-                Button{
-                    DispatchQueue.main.async{
-                        toggleLoader = true
-                        toggleGallery = true
-                    }
-                }label: {
-                    Text("Upload From Gallery")
+
+                Button {
+                    toggleLoader = true
+                    toggleGallery = true
+                } label: {
+                    Label("Upload from Gallery", systemImage: "photo.on.rectangle")
+                        .font(.system(.body, weight: .semibold))
                         .frame(maxWidth: .infinity)
-                        
+                        .frame(height: 50)
                 }
-                .buttonStyle(.borderedProminent)
+                .buttonStyle(.bordered)
                 .buttonBorderShape(.capsule)
-                
-                
             }
             .padding([.leading, .trailing])
             .sheet(isPresented: $toggleCamera, content: {

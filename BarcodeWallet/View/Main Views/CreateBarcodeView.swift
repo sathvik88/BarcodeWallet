@@ -24,207 +24,163 @@ struct CreateBarcodeView: View {
     @State private var expirationDate = Date()
     @Environment(\.self) var environmentValues
     var body: some View {
-        VStack{
-            ScrollView{
-                VStack{
-                    ZStack{
-                        RoundedRectangle(cornerSize: CGSize(width: 10, height: 10))
+        VStack(spacing: 0) {
+            ScrollView {
+                VStack(spacing: 20) {
+
+                    // MARK: - Barcode Card Preview
+                    ZStack {
+                        RoundedRectangle(cornerRadius: 16)
+                            .fill(selectedColor)
+                            .shadow(color: selectedColor.opacity(0.4), radius: 12, x: 0, y: 6)
+
+                        VStack(alignment: .leading, spacing: 12) {
+                            Text(title.isEmpty ? "Card Name" : title)
+                                .font(.system(.subheadline, design: .monospaced, weight: .bold))
+                                .foregroundStyle(Color.blue)
+                                .frame(maxWidth: .infinity, alignment: .leading)
+
+                            // Barcode rendering
+                            Group {
+                                switch barcodeType {
+                                case "org.iso.Code128", "VNBarcodeSymbologyCode128":
+                                    Code128(barcodeData: barcodeData)
+
+                                case "Codabar", "VNBarcodeSymbologyCodabar":
+                                    CodabarView(text: .constant(barcodeData))
+                                        .frame(height: 100)
+
+                                case "org.iso.Code39", "VNBarcodeSymbologyCode39":
+                                    if let image = RSUnifiedCodeGenerator.shared.generateCode(barcodeData, machineReadableCodeObjectType: AVMetadataObject.ObjectType.code39.rawValue) {
+                                        Code39(barcodeData: barcodeData, image: image)
+                                    }
+
+                                case "com.intermec.Code93", "VNBarcodeSymbologyCode93":
+                                    if let image = RSUnifiedCodeGenerator.shared.generateCode(barcodeData, machineReadableCodeObjectType: AVMetadataObject.ObjectType.code93.rawValue) {
+                                        Code39(barcodeData: barcodeData, image: image)
+                                    }
+
+                                case "VNBarcodeSymbologyEAN8", "org.gs1.EAN-8":
+                                    if let image = RSUnifiedCodeGenerator.shared.generateCode(barcodeData, machineReadableCodeObjectType: AVMetadataObject.ObjectType.ean8.rawValue) {
+                                        En8(barcodeData: barcodeData, image: image)
+                                    }
+
+                                case "VNBarcodeSymbologyEAN13", "org.gs1.EAN-13":
+                                    if let image = RSUnifiedCodeGenerator.shared.generateCode(barcodeData, machineReadableCodeObjectType: AVMetadataObject.ObjectType.ean13.rawValue) {
+                                        En13(barcodeData: barcodeData, image: image)
+                                    }
+
+                                case "org.iso.PDF417", "VNBarcodeSymbologyPDF417":
+                                    if let image = RSUnifiedCodeGenerator.shared.generateCode(barcodeData, machineReadableCodeObjectType: AVMetadataObject.ObjectType.pdf417.rawValue) {
+                                        Pdf417(barcodeData: barcodeData, image: image)
+                                    }
+
+                                case "org.ansi.Interleaved2of5":
+                                    if let image = RSUnifiedCodeGenerator.shared.generateCode(barcodeData, machineReadableCodeObjectType: AVMetadataObject.ObjectType.interleaved2of5.rawValue) {
+                                        Interleaved2of5(barcodeData: barcodeData, image: image)
+                                    }
+
+                                case "VNBarcodeSymbologyITF14", "org.gs1.ITF14":
+                                    if let image = RSUnifiedCodeGenerator.shared.generateCode(barcodeData, machineReadableCodeObjectType: AVMetadataObject.ObjectType.itf14.rawValue) {
+                                        ITF14(barcodeData: barcodeData, image: image)
+                                    }
+
+                                case "org.iso.Aztec", "VNBarcodeSymbologyAztec":
+                                    if let image = RSUnifiedCodeGenerator.shared.generateCode(barcodeData, machineReadableCodeObjectType: AVMetadataObject.ObjectType.aztec.rawValue) {
+                                        Aztec(image: image)
+                                    }
+
+                                case "org.iso.QRCode", "VNBarcodeSymbologyQR":
+                                    if let image = RSUnifiedCodeGenerator.shared.generateCode(barcodeData, machineReadableCodeObjectType: AVMetadataObject.ObjectType.qr.rawValue) {
+                                        QRcode(image: image)
+                                    }
+
+                                case "org.gs1.UPC-E", "VNBarcodeSymbologyUPCE":
+                                    if let image = RSUnifiedCodeGenerator.shared.generateCode(barcodeData, machineReadableCodeObjectType: AVMetadataObject.ObjectType.upce.rawValue) {
+                                        Upce(barcodeData: barcodeData, image: image)
+                                    }
+
+                                default:
+                                    Label("Unsupported barcode format", systemImage: "exclamationmark.triangle")
+                                        .font(.footnote)
+                                        .foregroundStyle(.secondary)
+                                        .frame(maxWidth: .infinity)
+                                        .padding(.vertical, 8)
+                                }
+                            }
                             .frame(maxWidth: .infinity)
-                            .foregroundStyle(selectedColor)
-                            .shadow(radius: 5)
-                        VStack{
-                            HStack{
-                                Text(title)
-                                    .font(.system(.subheadline, design: .monospaced))
-                                    .bold()
-                                    .foregroundStyle(Color.blue)
-                                Spacer()
-                            }
-                            .padding()
-                            
-                            Spacer()
-                            switch barcodeType{
-                            case "org.iso.Code128":
-                                Code128(barcodeData: barcodeData)
-                                
-                            case "VNBarcodeSymbologyCode128":
-                                Code128(barcodeData: barcodeData)
-                                
-                            case "Codabar":
-                                CodabarView(text: .constant(barcodeData))
-                                    .frame(height: 100)
-                                    .padding()
-                                    .padding(.bottom)
-                            case "VNBarcodeSymbologyCodabar":
-                                CodabarView(text: .constant(barcodeData))
-                                    .frame(height: 100)
-                                    .padding()
-                                    .padding(.bottom)
-                            case "org.iso.Code39":
-                                if let image = RSUnifiedCodeGenerator.shared.generateCode(barcodeData, machineReadableCodeObjectType: AVMetadataObject.ObjectType.code39.rawValue){
-                                    Code39(barcodeData: barcodeData, image: image)
-                                    
-                                }
-                            case "VNBarcodeSymbologyCode39":
-                                if let image = RSUnifiedCodeGenerator.shared.generateCode(barcodeData, machineReadableCodeObjectType: AVMetadataObject.ObjectType.code39.rawValue){
-                                    Code39(barcodeData: barcodeData, image: image)
-                                    
-                                }
-                            case "com.intermec.Code93":
-                                if let image = RSUnifiedCodeGenerator.shared.generateCode(barcodeData, machineReadableCodeObjectType: AVMetadataObject.ObjectType.code93.rawValue){
-                                    Code39(barcodeData: barcodeData, image: image)
-                                   
-                                    
-                                }
-                            case "VNBarcodeSymbologyCode93":
-                                if let image = RSUnifiedCodeGenerator.shared.generateCode(barcodeData, machineReadableCodeObjectType: AVMetadataObject.ObjectType.code93.rawValue){
-                                    Code39(barcodeData: barcodeData, image: image)
-                                    
-                                    
-                                }
-                            case "VNBarcodeSymbologyEAN8":
-                                if let image = RSUnifiedCodeGenerator.shared.generateCode(barcodeData, machineReadableCodeObjectType: AVMetadataObject.ObjectType.ean8.rawValue){
-                                    En8(barcodeData: barcodeData, image: image)
-                                    
-                                }
-                            case "org.gs1.EAN-8":
-                                if let image = RSUnifiedCodeGenerator.shared.generateCode(barcodeData, machineReadableCodeObjectType: AVMetadataObject.ObjectType.ean8.rawValue){
-                                    En8(barcodeData: barcodeData, image: image)
-                                    
-                                   
-                                    
-                                }
-                            case "VNBarcodeSymbologyEAN13":
-                                if let image = RSUnifiedCodeGenerator.shared.generateCode(barcodeData, machineReadableCodeObjectType: AVMetadataObject.ObjectType.ean13.rawValue){
-                                    En13(barcodeData: barcodeData, image: image)
-                                    
-                                }
-                            case "org.gs1.EAN-13":
-                                if let image = RSUnifiedCodeGenerator.shared.generateCode(barcodeData, machineReadableCodeObjectType: AVMetadataObject.ObjectType.ean13.rawValue){
-                                    En13(barcodeData: barcodeData, image: image)
-                                    
-                                    
-                                }
-                            case "org.iso.PDF417":
-                                if let image = RSUnifiedCodeGenerator.shared.generateCode(barcodeData, machineReadableCodeObjectType: AVMetadataObject.ObjectType.pdf417.rawValue){
-                                    Pdf417(barcodeData: barcodeData, image: image)
-                                    
-                                    
-                                }
-                                
-                            case "VNBarcodeSymbologyPDF417":
-                                if let image = RSUnifiedCodeGenerator.shared.generateCode(barcodeData, machineReadableCodeObjectType: AVMetadataObject.ObjectType.pdf417.rawValue){
-                                    Pdf417(barcodeData: barcodeData, image: image)
-                                    
-                                   
-                                    
-                                }
-                            case "org.ansi.Interleaved2of5":
-                                if let image = RSUnifiedCodeGenerator.shared.generateCode(barcodeData, machineReadableCodeObjectType: AVMetadataObject.ObjectType.interleaved2of5.rawValue){
-                                    Interleaved2of5(barcodeData: barcodeData, image: image)
-                                    
-                                    
-                                }
-                            case "VNBarcodeSymbologyITF14":
-                                if let image = RSUnifiedCodeGenerator.shared.generateCode(barcodeData, machineReadableCodeObjectType: AVMetadataObject.ObjectType.itf14.rawValue){
-                                    ITF14(barcodeData: barcodeData, image: image)
-                                    
-                                }
-                            case "org.gs1.ITF14":
-                                if let image = RSUnifiedCodeGenerator.shared.generateCode(barcodeData, machineReadableCodeObjectType: AVMetadataObject.ObjectType.itf14.rawValue){
-                                    ITF14(barcodeData: barcodeData, image: image)
-                                   
-                                    
-                                }
-                            case "org.iso.Aztec":
-                                
-                                if let image = RSUnifiedCodeGenerator.shared.generateCode(barcodeData, machineReadableCodeObjectType: AVMetadataObject.ObjectType.aztec.rawValue){
-                                    Aztec(image: image)
-                                    
-                                    
-                                }
-                            case "VNBarcodeSymbologyAztec":
-                                
-                                if let image = RSUnifiedCodeGenerator.shared.generateCode(barcodeData, machineReadableCodeObjectType: AVMetadataObject.ObjectType.aztec.rawValue){
-                                    Aztec(image: image)
-                                    
-                                    
-                                }
-                            case "org.iso.QRCode":
-                                if let image = RSUnifiedCodeGenerator.shared.generateCode(barcodeData, machineReadableCodeObjectType: AVMetadataObject.ObjectType.qr.rawValue){
-                                    QRcode(image: image)
-                                    
-                                }
-                            case "VNBarcodeSymbologyQR":
-                                if let image = RSUnifiedCodeGenerator.shared.generateCode(barcodeData, machineReadableCodeObjectType: AVMetadataObject.ObjectType.qr.rawValue){
-                                    QRcode(image: image)
-                                    
-                                    
-                                }
-                            case "org.gs1.UPC-E":
-                                if let image = RSUnifiedCodeGenerator.shared.generateCode(barcodeData, machineReadableCodeObjectType: AVMetadataObject.ObjectType.upce.rawValue){
-                                    Upce(barcodeData: barcodeData, image: image)
-                                    
-                                    
-                                }
-                            case "VNBarcodeSymbologyUPCE":
-                                if let image = RSUnifiedCodeGenerator.shared.generateCode(barcodeData, machineReadableCodeObjectType: AVMetadataObject.ObjectType.upce.rawValue){
-                                    Upce(barcodeData: barcodeData, image: image)
-                                    
-                                    
-                                }
-                            default:
-                                Text("Barcode is unsupported")
-                            }
-                            
                         }
-                        
-                        
+                        .padding(16)
                     }
-                    .padding([.leading, .trailing], 5)
-                    .frame(maxHeight: 250)
-                }
-                .padding([.top, .bottom])
-                .padding([.leading, .trailing], 5)
-                Spacer()
-                GroupBox{
-                    HStack{
-                        Text("Name")
-                            .bold()
-                            .padding(.trailing)
-                        TextField("Card Name", text: $title)
-                            .padding()
-                            .focused($showKeyboard)
-                            .foregroundStyle(Color.accentColor.autoContrastTextColor)
+                    .frame(maxHeight: 260)
+                    .padding(.horizontal)
+
+                    // MARK: - Settings Form
+                    VStack(spacing: 12) {
+
+                        // Name
+                        HStack(spacing: 12) {
+                            Image(systemName: "creditcard.fill")
+                                .foregroundStyle(.blue)
+                                .frame(width: 24)
+                            VStack(alignment: .leading, spacing: 2) {
+                                Text("Card Name")
+                                    .font(.caption)
+                                    .foregroundStyle(.secondary)
+                                TextField("e.g. Starbucks Rewards", text: $title)
+                                    .focused($showKeyboard)
+                            }
+                        }
+                        .padding(14)
+                        .background(Color(.secondarySystemBackground), in: RoundedRectangle(cornerRadius: 12))
+
+                        // Color
+                        HStack(spacing: 12) {
+                            Image(systemName: "paintpalette.fill")
+                                .foregroundStyle(.purple)
+                                .frame(width: 24)
+                            ColorPicker("Card Color", selection: $selectedColor)
+                        }
+                        .padding(14)
+                        .background(Color(.secondarySystemBackground), in: RoundedRectangle(cornerRadius: 12))
+
+                        // Coupon toggle
+                        HStack(spacing: 12) {
+                            Image(systemName: "tag.fill")
+                                .foregroundStyle(.orange)
+                                .frame(width: 24)
+                            Toggle("This is a coupon", isOn: $isCoupon.animation())
+                        }
+                        .padding(14)
+                        .background(Color(.secondarySystemBackground), in: RoundedRectangle(cornerRadius: 12))
+
+                        // Expiration date (conditional)
+                        if isCoupon {
+                            HStack(spacing: 12) {
+                                Image(systemName: "calendar.badge.clock")
+                                    .foregroundStyle(.red)
+                                    .frame(width: 24)
+                                DatePicker(
+                                    "Expiration Date",
+                                    selection: $expirationDate,
+                                    displayedComponents: [.date]
+                                )
+                                .datePickerStyle(.compact)
+                            }
+                            .padding(14)
+                            .background(Color(.secondarySystemBackground), in: RoundedRectangle(cornerRadius: 12))
+                            .transition(.move(edge: .top).combined(with: .opacity))
+                        }
                     }
+                    .padding(.horizontal)
+                    .animation(.spring(duration: 0.3), value: isCoupon)
                 }
-                GroupBox{
-                    ColorPicker("Choose a Color", selection: $selectedColor)
-                        .padding()
-                }
-                GroupBox{
-                    HStack{
-                        Toggle("Is this a coupon?", isOn: $isCoupon)
-                    }
-                }
-                if isCoupon{
-                    GroupBox{
-                        DatePicker(
-                            "Expiration Date", // Label for the DatePicker
-                            selection: $expirationDate, // Binding to the state variable
-                            displayedComponents: [.date] // Components to display (date and time)
-                        )
-                        
-                        .datePickerStyle(.compact)
-                    }
-                    
-                }
-                
-                Spacer()
-                
+                .padding(.vertical, 20)
             }
-            Button{
-                
+
+            // MARK: - Save Button
+            Divider()
+            Button {
                 let barcodeDataController = BarcodeData(context: moc)
                 let pickedColor = UIColor(selectedColor)
                 barcodeDataController.id = UUID()
@@ -235,7 +191,7 @@ struct CreateBarcodeView: View {
                 barcodeDataController.green = Float(pickedColor.components.green)
                 barcodeDataController.blue = Float(pickedColor.components.blue)
                 barcodeDataController.alpha = Float(pickedColor.components.alpha)
-                if isCoupon{
+                if isCoupon {
                     barcodeDataController.expirationDate = expirationDate
                     let content = UNMutableNotificationContent()
                     content.title = "Coupon Expiring"
@@ -244,19 +200,19 @@ struct CreateBarcodeView: View {
                     let components = Calendar.current.dateComponents([.year, .month, .day], from: expirationDate)
                     let trigger = UNCalendarNotificationTrigger(dateMatching: components, repeats: false)
                 }
-                
                 try? moc.save()
                 dismiss.toggle()
-            }label: {
-                Text("Save")
-                    .bold()
-                    .frame(height: 40)
+            } label: {
+                Text("Save Card")
+                    .font(.system(.body, weight: .semibold))
+                    .frame(height: 50)
                     .frame(maxWidth: .infinity)
-                
             }
             .buttonStyle(.borderedProminent)
             .buttonBorderShape(.capsule)
-            .padding(.bottom)
+            .padding(.horizontal)
+            .padding(.vertical, 12)
+            .disabled(title.isEmpty)
         }
         .padding([.leading, .trailing, .top])
         .onAppear(){
