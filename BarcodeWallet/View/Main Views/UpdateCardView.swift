@@ -18,82 +18,129 @@ struct UpdateCardView: View {
     @State private var updatedCardName: String = ""
     @State private var selectedColor = Color(.sRGB, red: 1, green: 1, blue: 1)
     @State private var isCoupon = false
+    @State private var expirationDate = Date()
     var body: some View {
         NavigationStack{
-            VStack{
-                GroupBox{
-                    HStack{
-                        Text("Card Name")
-                            .bold()
-                            
-                        TextField("Updated card name", text: $updatedCardName)
-                            .padding()
-                            
+            VStack(spacing: 0) {
+                ScrollView {
+                    VStack(spacing: 12) {
+
+                        // Name
+                        HStack(spacing: 12) {
+                            Image(systemName: "creditcard.fill")
+                                .foregroundStyle(.blue)
+                                .frame(width: 24)
+                            VStack(alignment: .leading, spacing: 2) {
+                                Text("Card Name")
+                                    .font(.caption)
+                                    .foregroundStyle(.secondary)
+                                TextField("Updated card name", text: $updatedCardName)
+                            }
+                        }
+                        .padding(14)
+                        .background(Color(.secondarySystemBackground), in: RoundedRectangle(cornerRadius: 12))
+
+                        // Color
+                        HStack(spacing: 12) {
+                            Image(systemName: "paintpalette.fill")
+                                .foregroundStyle(.purple)
+                                .frame(width: 24)
+                            ColorPicker("Card Color", selection: $selectedColor)
+                        }
+                        .padding(14)
+                        .background(Color(.secondarySystemBackground), in: RoundedRectangle(cornerRadius: 12))
+
+                        // Coupon toggle
+                        HStack(spacing: 12) {
+                            Image(systemName: "tag.fill")
+                                .foregroundStyle(.orange)
+                                .frame(width: 24)
+                            Toggle("Is this a coupon?", isOn: $isCoupon.animation())
+                        }
+                        .padding(14)
+                        .background(Color(.secondarySystemBackground), in: RoundedRectangle(cornerRadius: 12))
+                        if isCoupon {
+                            HStack(spacing: 12) {
+                                Image(systemName: "calendar.badge.clock")
+                                    .foregroundStyle(.red)
+                                    .frame(width: 24)
+                                DatePicker(
+                                    "Expiration Date",
+                                    selection: $expirationDate,
+                                    displayedComponents: [.date]
+                                )
+                                .datePickerStyle(.compact)
+                            }
+                            .padding(14)
+                            .background(Color(.secondarySystemBackground), in: RoundedRectangle(cornerRadius: 12))
+                            .transition(.move(edge: .top).combined(with: .opacity))
+                        }
                     }
-                    
+                    .padding(.horizontal)
+                    .padding(.vertical, 20)
                 }
-                GroupBox{
-                    ColorPicker("Choose a Color", selection: $selectedColor)
-                        
-                }
-                GroupBox{
-                    HStack{
-                        Toggle("Is this a coupon?", isOn: $isCoupon)
-                    }
-                }
-                Spacer()
-                Button{
+
+                // MARK: - Save Button
+                Divider()
+                Button {
                     let pickedColor = UIColor(selectedColor)
-                    for i in barcodeItems{
-                        guard let cardId = cardId else {return}
-                        if cardId == i.id{
-                            if updatedCardName != ""{
+                    for i in barcodeItems {
+                        guard let cardId else { return }
+                        if cardId == i.id {
+                            if !updatedCardName.isEmpty {
                                 i.name = updatedCardName
                             }
-                            if i.alpha != Float(pickedColor.components.alpha) || i.red != Float(pickedColor.components.red) || i.blue != Float(pickedColor.components.blue) || i.green != Float(pickedColor.components.blue){
+                            if i.alpha != Float(pickedColor.components.alpha) ||
+                               i.red   != Float(pickedColor.components.red)   ||
+                               i.blue  != Float(pickedColor.components.blue)  ||
+                               i.green != Float(pickedColor.components.green) {
                                 i.alpha = Float(pickedColor.components.alpha)
-                                i.red = Float(pickedColor.components.red)
-                                i.blue = Float(pickedColor.components.blue)
+                                i.red   = Float(pickedColor.components.red)
+                                i.blue  = Float(pickedColor.components.blue)
                                 i.green = Float(pickedColor.components.green)
-                                red = Float(pickedColor.components.red)
-                                blue = Float(pickedColor.components.blue)
+                                red   = Float(pickedColor.components.red)
+                                blue  = Float(pickedColor.components.blue)
                                 green = Float(pickedColor.components.green)
                                 selectedColor = Color(.sRGB, red: Double(red), green: Double(green), blue: Double(blue))
                                 try? moc.save()
-                                
-                            }else{
-                                print("Color not updated")
+                            }
+                            if isCoupon {
+                                i.expirationDate = expirationDate
+                                let content = UNMutableNotificationContent()
+                                content.title = "Coupon Expiring"
+                                content.subtitle = "\(i.name) is set to expire today"
+                                content.sound = UNNotificationSound.default
+                                let components = Calendar.current.dateComponents([.year, .month, .day], from: expirationDate)
+                                let trigger = UNCalendarNotificationTrigger(dateMatching: components, repeats: false)
                             }
                             
                         }
                     }
                     isPresented = false
-                }label: {
-                    ZStack{
-                        
-                        RoundedRectangle(cornerRadius: 10.0)
-                            .frame(height: 45)
-                        Text("Save")
-                            .foregroundStyle(Color.white)
-                            .bold()
-                    }
-                    
+                } label: {
+                    Text("Save Changes")
+                        .font(.system(.body, weight: .semibold))
+                        .frame(maxWidth: .infinity)
+                        .frame(height: 50)
                 }
+                .buttonStyle(.borderedProminent)
+                .buttonBorderShape(.capsule)
+                .padding(.horizontal)
+                .padding(.vertical, 12)
             }
-            .padding()
             .toolbar {
                 ToolbarItem(placement: .principal) {
                     Text("Update Card")
                         .bold()
                 }
                 ToolbarItem(placement: .topBarLeading) {
-                    Image(systemName: "xmark")
-                        .bold()
-                        .onTapGesture {
-                            isPresented = false
-                        }
+                    Button {
+                        isPresented = false
+                    } label: {
+                        Image(systemName: "xmark")
+                            .bold()
+                    }
                 }
-                
             }
             
             .onAppear(){

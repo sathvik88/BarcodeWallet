@@ -149,7 +149,7 @@ struct CreateBarcodeView: View {
                             Image(systemName: "tag.fill")
                                 .foregroundStyle(.orange)
                                 .frame(width: 24)
-                            Toggle("This is a coupon", isOn: $isCoupon.animation())
+                            Toggle("Is this is a coupon?", isOn: $isCoupon.animation())
                         }
                         .padding(14)
                         .background(Color(.secondarySystemBackground), in: RoundedRectangle(cornerRadius: 12))
