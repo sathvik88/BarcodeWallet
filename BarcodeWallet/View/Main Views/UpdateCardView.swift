@@ -110,8 +110,12 @@ struct UpdateCardView: View {
                                 content.title = "Coupon Expiring"
                                 content.subtitle = "\(i.name) is set to expire today"
                                 content.sound = UNNotificationSound.default
-                                let components = Calendar.current.dateComponents([.year, .month, .day], from: expirationDate)
+                                var components = Calendar.current.dateComponents([.year, .month, .day], from: expirationDate)
+                                components.hour = 9
+                                components.minute = 0
                                 let trigger = UNCalendarNotificationTrigger(dateMatching: components, repeats: false)
+                                let request = UNNotificationRequest(identifier: i.id?.uuidString ?? UUID().uuidString, content: content, trigger: trigger)
+                                UNUserNotificationCenter.current().add(request)
                             }
                             
                         }

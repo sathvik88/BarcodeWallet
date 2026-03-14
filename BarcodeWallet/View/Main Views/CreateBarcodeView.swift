@@ -197,8 +197,12 @@ struct CreateBarcodeView: View {
                     content.title = "Coupon Expiring"
                     content.subtitle = "\(title) is set to expire today"
                     content.sound = UNNotificationSound.default
-                    let components = Calendar.current.dateComponents([.year, .month, .day], from: expirationDate)
+                    var components = Calendar.current.dateComponents([.year, .month, .day], from: expirationDate)
+                    components.hour = 9
+                    components.minute = 0
                     let trigger = UNCalendarNotificationTrigger(dateMatching: components, repeats: false)
+                    let request = UNNotificationRequest(identifier: barcodeDataController.id?.uuidString ?? UUID().uuidString, content: content, trigger: trigger)
+                    UNUserNotificationCenter.current().add(request)
                 }
                 try? moc.save()
                 dismiss.toggle()
