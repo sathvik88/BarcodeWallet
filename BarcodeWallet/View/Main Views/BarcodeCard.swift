@@ -33,15 +33,18 @@ struct BarcodeCard: View {
                                 .foregroundColor(cardColor.autoContrastTextColor)
                             Spacer()
                             
-                            if let expirationDate = expirationDate{
-                                if expirationDate > Date.now{
-                                    Text("Exp Date: \(expirationDate.formatted(date: .numeric, time: .omitted))")
+                            if let expirationDate = expirationDate {
+                                let calendar = Calendar.current
+                                let order = calendar.compare(expirationDate, to: Date.now, toGranularity: .day)
+
+                                switch order {
+                                case .orderedDescending:
+                                    Text("Exp: \(expirationDate.formatted(date: .numeric, time: .omitted))")
                                         .foregroundColor(cardColor.autoContrastTextColor)
-                                }
-                                else if expirationDate == Date.now{
-                                    Text("Expiring")
+                                case .orderedSame:
+                                    Text("Expiring Today")
                                         .foregroundColor(cardColor.autoContrastTextColor)
-                                }else{
+                                case .orderedAscending:
                                     Text("Expired")
                                         .foregroundColor(cardColor.autoContrastTextColor)
                                 }
