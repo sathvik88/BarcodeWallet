@@ -25,6 +25,10 @@ struct BarcodeCard: View {
                         .frame(maxWidth: .infinity)
                         .shadow(radius: 10)
                         .foregroundStyle(cardColor)
+                        .overlay(
+                            RoundedRectangle(cornerSize: CGSize(width: 10, height: 10))
+                                .stroke(Color.white.opacity(0.1), lineWidth: 1)
+                        )
                     VStack{
                         HStack{
                             Text(barcodeName)

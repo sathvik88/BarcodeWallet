@@ -225,8 +225,6 @@ struct CreateBarcodeView: View {
                 }else if let error{
                     print(error.localizedDescription)
                 }
-                
-                
             }
         })
         .navigationBarBackButtonHidden()

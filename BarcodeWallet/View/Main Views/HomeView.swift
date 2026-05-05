@@ -7,6 +7,8 @@
 
 import SwiftUI
 import UIKit
+import RevenueCat
+import RevenueCatUI
 struct HomeView: View {
     @Environment(\.managedObjectContext) var moc
     @FetchRequest(sortDescriptors: []) private var barcodeItems: FetchedResults<BarcodeData>
@@ -38,6 +40,8 @@ struct HomeView: View {
         deviceBrightness = UIScreen.main.brightness
     }
     @State private var availableWidth: CGFloat = 320
+    @State private var isPro = false
+    @State private var showProSheet = false
     var body: some View {
         
         NavigationStack{
@@ -138,21 +142,28 @@ struct HomeView: View {
                 }
                 
                 ToolbarItem(placement: .topBarLeading) {
-                    if isCardPressed{
+                    if !isPro{
                         Button{
-                            for index in barcodeItems{
-                                if index.name ?? "" == selectedCard?.name{
-                                    moc.delete(index)
-                                    
-                                }
-                                
-                            }
-                            try? moc.save()
-                            isCardPressed.toggle()
-                        }label: {
-                            Image(systemName: "trash")
+                            showProSheet = true
+                        }label:{
+                            Image(systemName: "crown.fill")
                         }
                     }
+//                    if isCardPressed{
+//                        Button{
+//                            for index in barcodeItems{
+//                                if index.name ?? "" == selectedCard?.name{
+//                                    moc.delete(index)
+//                                    
+//                                }
+//                                
+//                            }
+//                            try? moc.save()
+//                            isCardPressed.toggle()
+//                        }label: {
+//                            Image(systemName: "trash")
+//                        }
+//                    }
                     
                     
                     
@@ -236,6 +247,13 @@ struct HomeView: View {
                     
                 }
             })
+            .task {
+                let customerInfo = try? await Purchases.shared.customerInfo()
+                isPro = customerInfo?.entitlements["ATLASCODE LLC Pro"]?.isActive == true
+            }
+            .sheet(isPresented: $showProSheet) {
+                PaywallView()
+            }
             
         }
     }

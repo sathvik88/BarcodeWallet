@@ -47,6 +47,7 @@ struct CardDetailView: View {
                     .transition(.move(edge: .bottom).combined(with: .opacity))
                     .animation(.spring(response: 0.5, dampingFraction: 0.7), value: showCard)
                     .id(cardColor)
+                    
                 Spacer()
                 GeometryReader { geo in
                     BannerAdView(width: geo.size.width)

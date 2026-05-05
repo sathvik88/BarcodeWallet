@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		04E5F18C2FA98E3A00B06FBD /* RevenueCat in Frameworks */ = {isa = PBXBuildFile; productRef = 04E5F18B2FA98E3A00B06FBD /* RevenueCat */; };
+		04E5F18E2FA98E3A00B06FBD /* RevenueCatUI in Frameworks */ = {isa = PBXBuildFile; productRef = 04E5F18D2FA98E3A00B06FBD /* RevenueCatUI */; };
 		2C2556B02E7726CC00962D58 /* CardDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C2556AF2E7726CC00962D58 /* CardDetailView.swift */; };
 		2C66C7C62CED3AEF008C524D /* BarcodeWalletApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C66C7C52CED3AEF008C524D /* BarcodeWalletApp.swift */; };
 		2C66C7C82CED3AEF008C524D /* LinearBarcodeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C66C7C72CED3AEF008C524D /* LinearBarcodeView.swift */; };
@@ -131,7 +133,9 @@
 				2C7E226B2CEFC93D005FB3C0 /* CoreMedia.framework in Frameworks */,
 				2CF0327F2D1F23DC006A6009 /* CloudKit.framework in Frameworks */,
 				2C7E22692CEFC92E005FB3C0 /* AVFoundation.framework in Frameworks */,
+				04E5F18C2FA98E3A00B06FBD /* RevenueCat in Frameworks */,
 				2C7E226D2CEFC943005FB3C0 /* CoreVideo.framework in Frameworks */,
+				04E5F18E2FA98E3A00B06FBD /* RevenueCatUI in Frameworks */,
 				2C7A6F612F4F6AEF00496C0A /* GoogleMobileAds in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -331,6 +335,8 @@
 			packageProductDependencies = (
 				2CF032782D133D23006A6009 /* RSBarcodes_Swift */,
 				2C7A6F602F4F6AEF00496C0A /* GoogleMobileAds */,
+				04E5F18B2FA98E3A00B06FBD /* RevenueCat */,
+				04E5F18D2FA98E3A00B06FBD /* RevenueCatUI */,
 			);
 			productName = BarcodeWallet;
 			productReference = 2C66C7C22CED3AEF008C524D /* BarcodeWallet.app */;
@@ -407,6 +413,7 @@
 			packageReferences = (
 				2CF032772D133D23006A6009 /* XCRemoteSwiftPackageReference "RSBarcodes_Swift" */,
 				2C7A6F5F2F4F6AEF00496C0A /* XCRemoteSwiftPackageReference "swift-package-manager-google-mobile-ads" */,
+				04E5F1882FA98E3A00B06FBD /* XCRemoteSwiftPackageReference "purchases-ios-spm" */,
 			);
 			productRefGroup = 2C66C7C32CED3AEF008C524D /* Products */;
 			projectDirPath = "";
@@ -834,6 +841,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		04E5F1882FA98E3A00B06FBD /* XCRemoteSwiftPackageReference "purchases-ios-spm" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/RevenueCat/purchases-ios-spm.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.70.0;
+			};
+		};
 		2C7A6F5F2F4F6AEF00496C0A /* XCRemoteSwiftPackageReference "swift-package-manager-google-mobile-ads" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/googleads/swift-package-manager-google-mobile-ads.git";
@@ -853,6 +868,16 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		04E5F18B2FA98E3A00B06FBD /* RevenueCat */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 04E5F1882FA98E3A00B06FBD /* XCRemoteSwiftPackageReference "purchases-ios-spm" */;
+			productName = RevenueCat;
+		};
+		04E5F18D2FA98E3A00B06FBD /* RevenueCatUI */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 04E5F1882FA98E3A00B06FBD /* XCRemoteSwiftPackageReference "purchases-ios-spm" */;
+			productName = RevenueCatUI;
+		};
 		2C7A6F602F4F6AEF00496C0A /* GoogleMobileAds */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 2C7A6F5F2F4F6AEF00496C0A /* XCRemoteSwiftPackageReference "swift-package-manager-google-mobile-ads" */;
