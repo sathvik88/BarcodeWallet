@@ -55,16 +55,18 @@ struct HomeView: View {
                                 
                         }
                         Spacer()
-                        GeometryReader { geo in
-                            BannerAdView(width: geo.size.width)
-                                .onAppear {
-                                    availableWidth = geo.size.width
-                                }
-                                .onChange(of: geo.size.width) { newValue in
-                                    availableWidth = newValue
-                                }
+                        if !isPro{
+                            GeometryReader { geo in
+                                BannerAdView(width: geo.size.width)
+                                    .onAppear {
+                                        availableWidth = geo.size.width
+                                    }
+                                    .onChange(of: geo.size.width) { newValue in
+                                        availableWidth = newValue
+                                    }
+                            }
+                            .frame(height: 50)
                         }
-                        .frame(height: 50)
                         
                     }
                     
@@ -110,16 +112,19 @@ struct HomeView: View {
                         
                     }
                     .padding(.bottom)
-                    GeometryReader { geo in
-                        BannerAdView(width: geo.size.width)
-                            .onAppear {
-                                availableWidth = geo.size.width
-                            }
-                            .onChange(of: geo.size.width) { newValue in
-                                availableWidth = newValue
-                            }
+                    if !isPro{
+                        GeometryReader { geo in
+                            BannerAdView(width: geo.size.width)
+                                .onAppear {
+                                    availableWidth = geo.size.width
+                                }
+                                .onChange(of: geo.size.width) { newValue in
+                                    availableWidth = newValue
+                                }
+                        }
+                        .frame(height: 50)
                     }
-                    .frame(height: 50)
+                    
                     
                 }
                 
@@ -149,24 +154,6 @@ struct HomeView: View {
                             Image(systemName: "crown.fill")
                         }
                     }
-//                    if isCardPressed{
-//                        Button{
-//                            for index in barcodeItems{
-//                                if index.name ?? "" == selectedCard?.name{
-//                                    moc.delete(index)
-//                                    
-//                                }
-//                                
-//                            }
-//                            try? moc.save()
-//                            isCardPressed.toggle()
-//                        }label: {
-//                            Image(systemName: "trash")
-//                        }
-//                    }
-                    
-                    
-                    
                 }
             }
             
@@ -253,6 +240,12 @@ struct HomeView: View {
             }
             .sheet(isPresented: $showProSheet) {
                 PaywallView()
+                    .onDisappear(){
+                        Task{
+                            let customerInfo = try? await Purchases.shared.customerInfo()
+                            isPro = customerInfo?.entitlements["ATLASCODE LLC Pro"]?.isActive == true
+                        }
+                    }
             }
             
         }

@@ -12,8 +12,6 @@ import RevenueCat
 struct BarcodeWalletApp: App {
     @StateObject private var dataController =  DataController()
     @Environment(\.scenePhase) private var scenePhase
-    @State private var isPro = false
-    //ATLASCODE LLC Pro
     init(){
         MobileAds.shared.start{ start in}
         Purchases.configure(withAPIKey: "test_wuFXHfNjCbejLeMLLysiWFCQxSE")
