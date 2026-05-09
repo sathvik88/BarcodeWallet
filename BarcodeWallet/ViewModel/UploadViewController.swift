@@ -12,6 +12,7 @@ import Vision
 class UploadViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     
     var onBarcodeDetected: ((String, String) -> Void)? // Callback for detected barcode data
+    var onBarcodeError: ((Error) -> Void)?
     var onCancel: (() -> Void)?
     func selectImageFromGallery() {
         let imagePicker = UIImagePickerController()
@@ -38,10 +39,14 @@ class UploadViewController: UIViewController, UIImagePickerControllerDelegate, U
         let request = VNDetectBarcodesRequest { [weak self] (request, error) in
             if let error = error {
                 print("Error detecting barcode: \(error)")
+                self?.onBarcodeError?(error)
                 return
             }
             
-            guard let results = request.results as? [VNBarcodeObservation] else { return }
+            guard let results = request.results as? [VNBarcodeObservation], !results.isEmpty else {
+                self?.onBarcodeError?(NSError(domain: "BarcodeWallet", code: 0, userInfo: [NSLocalizedDescriptionKey: "No barcode found in image"]))
+                return
+            }
             
             for barcode in results {
                 let symbology = barcode.symbology.rawValue
@@ -62,6 +67,7 @@ class UploadViewController: UIViewController, UIImagePickerControllerDelegate, U
             try handler.perform([request])
         } catch {
             print("Error performing barcode detection: \(error)")
+            self.onBarcodeError?(error)  // add this
         }
     }
     

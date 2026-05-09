@@ -42,6 +42,8 @@ struct HomeView: View {
     @State private var availableWidth: CGFloat = 320
     @State private var isPro = false
     @State private var showProSheet = false
+    @State private var displayError = false
+    @State private var errorMessage = ""
     var body: some View {
         
         NavigationStack{
@@ -72,6 +74,10 @@ struct HomeView: View {
                     
                     
                 }else{
+                    HStack{
+                        Text("0/10 cards")
+                        Spacer()
+                    }
                     ScrollView {
                             VStack(){
                                 ZStack {
@@ -84,7 +90,8 @@ struct HomeView: View {
                                                 barcodeNumber: card.barcodeNumber,
                                                 cardColor: .constant(card.cardColor),
                                                 deviceBrightness: $deviceBrightness,
-                                                expirationDate: card.expirationDate
+                                                expirationDate: card.expirationDate,
+                                                isPro: $isPro
                                             )
                                             .onDisappear(){
                                                     animateBrightness(to: deviceBrightness, duration: 0.5)
@@ -237,6 +244,7 @@ struct HomeView: View {
             .task {
                 let customerInfo = try? await Purchases.shared.customerInfo()
                 isPro = customerInfo?.entitlements["ATLASCODE LLC Pro"]?.isActive == true
+                print(isPro)
             }
             .sheet(isPresented: $showProSheet) {
                 PaywallView()
@@ -247,6 +255,7 @@ struct HomeView: View {
                         }
                     }
             }
+            
             
         }
     }

@@ -15,6 +15,8 @@ struct UploadSheetView: View {
     @Binding var barcodeType: String
     @Binding var displayCard: Bool
     @State private var toggleLoader = false
+    @State private var displayError = false
+    @State private var errorMessage = ""
     var body: some View {
         NavigationStack{
             VStack(spacing: 12) {
@@ -53,17 +55,15 @@ struct UploadSheetView: View {
                     }
             })
             .sheet(isPresented: $toggleGallery, content: {
-                BarcodeScannerView(detectedSymbology: $barcodeType, detectedPayload: $scanResult, displayImageSheet: $toggleGallery)
-                    .onAppear(){
-                        toggleLoader = false
-                    }
-                    .onDisappear(){
-                        toggleUpload =  false
-                        if !scanResult.isEmpty{
+                BarcodeScannerView(detectedSymbology: $barcodeType, detectedPayload: $scanResult, displayImageSheet: $toggleGallery, displayError: $displayError, barcodeError: $errorMessage)
+                    .onAppear { toggleLoader = false }
+                    .onDisappear {
+                        if !scanResult.isEmpty {
+                            toggleUpload = false
                             displayCard = true
                         }
-                        
                     }
+
                     
             })
             .toolbar{
@@ -81,6 +81,12 @@ struct UploadSheetView: View {
                     ProgressView()
                 }
             }
+            .alert("Barcode Error", isPresented: $displayError) {
+                Button("OK") { displayError = false }
+            } message: {
+                Text("Unsupported barcode. Please try a different barcode.")
+            }
+            
         }
         
         

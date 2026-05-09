@@ -11,6 +11,8 @@ struct BarcodeScannerView: UIViewControllerRepresentable {
     @Binding var detectedSymbology: String
     @Binding var detectedPayload: String
     @Binding var displayImageSheet: Bool
+    @Binding var displayError: Bool
+    @Binding var barcodeError: String
     
     func makeUIViewController(context: Context) -> UploadViewController {
         let viewController = UploadViewController()
@@ -23,6 +25,16 @@ struct BarcodeScannerView: UIViewControllerRepresentable {
                 detectedPayload = payload
                 
                 displayImageSheet = false
+            }
+        }
+        viewController.onBarcodeError = { error in
+            DispatchQueue.main.async {
+                barcodeError = error.localizedDescription
+                displayImageSheet = false
+                
+                DispatchQueue.main.asyncAfter(deadline: .now() + 0.6) {
+                    displayError = true
+                }
             }
         }
         return viewController

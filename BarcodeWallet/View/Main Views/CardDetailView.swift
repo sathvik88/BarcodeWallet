@@ -29,17 +29,21 @@ struct CardDetailView: View {
     @State private var showShareSheet = false
     @Environment(\.scenePhase) private var scenePhase
     @State private var availableWidth: CGFloat = 320
+    @Binding var isPro: Bool
     var body: some View {
         NavigationStack{
             VStack{
                 GeometryReader { geo in
-                    BannerAdView(width: geo.size.width)
-                        .onAppear {
-                            availableWidth = geo.size.width
-                        }
-                        .onChange(of: geo.size.width) { newValue in
-                            availableWidth = newValue
-                        }
+                    if !isPro{
+                        BannerAdView(width: geo.size.width)
+                            .onAppear {
+                                availableWidth = geo.size.width
+                            }
+                            .onChange(of: geo.size.width) { newValue in
+                                availableWidth = newValue
+                            }
+                    }
+                    
                 }
                 .frame(height: 20)
                 Spacer()
@@ -49,16 +53,19 @@ struct CardDetailView: View {
                     .id(cardColor)
                     
                 Spacer()
-                GeometryReader { geo in
-                    BannerAdView(width: geo.size.width)
-                        .onAppear {
-                            availableWidth = geo.size.width
-                        }
-                        .onChange(of: geo.size.width) { newValue in
-                            availableWidth = newValue
-                        }
+                if !isPro{
+                    GeometryReader { geo in
+                        BannerAdView(width: geo.size.width)
+                            .onAppear {
+                                availableWidth = geo.size.width
+                            }
+                            .onChange(of: geo.size.width) { newValue in
+                                availableWidth = newValue
+                            }
+                    }
+                    .frame(height: 20)
                 }
-                .frame(height: 20)
+                
             }
             .navigationBarBackButtonHidden()
             .toolbar {
@@ -228,5 +235,5 @@ extension Color {
 
 
 #Preview {
-    CardDetailView(cardId: UUID(), barcodeType: "VNBarcodeSymbologyQR" ,barcodeName: .constant("Loyalty"), barcodeNumber: "11220000103djasjdkashdajsndjasnaksjdsdakhsjdkajshdkjsakjhsdk692", cardColor: .constant(Color.white), deviceBrightness: .constant(0.5), expirationDate: Date.now)
+    CardDetailView(cardId: UUID(), barcodeType: "VNBarcodeSymbologyQR" ,barcodeName: .constant("Loyalty"), barcodeNumber: "11220000103djasjdkashdajsndjasnaksjdsdakhsjdkajshdkjsakjhsdk692", cardColor: .constant(Color.white), deviceBrightness: .constant(0.5), expirationDate: Date.now, isPro: .constant(false))
 }
