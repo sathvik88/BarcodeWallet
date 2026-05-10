@@ -16,6 +16,7 @@ struct BarcodeCard: View {
     @Binding var cardColor: Color
     let expirationDate: Date?
     @Environment(\.dismiss) var dismiss
+    @Binding var barcodeImage: UIImage?
     
     var body: some View {
         NavigationStack{
@@ -86,58 +87,69 @@ struct BarcodeCard: View {
                             
                         case "org.iso.Code39":
                             if let image = RSUnifiedCodeGenerator.shared.generateCode(barcodeNum, machineReadableCodeObjectType: AVMetadataObject.ObjectType.code39.rawValue){
+                                
                                 Code39(barcodeData: barcodeNum, image: image)
                                 
                                 
                             }
                             
+                            
                         case "VNBarcodeSymbologyCode39":
                             if let image = RSUnifiedCodeGenerator.shared.generateCode(barcodeNum, machineReadableCodeObjectType: AVMetadataObject.ObjectType.code39.rawValue){
+                                
                                 Code39(barcodeData: barcodeNum, image: image)
                                 
                                 
                             }
                         case "com.intermec.Code93":
                             if let image = RSUnifiedCodeGenerator.shared.generateCode(barcodeNum, machineReadableCodeObjectType: AVMetadataObject.ObjectType.code93.rawValue){
+                                
                                 Code39(barcodeData: barcodeNum, image: image)
                                 
                             }
                         case "VNBarcodeSymbologyCode93":
                             if let image = RSUnifiedCodeGenerator.shared.generateCode(barcodeNum, machineReadableCodeObjectType: AVMetadataObject.ObjectType.code93.rawValue){
+                                
                                 Code39(barcodeData: barcodeNum, image: image)
                                 
                             }
                             
                         case "org.gs1.EAN-8":
                             if let image = RSUnifiedCodeGenerator.shared.generateCode(barcodeNum, machineReadableCodeObjectType: AVMetadataObject.ObjectType.ean8.rawValue){
+                                
                                 En8(barcodeData: barcodeNum, image: image)
                                 
                             }
                         case "VNBarcodeSymbologyEAN8":
                             if let image = RSUnifiedCodeGenerator.shared.generateCode(barcodeNum, machineReadableCodeObjectType: AVMetadataObject.ObjectType.ean8.rawValue){
+                                
                                 En8(barcodeData: barcodeNum, image: image)
                                 
                             }
                             
                         case "org.gs1.EAN-13":
                             if let image = RSUnifiedCodeGenerator.shared.generateCode(barcodeNum, machineReadableCodeObjectType: AVMetadataObject.ObjectType.ean13.rawValue){
+                                
                                 En13(barcodeData: barcodeNum, image: image)
                                 
                             }
                         case "VNBarcodeSymbologyEAN13":
                             if let image = RSUnifiedCodeGenerator.shared.generateCode(barcodeNum, machineReadableCodeObjectType: AVMetadataObject.ObjectType.ean13.rawValue){
+                                
                                 En13(barcodeData: barcodeNum, image: image)
                                 
                             }
                             
                         case "org.iso.PDF417":
                             if let image = RSUnifiedCodeGenerator.shared.generateCode(barcodeNum, machineReadableCodeObjectType: AVMetadataObject.ObjectType.pdf417.rawValue){
+                                
                                 Pdf417(barcodeData: barcodeNum, image: image)
                                
                                 
                             }
                         case "VNBarcodeSymbologyPDF417":
                             if let image = RSUnifiedCodeGenerator.shared.generateCode(barcodeNum, machineReadableCodeObjectType: AVMetadataObject.ObjectType.pdf417.rawValue){
+                                
                                 Pdf417(barcodeData: barcodeNum, image: image)
                                
                                 
@@ -145,17 +157,20 @@ struct BarcodeCard: View {
                             
                         case "org.ansi.Interleaved2of5":
                             if let image = RSUnifiedCodeGenerator.shared.generateCode(barcodeNum, machineReadableCodeObjectType: AVMetadataObject.ObjectType.interleaved2of5.rawValue){
+                                
                                 Interleaved2of5(barcodeData: barcodeNum, image: image)
                                 
                             }
                             
                         case "VNBarcodeSymbologyITF14":
                             if let image = RSUnifiedCodeGenerator.shared.generateCode(barcodeNum, machineReadableCodeObjectType: AVMetadataObject.ObjectType.itf14.rawValue){
+                                
                                 ITF14(barcodeData: barcodeNum, image: image)
                                 
                             }
                         case "org.gs1.ITF14":
                             if let image = RSUnifiedCodeGenerator.shared.generateCode(barcodeNum, machineReadableCodeObjectType: AVMetadataObject.ObjectType.itf14.rawValue){
+                                
                                 ITF14(barcodeData: barcodeNum, image: image)
                                 
                             }
@@ -163,23 +178,27 @@ struct BarcodeCard: View {
                         case "org.iso.Aztec" :
                             
                             if let image = RSUnifiedCodeGenerator.shared.generateCode(barcodeNum, machineReadableCodeObjectType: AVMetadataObject.ObjectType.aztec.rawValue){
+                                
                                 Aztec(image: image)
                                 
                             }
                         case "VNBarcodeSymbologyAztec":
                             
                             if let image = RSUnifiedCodeGenerator.shared.generateCode(barcodeNum, machineReadableCodeObjectType: AVMetadataObject.ObjectType.aztec.rawValue){
+                                
                                 Aztec(image: image)
                                 
                             }
                             
                         case "org.iso.QRCode":
                             if let image = RSUnifiedCodeGenerator.shared.generateCode(barcodeNum, machineReadableCodeObjectType: AVMetadataObject.ObjectType.qr.rawValue){
+                                
                                 QRcode(image: image)
                                 
                             }
                         case "VNBarcodeSymbologyQR":
                             if let image = RSUnifiedCodeGenerator.shared.generateCode(barcodeNum, machineReadableCodeObjectType: AVMetadataObject.ObjectType.qr.rawValue){
+                                
                                 QRcode(image: image)
                                 
                                 
@@ -187,11 +206,13 @@ struct BarcodeCard: View {
                             
                         case "org.gs1.UPC-E":
                             if let image = RSUnifiedCodeGenerator.shared.generateCode(barcodeNum, machineReadableCodeObjectType: AVMetadataObject.ObjectType.upce.rawValue){
+                                
                                 Upce(barcodeData: barcodeNum, image: image)
                                 
                             }
                         case "VNBarcodeSymbologyUPCE":
                             if let image = RSUnifiedCodeGenerator.shared.generateCode(barcodeNum, machineReadableCodeObjectType: AVMetadataObject.ObjectType.upce.rawValue){
+                                
                                 Upce(barcodeData: barcodeNum, image: image)
                                 
                             }
@@ -207,12 +228,51 @@ struct BarcodeCard: View {
             }
             .padding([.leading, .trailing], 5)
             .frame(minHeight: 250, maxHeight: 250)
+            .onAppear {
+                generateBarcodeImage()
+            }
             
         }
         
     }
+    private func generateBarcodeImage() {
+            switch barcodeType {
+            case "org.iso.Code39", "VNBarcodeSymbologyCode39":
+                barcodeImage = RSUnifiedCodeGenerator.shared.generateCode(barcodeNum, machineReadableCodeObjectType: AVMetadataObject.ObjectType.code39.rawValue)
+
+            case "com.intermec.Code93", "VNBarcodeSymbologyCode93":
+                barcodeImage = RSUnifiedCodeGenerator.shared.generateCode(barcodeNum, machineReadableCodeObjectType: AVMetadataObject.ObjectType.code93.rawValue)
+
+            case "org.gs1.EAN-8", "VNBarcodeSymbologyEAN8":
+                barcodeImage = RSUnifiedCodeGenerator.shared.generateCode(barcodeNum, machineReadableCodeObjectType: AVMetadataObject.ObjectType.ean8.rawValue)
+
+            case "org.gs1.EAN-13", "VNBarcodeSymbologyEAN13":
+                barcodeImage = RSUnifiedCodeGenerator.shared.generateCode(barcodeNum, machineReadableCodeObjectType: AVMetadataObject.ObjectType.ean13.rawValue)
+
+            case "org.iso.PDF417", "VNBarcodeSymbologyPDF417":
+                barcodeImage = RSUnifiedCodeGenerator.shared.generateCode(barcodeNum, machineReadableCodeObjectType: AVMetadataObject.ObjectType.pdf417.rawValue)
+
+            case "org.ansi.Interleaved2of5":
+                barcodeImage = RSUnifiedCodeGenerator.shared.generateCode(barcodeNum, machineReadableCodeObjectType: AVMetadataObject.ObjectType.interleaved2of5.rawValue)
+
+            case "VNBarcodeSymbologyITF14", "org.gs1.ITF14":
+                barcodeImage = RSUnifiedCodeGenerator.shared.generateCode(barcodeNum, machineReadableCodeObjectType: AVMetadataObject.ObjectType.itf14.rawValue)
+
+            case "org.iso.Aztec", "VNBarcodeSymbologyAztec":
+                barcodeImage = RSUnifiedCodeGenerator.shared.generateCode(barcodeNum, machineReadableCodeObjectType: AVMetadataObject.ObjectType.aztec.rawValue)
+
+            case "org.iso.QRCode", "VNBarcodeSymbologyQR":
+                barcodeImage = RSUnifiedCodeGenerator.shared.generateCode(barcodeNum, machineReadableCodeObjectType: AVMetadataObject.ObjectType.qr.rawValue)
+
+            case "org.gs1.UPC-E", "VNBarcodeSymbologyUPCE":
+                barcodeImage = RSUnifiedCodeGenerator.shared.generateCode(barcodeNum, machineReadableCodeObjectType: AVMetadataObject.ObjectType.upce.rawValue)
+
+            default:
+                break
+            }
+        }
 }
 
 #Preview {
-    BarcodeCard(barcodeType: "Codabar" ,barcodeName: .constant("Loyalty"), barcodeNum: "A123456789B", cardColor: .constant(Color.red), expirationDate: Date.now)
+    BarcodeCard(barcodeType: "Codabar" ,barcodeName: .constant("Loyalty"), barcodeNum: "A123456789B", cardColor: .constant(Color.red), expirationDate: Date.now, barcodeImage: .constant(nil))
 }

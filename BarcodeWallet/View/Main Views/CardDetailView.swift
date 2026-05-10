@@ -30,6 +30,9 @@ struct CardDetailView: View {
     @Environment(\.scenePhase) private var scenePhase
     @State private var availableWidth: CGFloat = 320
     @Binding var isPro: Bool
+    @Binding var barcodeImage: UIImage?
+    @StateObject private var walletService = WalletService.shared
+    
     var body: some View {
         NavigationStack{
             VStack{
@@ -46,13 +49,42 @@ struct CardDetailView: View {
                     
                 }
                 .frame(height: 20)
+                
                 Spacer()
-                BarcodeCard(barcodeType: barcodeType, barcodeName: $barcodeName, barcodeNum: barcodeNumber, cardColor: $cardColor, expirationDate: expirationDate)
+                
+                BarcodeCard(barcodeType: barcodeType, barcodeName: $barcodeName, barcodeNum: barcodeNumber, cardColor: $cardColor, expirationDate: expirationDate, barcodeImage: $barcodeImage)
                     .transition(.move(edge: .bottom).combined(with: .opacity))
                     .animation(.spring(response: 0.5, dampingFraction: 0.7), value: showCard)
                     .id(cardColor)
-                    
                 Spacer()
+                
+                if walletService.isWalletAvailable {
+                    Button(action: handleAddToWallet) {
+                        HStack {
+                            if walletService.isLoading {
+                                ProgressView()
+                                    .tint(.white)
+                            } else {
+                                Image(systemName: "wallet.pass")
+                                Text("Add to Apple Wallet")
+                            }
+                        }
+                        .frame(maxWidth: .infinity)
+                        .padding()
+                        .background(.black)
+                        .foregroundStyle(.white)
+                        .clipShape(RoundedRectangle(cornerRadius: 12))
+                    }
+                    .disabled(walletService.isLoading)
+                    .padding(.horizontal)
+                }
+                
+                if let error = walletService.errorMessage {
+                    Text(error)
+                        .foregroundStyle(.red)
+                        .font(.caption)
+                }
+                
                 if !isPro{
                     GeometryReader { geo in
                         BannerAdView(width: geo.size.width)
@@ -86,7 +118,7 @@ struct CardDetailView: View {
                                 barcodeType: barcodeType,
                                 barcodeName: .constant(barcodeName),
                                 barcodeNum: barcodeNumber,
-                                cardColor: .constant(cardColor), expirationDate: expirationDate
+                                cardColor: .constant(cardColor), expirationDate: expirationDate, barcodeImage: $barcodeImage
                             ))
                             
                             let controller = UIHostingController(rootView: cardView)
@@ -194,8 +226,23 @@ struct CardDetailView: View {
         }
     }
     
-    
-    
+    private func handleAddToWallet() {
+            guard let windowScene = UIApplication.shared.connectedScenes.first as? UIWindowScene,
+                  let viewController = windowScene.windows.first?.rootViewController else {
+                return
+            }
+            
+            Task {
+                await walletService.addToWallet(
+                    barcodeValue: barcodeNumber,
+                    barcodeFormat: barcodeType,
+                    title: barcodeName,
+                    cardColor: cardColor,
+                    barcodeImage: barcodeImage,
+                    from: viewController
+                )
+            }
+        }
 }
 struct ShareSheet: UIViewControllerRepresentable {
     let items: [Any]
@@ -235,5 +282,5 @@ extension Color {
 
 
 #Preview {
-    CardDetailView(cardId: UUID(), barcodeType: "VNBarcodeSymbologyQR" ,barcodeName: .constant("Loyalty"), barcodeNumber: "11220000103djasjdkashdajsndjasnaksjdsdakhsjdkajshdkjsakjhsdk692", cardColor: .constant(Color.white), deviceBrightness: .constant(0.5), expirationDate: Date.now, isPro: .constant(false))
+    CardDetailView(cardId: UUID(), barcodeType: "VNBarcodeSymbologyQR" ,barcodeName: .constant("Loyalty"), barcodeNumber: "11220000103djasjdkashdajsndjasnaksjdsdakhsjdkajshdkjsakjhsdk692", cardColor: .constant(Color.white), deviceBrightness: .constant(0.5), expirationDate: Date.now, isPro: .constant(false), barcodeImage: .constant(nil))
 }

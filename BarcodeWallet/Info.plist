@@ -4,6 +4,11 @@
 <dict>
 	<key>GADApplicationIdentifier</key>
 	<string>ca-app-pub-6951214266085379~5344806223</string>
+	<key>NSTransportSecurity</key>
+	<dict>
+		<key>NSAllowsArbitraryLoads</key>
+		<true/>
+	</dict>
 	<key>UIBackgroundModes</key>
 	<array>
 		<string>fetch</string>

@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		04E5F18C2FA98E3A00B06FBD /* RevenueCat in Frameworks */ = {isa = PBXBuildFile; productRef = 04E5F18B2FA98E3A00B06FBD /* RevenueCat */; };
 		04E5F18E2FA98E3A00B06FBD /* RevenueCatUI in Frameworks */ = {isa = PBXBuildFile; productRef = 04E5F18D2FA98E3A00B06FBD /* RevenueCatUI */; };
+		04E5F2BA2FAEE77000B06FBD /* WalletService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04E5F2B92FAEE77000B06FBD /* WalletService.swift */; };
 		2C2556B02E7726CC00962D58 /* CardDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C2556AF2E7726CC00962D58 /* CardDetailView.swift */; };
 		2C66C7C62CED3AEF008C524D /* BarcodeWalletApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C66C7C52CED3AEF008C524D /* BarcodeWalletApp.swift */; };
 		2C66C7C82CED3AEF008C524D /* LinearBarcodeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C66C7C72CED3AEF008C524D /* LinearBarcodeView.swift */; };
@@ -72,6 +73,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		04E5F2B92FAEE77000B06FBD /* WalletService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalletService.swift; sourceTree = "<group>"; };
 		2C2556AF2E7726CC00962D58 /* CardDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardDetailView.swift; sourceTree = "<group>"; };
 		2C66C7C22CED3AEF008C524D /* BarcodeWallet.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BarcodeWallet.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2C66C7C52CED3AEF008C524D /* BarcodeWalletApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BarcodeWalletApp.swift; sourceTree = "<group>"; };
@@ -293,6 +295,7 @@
 			isa = PBXGroup;
 			children = (
 				2C7A6F622F4F6C9500496C0A /* ATTConsent.swift */,
+				04E5F2B92FAEE77000B06FBD /* WalletService.swift */,
 			);
 			path = Service;
 			sourceTree = "<group>";
@@ -465,6 +468,7 @@
 				2CD8C8FA2D2C404D0007144C /* UploadView.swift in Sources */,
 				2CF032732D121F24006A6009 /* CreateBarcodeView.swift in Sources */,
 				2C7E22782CF3F5A1005FB3C0 /* DataModel.xcdatamodeld in Sources */,
+				04E5F2BA2FAEE77000B06FBD /* WalletService.swift in Sources */,
 				2C7A6F632F4F6C9500496C0A /* ATTConsent.swift in Sources */,
 				2C66C7F42CED3F59008C524D /* QRCodeView.swift in Sources */,
 				2CDFB6492ED4B476009D5A75 /* UpdateCardView.swift in Sources */,
