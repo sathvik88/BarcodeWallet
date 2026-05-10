@@ -14,7 +14,8 @@ class WalletService: NSObject, ObservableObject {
     
     static let shared = WalletService()
     
-    private let serverURL = "http://192.168.0.26:3000/sign-pass"
+//    private let serverURL = "http://192.168.1.109:3000/sign-pass"
+    private let serverURL = "https://pass-signer-production-e33f.up.railway.app/sign-pass"
     
     @Published var isLoading = false
     @Published var errorMessage: String?
