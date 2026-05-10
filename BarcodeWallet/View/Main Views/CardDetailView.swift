@@ -60,13 +60,12 @@ struct CardDetailView: View {
                 
                 if walletService.isWalletAvailable {
                     Button(action: handleAddToWallet) {
-                        HStack {
+                        ZStack {
                             if walletService.isLoading {
                                 ProgressView()
                                     .tint(.white)
                             } else {
-                                Image(systemName: "wallet.pass")
-                                Text("Add to Apple Wallet")
+                                Image("addToWallet")
                             }
                         }
                         .frame(maxWidth: .infinity)

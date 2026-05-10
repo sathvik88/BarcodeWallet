@@ -45,6 +45,7 @@ struct HomeView: View {
     @State private var displayError = false
     @State private var errorMessage = ""
     @State private var barcodeImage: UIImage? = nil
+    let maxCards: Int = 10
     var body: some View {
         
         NavigationStack{
@@ -75,10 +76,15 @@ struct HomeView: View {
                     
                     
                 }else{
-                    HStack{
-                        Text("0/10 cards")
-                        Spacer()
+                    if !isPro{
+                        HStack{
+                            Text("\(cards.count)/\(maxCards) cards")
+                                .fontDesign(.monospaced)
+                            Spacer()
+                        }
+                        .padding([.leading, .trailing])
                     }
+                    
                     ScrollView {
                             VStack(){
                                 ZStack {
@@ -148,9 +154,14 @@ struct HomeView: View {
                 }
                 ToolbarItem(placement: .topBarTrailing) {
                     Button{
-                        scanResult = ""
-                        barcodeType = ""
-                        displayOption.toggle()
+                        if cards.count < maxCards{
+                            scanResult = ""
+                            barcodeType = ""
+                            displayOption.toggle()
+                        }else{
+                            showProSheet = true
+                        }
+                        
                     }label: {
                         Image(systemName: "plus")
                     }

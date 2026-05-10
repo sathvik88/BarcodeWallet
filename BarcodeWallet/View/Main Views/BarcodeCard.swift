@@ -42,13 +42,16 @@ struct BarcodeCard: View {
                                 if expirationDate > Date.now{
                                     Text("Exp Date: \(expirationDate.formatted(date: .numeric, time: .omitted))")
                                         .foregroundColor(cardColor.autoContrastTextColor)
+                                        .fontDesign(.monospaced)
                                 }
                                 else if expirationDate == Date.now{
                                     Text("Expiring")
                                         .foregroundColor(cardColor.autoContrastTextColor)
+                                        .fontDesign(.monospaced)
                                 }else{
                                     Text("Expired")
                                         .foregroundColor(cardColor.autoContrastTextColor)
+                                        .fontDesign(.monospaced)
                                 }
                             }
                             
