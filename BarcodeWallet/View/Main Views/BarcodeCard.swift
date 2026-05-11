@@ -14,7 +14,7 @@ struct BarcodeCard: View {
     @Binding var barcodeName: String
     let barcodeNum: String
     @Binding var cardColor: Color
-    let expirationDate: Date?
+    @Binding var expirationDate: Date?
     @Environment(\.dismiss) var dismiss
     @Binding var barcodeImage: UIImage?
     
@@ -43,15 +43,18 @@ struct BarcodeCard: View {
                                     Text("Exp Date: \(expirationDate.formatted(date: .numeric, time: .omitted))")
                                         .foregroundColor(cardColor.autoContrastTextColor)
                                         .fontDesign(.monospaced)
+                                        .font(.subheadline)
                                 }
                                 else if expirationDate == Date.now{
                                     Text("Expiring")
                                         .foregroundColor(cardColor.autoContrastTextColor)
                                         .fontDesign(.monospaced)
+                                        .font(.subheadline)
                                 }else{
                                     Text("Expired")
                                         .foregroundColor(cardColor.autoContrastTextColor)
                                         .fontDesign(.monospaced)
+                                        .font(.subheadline)
                                 }
                             }
                             
@@ -277,5 +280,5 @@ struct BarcodeCard: View {
 }
 
 #Preview {
-    BarcodeCard(barcodeType: "Codabar" ,barcodeName: .constant("Loyalty"), barcodeNum: "A123456789B", cardColor: .constant(Color.red), expirationDate: Date.now, barcodeImage: .constant(nil))
+    BarcodeCard(barcodeType: "Codabar" ,barcodeName: .constant("Loyalty"), barcodeNum: "A123456789B", cardColor: .constant(Color.red), expirationDate: .constant(Date.now), barcodeImage: .constant(nil))
 }

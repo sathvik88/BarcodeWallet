@@ -97,7 +97,7 @@ struct HomeView: View {
                                                 barcodeNumber: card.barcodeNumber,
                                                 cardColor: .constant(card.cardColor),
                                                 deviceBrightness: $deviceBrightness,
-                                                expirationDate: card.expirationDate,
+                                                expirationDate: .constant(card.expirationDate),
                                                 isPro: $isPro,
                                                 barcodeImage: $barcodeImage
                                             )
@@ -111,7 +111,7 @@ struct HomeView: View {
                                                 barcodeType: card.barcodeType,
                                                 barcodeName: .constant(card.name),
                                                 barcodeNum: card.barcodeNumber,
-                                                cardColor: .constant(card.cardColor), expirationDate: card.expirationDate,
+                                                cardColor: .constant(card.cardColor), expirationDate: .constant(card.expirationDate),
                                                 barcodeImage: $barcodeImage
                                             )
                                             
@@ -232,7 +232,7 @@ struct HomeView: View {
             }, set: {displayCard = $0}), content: {
                 
                 if #available(iOS 16.4, *) {
-                    BarcodeCard(barcodeType: barcodeType, barcodeName: $barcodeName, barcodeNum: scanResult, cardColor: .constant(Color.white), expirationDate: expirationDate, barcodeImage: $barcodeImage)
+                    BarcodeCard(barcodeType: barcodeType, barcodeName: $barcodeName, barcodeNum: scanResult, cardColor: .constant(Color.white), expirationDate: .constant(Date.now), barcodeImage: $barcodeImage)
                         .presentationBackground(Color.clear)
                         .onAppear(){
                             deviceBrightness = UIScreen.main.brightness
@@ -251,7 +251,7 @@ struct HomeView: View {
                     
                 } else {
                     // Fallback on earlier versions
-                    BarcodeCard(barcodeType: barcodeType, barcodeName: $barcodeName, barcodeNum: scanResult, cardColor: .constant(Color.white), expirationDate: expirationDate, barcodeImage: $barcodeImage)
+                    BarcodeCard(barcodeType: barcodeType, barcodeName: $barcodeName, barcodeNum: scanResult, cardColor: .constant(Color.white), expirationDate: .constant(Date.now), barcodeImage: $barcodeImage)
                     
                 }
             })

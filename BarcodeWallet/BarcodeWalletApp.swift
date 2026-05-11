@@ -14,7 +14,7 @@ struct BarcodeWalletApp: App {
     @Environment(\.scenePhase) private var scenePhase
     init(){
         MobileAds.shared.start{ start in}
-        Purchases.configure(withAPIKey: "appl_RHXwalTzjyJnJIUAvyoemEUSsoP")
+        Purchases.configure(withAPIKey: "test_wuFXHfNjCbejLeMLLysiWFCQxSE")
     }
     
     var body: some Scene {

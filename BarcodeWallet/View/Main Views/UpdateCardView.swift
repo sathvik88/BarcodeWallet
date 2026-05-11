@@ -18,6 +18,8 @@ struct UpdateCardView: View {
     @State private var updatedCardName: String = ""
     @State private var selectedColor = Color(.sRGB, red: 1, green: 1, blue: 1)
     @State private var isCoupon = false
+    @Binding var expirationDate: Date?
+    @State private var updatedExpiration = Date.now
     var body: some View {
         NavigationStack{
             VStack{
@@ -41,6 +43,26 @@ struct UpdateCardView: View {
                         Toggle("Is this a coupon?", isOn: $isCoupon)
                     }
                 }
+                if isCoupon{
+                    HStack(spacing: 12) {
+                        Image(systemName: "calendar.badge.clock")
+                            .foregroundStyle(.red)
+                            .frame(width: 24)
+                        DatePicker(
+                            "Expiration Date",
+                            selection: $updatedExpiration,
+                            displayedComponents: [.date]
+                        )
+                        .datePickerStyle(.compact)
+                    }
+                    .padding(14)
+                    .background(Color(.secondarySystemBackground), in: RoundedRectangle(cornerRadius: 12))
+                    .transition(.move(edge: .top).combined(with: .opacity))
+                    .onAppear(){
+                        updatedExpiration = expirationDate ?? Date.now
+                    }
+                }
+                
                 Spacer()
                 Button{
                     let pickedColor = UIColor(selectedColor)
@@ -59,11 +81,28 @@ struct UpdateCardView: View {
                                 blue = Float(pickedColor.components.blue)
                                 green = Float(pickedColor.components.green)
                                 selectedColor = Color(.sRGB, red: Double(red), green: Double(green), blue: Double(blue))
-                                try? moc.save()
-                                
                             }else{
                                 print("Color not updated")
                             }
+                            if isCoupon {
+                                i.expirationDate = updatedExpiration
+                                let content = UNMutableNotificationContent()
+                                content.title = "Coupon Expiring"
+                                content.subtitle = "\(i.name ?? "Null Name") is set to expire today"
+                                content.sound = UNNotificationSound.default
+                                let components = Calendar.current.dateComponents([.year, .month, .day], from: updatedExpiration)
+                                let trigger = UNCalendarNotificationTrigger(dateMatching: components, repeats: false)
+                                let request = UNNotificationRequest(
+                                    identifier: i.id?.description ?? "Notif", 
+                                        content: content,
+                                        trigger: trigger
+                                    )
+                                    UNUserNotificationCenter.current().add(request)
+                                
+                                
+                                
+                            }
+                            try? moc.save()
                             
                         }
                     }
@@ -106,5 +145,5 @@ struct UpdateCardView: View {
 }
 
 #Preview {
-    UpdateCardView(cardId: UUID(), red: .constant(1), green: .constant(1), blue: .constant(1), isPresented: .constant(false))
+    UpdateCardView(cardId: UUID(), red: .constant(1), green: .constant(1), blue: .constant(1), isPresented: .constant(false), expirationDate: .constant(Date.now))
 }

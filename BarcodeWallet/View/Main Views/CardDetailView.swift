@@ -20,7 +20,7 @@ struct CardDetailView: View {
     @Environment(\.dismiss) private var dismiss
     @State private var showCard = false
     @Binding var deviceBrightness: CGFloat
-    let expirationDate: Date?
+    @Binding var expirationDate: Date?
     @State private var updateCardSheet = false
     @State private var red: Float = 1
     @State private var green: Float = 1
@@ -32,6 +32,7 @@ struct CardDetailView: View {
     @Binding var isPro: Bool
     @Binding var barcodeImage: UIImage?
     @StateObject private var walletService = WalletService.shared
+    @State private var localExpirationDate: Date? = nil
     
     var body: some View {
         NavigationStack{
@@ -52,10 +53,10 @@ struct CardDetailView: View {
                 
                 Spacer()
                 
-                BarcodeCard(barcodeType: barcodeType, barcodeName: $barcodeName, barcodeNum: barcodeNumber, cardColor: $cardColor, expirationDate: expirationDate, barcodeImage: $barcodeImage)
+                BarcodeCard(barcodeType: barcodeType, barcodeName: $barcodeName, barcodeNum: barcodeNumber, cardColor: $cardColor, expirationDate: $localExpirationDate, barcodeImage: $barcodeImage)
                     .transition(.move(edge: .bottom).combined(with: .opacity))
                     .animation(.spring(response: 0.5, dampingFraction: 0.7), value: showCard)
-                    .id(cardColor)
+                    .id("\(cardColor)-\(localExpirationDate?.timeIntervalSince1970 ?? 0)")
                 Spacer()
                 
                 if walletService.isWalletAvailable {
@@ -117,7 +118,7 @@ struct CardDetailView: View {
                                 barcodeType: barcodeType,
                                 barcodeName: .constant(barcodeName),
                                 barcodeNum: barcodeNumber,
-                                cardColor: .constant(cardColor), expirationDate: expirationDate, barcodeImage: $barcodeImage
+                                cardColor: .constant(cardColor), expirationDate: $expirationDate, barcodeImage: $barcodeImage
                             ))
                             
                             let controller = UIHostingController(rootView: cardView)
@@ -148,6 +149,7 @@ struct CardDetailView: View {
                         red = Float(UIColor(cardColor).components.red)
                         green = Float(UIColor(cardColor).components.green)
                         blue = Float(UIColor(cardColor).components.blue)
+                        localExpirationDate = expirationDate
                         updateCardSheet.toggle()
                     }label: {
                         Image(systemName: "pencil.circle")
@@ -177,6 +179,7 @@ struct CardDetailView: View {
                     UIScreen.main.brightness = 1.0
                    
                 }
+                localExpirationDate = expirationDate 
             }
             .onChange(of: scenePhase) { newPhase in
                 if newPhase == .background || newPhase == .inactive {
@@ -196,11 +199,15 @@ struct CardDetailView: View {
                 }
             }
             .sheet(isPresented: $updateCardSheet) {
-                UpdateCardView(cardId: cardId, red: $red, green: $green, blue: $blue, isPresented: $updateCardSheet)
+                UpdateCardView(cardId: cardId, red: $red, green: $green, blue: $blue, isPresented: $updateCardSheet, expirationDate: $localExpirationDate)
                     .onDisappear(){
                         cardColor = Color(.sRGB, red: Double(red), green: Double(green), blue: Double(blue))
                         print(red)
+                        if let card = barcodeItems.first(where: { $0.id == cardId }) {
+                                localExpirationDate = card.expirationDate
+                            }
                     }
+                
                 
             }
             .sheet(isPresented: $showShareSheet) {
@@ -281,5 +288,5 @@ extension Color {
 
 
 #Preview {
-    CardDetailView(cardId: UUID(), barcodeType: "VNBarcodeSymbologyQR" ,barcodeName: .constant("Loyalty"), barcodeNumber: "11220000103djasjdkashdajsndjasnaksjdsdakhsjdkajshdkjsakjhsdk692", cardColor: .constant(Color.white), deviceBrightness: .constant(0.5), expirationDate: Date.now, isPro: .constant(false), barcodeImage: .constant(nil))
+    CardDetailView(cardId: UUID(), barcodeType: "VNBarcodeSymbologyQR" ,barcodeName: .constant("Loyalty"), barcodeNumber: "11220000103djasjdkashdajsndjasnaksjdsdakhsjdkajshdkjsakjhsdk692", cardColor: .constant(Color.white), deviceBrightness: .constant(0.5), expirationDate: .constant(Date.now), isPro: .constant(false), barcodeImage: .constant(nil))
 }
