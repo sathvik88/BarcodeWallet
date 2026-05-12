@@ -36,9 +36,10 @@ struct CreateBarcodeView: View {
 
                         VStack(alignment: .leading, spacing: 12) {
                             Text(title.isEmpty ? "Card Name" : title)
+                                .foregroundColor(selectedColor.autoContrastTextColor)
                                 .font(.system(.subheadline, design: .monospaced, weight: .bold))
-                                .foregroundStyle(Color.blue)
                                 .frame(maxWidth: .infinity, alignment: .leading)
+                                
 
                             // Barcode rendering
                             Group {
