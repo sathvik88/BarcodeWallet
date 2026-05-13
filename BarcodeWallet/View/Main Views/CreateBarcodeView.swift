@@ -32,7 +32,7 @@ struct CreateBarcodeView: View {
                     ZStack {
                         RoundedRectangle(cornerRadius: 16)
                             .fill(selectedColor)
-                            .shadow(color: selectedColor.opacity(0.4), radius: 12, x: 0, y: 6)
+                            .shadow(color: selectedColor.opacity(0.4), radius: 5, x: 0, y: 0)
 
                         VStack(alignment: .leading, spacing: 12) {
                             Text(title.isEmpty ? "Card Name" : title)

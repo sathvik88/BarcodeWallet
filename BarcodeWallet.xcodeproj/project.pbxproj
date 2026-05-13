@@ -661,6 +661,7 @@
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = BarcodeWallet/Info.plist;
+				INFOPLIST_KEY_ITSAppUsesNonExemptEncryption = NO;
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.shopping";
 				INFOPLIST_KEY_NSCameraUsageDescription = "BarcodeWallet needs to use the camera to scan barcodes and QR codes.";
 				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "BarcodeWallet needs to access your photos to upload barcodes";
@@ -703,6 +704,7 @@
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = BarcodeWallet/Info.plist;
+				INFOPLIST_KEY_ITSAppUsesNonExemptEncryption = NO;
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.shopping";
 				INFOPLIST_KEY_NSCameraUsageDescription = "BarcodeWallet needs to use the camera to scan barcodes and QR codes.";
 				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "BarcodeWallet needs to access your photos to upload barcodes";

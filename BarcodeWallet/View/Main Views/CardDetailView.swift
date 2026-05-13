@@ -8,7 +8,8 @@
 import SwiftUI
 import RSBarcodes_Swift
 import AVFoundation
-
+import RevenueCat
+import RevenueCatUI
 struct CardDetailView: View {
     @Environment(\.managedObjectContext) var moc
     @FetchRequest(sortDescriptors: []) private var barcodeItems: FetchedResults<BarcodeData>
@@ -33,7 +34,7 @@ struct CardDetailView: View {
     @Binding var barcodeImage: UIImage?
     @StateObject private var walletService = WalletService.shared
     @State private var localExpirationDate: Date? = nil
-    
+    @State private var showProSheet = false
     var body: some View {
         NavigationStack{
             VStack{
@@ -60,7 +61,15 @@ struct CardDetailView: View {
                 Spacer()
                 
                 if walletService.isWalletAvailable {
-                    Button(action: handleAddToWallet) {
+                    
+                    Button{
+                        if isPro{
+                            handleAddToWallet()
+                        }else{
+                            showProSheet = true
+                        }
+                        
+                    }label:{
                         ZStack {
                             if walletService.isLoading {
                                 ProgressView()
@@ -214,6 +223,15 @@ struct CardDetailView: View {
                 if let image = imageToShare {
                     ShareSheet(items: [image])
                 }
+            }
+            .sheet(isPresented: $showProSheet) {
+                PaywallView()
+                    .onDisappear(){
+                        Task{
+                            let customerInfo = try? await Purchases.shared.customerInfo()
+                            isPro = customerInfo?.entitlements["ATLASCODE LLC Pro"]?.isActive == true
+                        }
+                    }
             }
         }
     }
